@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ficha VTuber</title>
+  <link rel="stylesheet" href="Zephyros.css">
+</head>
+
+  <style>
+      body {
+      padding: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Botón Atrás */
+    .back-button {
+	  display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #508e3b;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+.back-button span {
+  font-size: 150px;
+  margin-top: -30px; 
+  margin-right: 10px;
+  color: #52403c; /* color del relleno */
+  -webkit-text-stroke: 2px #000; /* borde negro */
+  text-stroke: 4px #000; /* compatibilidad */
+}
+
+    /* Contenedor principal alineado a la izquierda */
+    main {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .contenedor {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .imagen-grande img {
+      width: 800px;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+	  margin-top: -240px;
+	  margin-left: -20px;
+    }
+
+    .ficha {
+      background: white;
+	  border: 2px solid #000; /* trazo negro de 2px */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 400px;
+	
+    }
+
+    .ficha h2 {
+      text-align: center;
+      margin-bottom: 60px;
+      color: #333;
+    }
+
+    .dato,
+    .pais {
+      display: flex;
+      margin: 8px 0;
+      background: #52403c;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .titulo {
+	  
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      padding: 8px;
+      width: 120px;
+      background: #042baa;
+    }
+
+    .contenido {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Responsivo en móviles */
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .imagen-grande img,
+      .ficha {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+<main>
+        <div class="contenedor">
+        <!-- Imagen -->
+        <div class="imagen-grande">
+          <img src="vtubercompleto/zephy.png" alt="Imagen Grande" />
+        </div>
+
+        <!-- Ficha y redes -->
+        <div class="contenedor-principal">
+		
+		 <!-- Agrupamos en un nuevo contenedor para centrar -->
+  <div class="bloque-ficha">
+  
+          <!-- Logo -->
+          <header>
+            <img src="logos/zephyros.webp" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase">"Programador a medias colorista y VTuber"</p>
+          </header>
+      <!-- 🔹 Redes sociales -->
+      <div class="socials">
+        <a href="#"><img src="icons/x.png" alt="X"></a>
+        <a href="#"><img src="icons/twitch.png" alt="Twitch"></a>
+        <a href="#"><img src="icons/tiktok.png" alt="TikTok"></a>
+        <a href="#"><img src="icons/instagram.png" alt="Instagram"></a>
+      </div>
+  
+    <!-- 🔹 Ficha a la derecha -->
+     
+    <section class="datos">
+      <div class="ficha">
+	    <div class="pais"><div class="titulo">Pais:</div><div class="contenido">Argentina</div></div>
+        <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">14 de Noviembre</div></div>
+        <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1.71 m</div></div>
+        <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Mega Boom Doble (Hamburguesa bañana en Cheddar)</div></div>
+        <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Champiñones</div></div>
+        <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">Sonic</div></div>
+        <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">Power Rangers y Kamen Rider</div></div>
+        <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">Trap latino y Rap</div></div>
+        <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">Tate no Yuusha no Nariagari</div></div>
+        <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Escorpio</div></div>
+        <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Perro</div></div>
+        <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Azul</div></div>
+        <div class="dato"><div class="titulo">Modelo:</div><div class="contenido"></div></div>
+        <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido"></div></div>
+      </div>
+
+    </section>
+ 
+          <!-- Botón atrás -->
+          <a href="../index.html" class="back-button"><span>⬅</span></a>
+        </div>
+      </div>
+	  
+	   <!-- 🚀 NUEVO CUADRO A LA DERECHA -->
+      <aside class="extra-cuadro">
+        <div class="emotes-box">
+          <img src="emotes/dragon.png" alt="Emote 1">
+          <img src="emotes/books.png" alt="Emote 2">
+        </div>
+        <div class="imagen-box">
+          <img src="diagrama/zephyros.png" alt="Imagen grande">
+        </div>
+      </aside>
+	  
+    </main>
+</body>
+</html>
+

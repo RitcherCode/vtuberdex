@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de Fichas VTuber</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#111;color:#fff;display:flex;justify-content:center;align-items:flex-start;padding:30px}
+    .formulario{width:760px;background:#222;padding:20px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,.7)}
+    .fila{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .campo{margin-bottom:14px}
+    .campo label{display:block;margin-bottom:6px;font-weight:700}
+    .campo input,.campo textarea{width:100%;padding:8px;border-radius:8px;border:none;outline:none;background:#111;color:#fff}
+    .nota{font-size:12px;opacity:.8}
+    .boton{width:100%;padding:12px;background:#4CAF50;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:16px;color:#fff;margin-top:6px}
+    .boton.limpiar{background:#c0392b}
+  </style>
+</head>
+<body>
+  <div class="formulario">
+    <h2>Generador de Ficha VTuber</h2>
+
+    <!-- 1) Nombre (usado para el archivo HTML y CSS) -->
+    <div class="campo">
+      <label>Nombre (nombre del archivo .html/.css)</label>
+      <input type="text" id="nombre" placeholder="ej: emikukis">
+    </div>
+
+    <!-- 2) Degradado -->
+    <div class="fila">
+      <div class="campo">
+        <label>Color Degradado 1</label>
+        <input type="color" id="color1" value="#ff0000">
+      </div>
+      <div class="campo">
+        <label>Color Degradado 2</label>
+        <input type="color" id="color2" value="#0000ff">
+      </div>
+    </div>
+
+    <!-- 3) Imagen completa -->
+    <div class="campo">
+      <label>Imagen Completa (archivo)</label>
+      <input type="file" id="imgCompleta" accept="image/*">
+    </div>
+
+    <!-- 4) Logo -->
+    <div class="campo">
+      <label>Logo (archivo)</label>
+      <input type="file" id="logo" accept="image/*">
+    </div>
+
+    <!-- Redes -->
+    <div class="fila">
+      <div class="campo"><label>Link X/Twitter</label><input type="url" id="linkX" placeholder="https://..."></div>
+      <div class="campo"><label>Link Twitch</label><input type="url" id="linkTwitch" placeholder="https://..."></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Link TikTok</label><input type="url" id="linkTikTok" placeholder="https://..."></div>
+      <div class="campo"><label>Link Instagram</label><input type="url" id="linkIG" placeholder="https://..."></div>
+    </div>
+    <div class="campo">
+      <label>Link YouTube</label>
+      <input type="url" id="linkYT" placeholder="https://...">
+    </div>
+
+    <!-- Frase -->
+    <div class="campo">
+      <label>Frase</label>
+      <input type="text" id="frase" placeholder="Frase del VTuber">
+    </div>
+
+    <!-- 5) Datos de la ficha (14) -->
+    <div class="fila">
+      <div class="campo"><label>País</label><input type="text" id="pais"></div>
+      <div class="campo"><label>Cumpleaños</label><input type="text" id="cumple"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Altura</label><input type="text" id="altura"></div>
+      <div class="campo"><label>Comida Favorita</label><input type="text" id="comidaFav"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Comida que detestas</label><input type="text" id="comidaHate"></div>
+      <div class="campo"><label>Videojuego Favorito</label><input type="text" id="vjFav"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Serie Favorita</label><input type="text" id="serieFav"></div>
+      <div class="campo"><label>Gustos musicales</label><input type="text" id="musica"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Anime favorito</label><input type="text" id="animeFav"></div>
+      <div class="campo"><label>Signo Zodiacal</label><input type="text" id="signo"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Animal Favorito</label><input type="text" id="animalFav"></div>
+      <div class="campo"><label>Color Favorito</label><input type="text" id="colorFav"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Modelo</label><input type="text" id="modelo"></div>
+      <div class="campo"><label>Hashtag</label><input type="text" id="hashtag"></div>
+    </div>
+
+    <!-- 6) Emotes -->
+    <div class="fila">
+      <div class="campo">
+        <label>Emote 1 (archivo) <span class="nota">(máx. 100×100, se escala)</span></label>
+        <input type="file" id="emote1" accept="image/*">
+      </div>
+      <div class="campo">
+        <label>Emote 2 (archivo) <span class="nota">(máx. 100×100, se escala)</span></label>
+        <input type="file" id="emote2" accept="image/*">
+      </div>
+    </div>
+
+    <!-- 7) Imagen 700×700 -->
+    <div class="campo">
+      <label>Imagen 700×700 (archivo)</label>
+      <input type="file" id="img700" accept="image/*">
+    </div>
+
+    <button class="boton" onclick="generar()">Guardar (HTML + CSS)</button>
+    <button class="boton limpiar" onclick="limpiar()">Limpiar</button>
+  </div>
+
+  <script>
+    const toDataURL = (file) => new Promise(res=>{
+      if(!file){res("");return;}
+      const r=new FileReader();
+      r.onload=e=>res(e.target.result);
+      r.readAsDataURL(file);
+    });
+
+    async function generar(){
+      const nombre = (document.getElementById('nombre').value||'ficha').trim();
+      if(!nombre){alert('Ingresa nombre');return;}
+
+      const c1 = document.getElementById('color1').value;
+      const c2 = document.getElementById('color2').value;
+
+      const imgCompleta = await toDataURL(document.getElementById('imgCompleta').files[0]);
+      const logo        = await toDataURL(document.getElementById('logo').files[0]);
+      const emote1      = await toDataURL(document.getElementById('emote1').files[0]);
+      const emote2      = await toDataURL(document.getElementById('emote2').files[0]);
+      const img700      = await toDataURL(document.getElementById('img700').files[0]);
+
+      const linkX   = document.getElementById('linkX').value||'';
+      const linkTtv = document.getElementById('linkTwitch').value||'';
+      const linkTk  = document.getElementById('linkTikTok').value||'';
+      const linkIG  = document.getElementById('linkIG').value||'';
+      const linkYT  = document.getElementById('linkYT').value||'';
+
+      const frase   = document.getElementById('frase').value||'';
+
+      const pais       = document.getElementById('pais').value||'';
+      const cumple     = document.getElementById('cumple').value||'';
+      const altura     = document.getElementById('altura').value||'';
+      const comidaFav  = document.getElementById('comidaFav').value||'';
+      const comidaHate = document.getElementById('comidaHate').value||'';
+      const vjFav      = document.getElementById('vjFav').value||'';
+      const serieFav   = document.getElementById('serieFav').value||'';
+      const musica     = document.getElementById('musica').value||'';
+      const animeFav   = document.getElementById('animeFav').value||'';
+      const signo      = document.getElementById('signo').value||'';
+      const animalFav  = document.getElementById('animalFav').value||'';
+      const colorFav   = document.getElementById('colorFav').value||'';
+      const modelo     = document.getElementById('modelo').value||'';
+      const hashtag    = document.getElementById('hashtag').value||'';
+
+      // === HTML: respeta base.html (rellenado con datos del formulario) ===
+      const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha VTuber</title>
+  <link rel="stylesheet" href="${nombre}.css" />
+  <style>
+    body {
+      padding: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Botón Atrás */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #508e3b;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+    .back-button span {
+      font-size: 100px;
+      margin-top: -30px; 
+      margin-right: 10px;
+      color: #ffffff; /* color del relleno */
+      -webkit-text-stroke: 2px #000; /* borde negro */
+      text-stroke: 4px #000; /* compatibilidad */
+    }
+
+    /* Contenedor principal alineado a la izquierda */
+    main {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .contenedor {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .imagen-grande img {
+      width: 600px;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      margin-top: 110px;
+    }
+
+    .ficha {
+      background: white;
+      border: 2px solid #000; /* trazo negro de 2px */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 400px;
+    }
+
+    .ficha h2 {
+      text-align: center;
+      margin-bottom: 60px;
+      color: #333;
+    }
+
+    .dato,
+    .pais {
+      display: flex;
+      margin: 8px 0;
+      background: #0d012f;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .titulo {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      padding: 8px;
+      width: 120px;
+      background: #508e3b;
+    }
+
+    .contenido {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Responsivo en móviles */
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .imagen-grande img,
+      .ficha {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout-wrapper">
+    <main>
+      <div class="contenedor">
+        <!-- Imagen -->
+        <div class="imagen-grande">
+          <img src="${imgCompleta || 'vtubercompleto/.png'}" alt="Imagen Grande" />
+        </div>
+
+        <!-- Ficha y redes -->
+        <div class="contenedor-principal">
+          <!-- Agrupamos en un nuevo contenedor para centrar -->
+          <div class="bloque-ficha">
+            <!-- Logo -->
+            <header>
+              <img src="${logo || 'logos/.png'}" alt="Logo" class="vtuber-logo" />
+              <h3><p id="vtuber-phrase">${frase ? "&quot;"+frase+"&quot;" : ""}</p></h3>
+            </header>
+
+            <!-- Redes -->
+            <div class="socials">
+              <a href="${linkX}"><img src="icons/x.png" alt="X" /></a>
+              <a href="${linkTtv}"><img src="icons/twitch.png" alt="Twitch" /></a>
+              <a href="${linkTk}"><img src="icons/tiktok.png" alt="TikTok" /></a>
+              <a href="${linkIG}"><img src="icons/instagram.png" alt="Instagram" /></a>
+              <a href="${linkYT}"><img src="icons/youtube.png" alt="YouTube" /></a>
+            </div>
+
+            <!-- Ficha -->
+            <section class="datos">
+              <div class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">${pais}</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">${cumple}</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">${altura}</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">${comidaFav}</div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">${comidaHate}</div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">${vjFav}</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">${serieFav}</div></div>
+                <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">${musica}</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">${animeFav}</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">${signo}</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">${animalFav}</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">${colorFav}</div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">${modelo}</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">${hashtag}</div></div>
+              </div>
+            </section>
+
+            <!-- Botón atrás -->
+            <a href="../VtuberDex.html" class="back-button"><span>⬅</span></a>
+          </div>
+        </div>
+
+        <!-- 🚀 NUEVO CUADRO A LA DERECHA -->
+        <aside class="extra-cuadro">
+          <div class="emotes-box">
+            <div class="oshimarks">Oshimarks</div>
+            <div class="emotes">
+              <img src="${emote1 || 'emotes/.png'}" alt="Emote 1">
+              <img src="${emote2 || 'emotes/.png'}" alt="Emote 2">
+            </div>
+          </div>
+          <div class="imagen-box">
+            <img src="${img700 || 'diagrama/.png'}" alt="Imagen grande">
+          </div>
+        </aside>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>`;
+
+      // === CSS: replica exacto tu base.css (solo cambia los 2 colores del degradado) ===
+      const css = `body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, ${c1}, ${c2});
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 👈 Cambiado para alinear todo a la izquierda */
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor general */
+.contenedor {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 40px 20px 40px 200px;
+  box-sizing: border-box;
+}
+
+/* Columna derecha */
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+}
+
+/* Logo */
+.vtuber-logo {
+  max-width: 350px;
+  margin-left: 80px; /* Mueve el logo 30px hacia la derecha */
+  height: auto;
+  margin-bottom: -80px; /* 👈 Reduce separación con la frase */
+}
+
+#vtuber-phrase {
+  font-size: 10px;
+  font-style: italic;
+  margin-left: 40px; /* Mueve el logo 30px hacia la derecha */
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+/* Redes sociales */
+.socials {
+  margin-top: 1px ; /* 👈 Puedes ajustar este número si sigue muy separado */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+
+.socials img:hover {
+  transform: scale(1.2);
+}
+
+/* Para que en pantallas chicas se apilen */
+@media (max-width: 992px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .extra-cuadro {
+    width: 100%;
+  }
+}
+
+/* Agrupador que centra logo, redes, ficha y botón */
+.bloque-ficha {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 👈 Esto centra todo horizontalmente */
+  text-align: center;
+}
+
+/* Para que el botón atrás quede centrado igual que la ficha */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #52403c;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+/* --- NUEVO CUADRO --- */
+.extra-cuadro {
+  display: flex;
+  flex-direction: column;
+  border: 4px solid #000;
+  align-items: center;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 800px;
+  gap: 20px;
+  box-sizing: border-box;
+  flex: 1 1 600px;  /* Ocupa mínimo 600px y se adapta */
+  max-width: 800px; /* Limite para que no se pase */
+ 
+  /* Movimiento */
+  position: relative;
+  top: 190px;   /* Lo bajas 300px */
+  left: 100px;   /* Lo corres un poco a la derecha */
+}
+/* Ajustar el layout principal */
+main {
+  display: flex;
+  justify-content: flex-start; /* 👈 Mantiene izquierda y derecha */
+  align-items: flex-start;     /* 👈 Alineados arriba */
+  gap: 60px;                   /* 👈 Separa las dos columnas */
+  width: 100%;
+  padding: 40px;               /* 👈 Espacio interior */
+  box-sizing: border-box;
+}
+
+.emotes-box {
+  display: flex;
+  background: #000;
+  padding: -10px;
+  border-radius: 8px;
+  width: 730px;
+  align-items: stretch; /* 🔑 fuerza a que ambos divs se estiren en altura */
+}
+
+.oshimarks {
+  flex: 5;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 30px solid #9c24f6; /* línea vertical */
+}
+
+.emotes {
+  flex: 4; /* 40% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.emotes img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.imagen-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 800px;
+  box-sizing: border-box;
+}
+.imagen-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+`;
+
+      // ✅ descarga con el mismo nombre
+      descargar(`${nombre}.html`, html, 'text/html');
+      descargar(`${nombre}.css`, css, 'text/css');
+      alert('¡Listo! Se descargaron el HTML y el CSS con el mismo nombre!');
+    }
+
+    function descargar(nombre, contenido, tipo){
+      const blob = new Blob([contenido], {type: tipo});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = nombre;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function limpiar(){
+      document.querySelectorAll("input").forEach(input=>{
+        if(input.type === "file"){
+          input.value = null;
+        }else if(input.type === "color"){
+          input.value = input.defaultValue; // vuelve al valor inicial
+        }else{
+          input.value = "";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

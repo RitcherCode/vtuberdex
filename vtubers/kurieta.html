@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha VTuber</title>
+  <link rel="stylesheet" href="kurieta.css" />
+  <style>
+    body {
+      padding: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Botón Atrás */
+    .back-button {
+	  display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #508e3b;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+.back-button span {
+  font-size: 200px;
+  margin-top: -80px; 
+  margin-right: 10px;
+  color: #508e3b; /* color del relleno */
+  -webkit-text-stroke: 2px #000; /* borde negro */
+  text-stroke: 4px #000; /* compatibilidad */
+}
+
+    /* Contenedor principal alineado a la izquierda */
+    main {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .contenedor {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .imagen-grande img {
+      width: 600px;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+	  margin-top: 110px;
+    }
+
+    .ficha {
+      background: white;
+	  border: 2px solid #000; /* trazo negro de 2px */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 400px;
+    }
+
+    .ficha h2 {
+      text-align: center;
+      margin-bottom: 60px;
+      color: #333;
+    }
+
+    .dato,
+    .pais {
+      display: flex;
+      margin: 8px 0;
+      background: #0d012f;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .titulo {
+	  
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      padding: 8px;
+      width: 120px;
+      background: #508e3b;
+    }
+
+    .contenido {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Responsivo en móviles */
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .imagen-grande img,
+      .ficha {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout-wrapper">
+    <main>
+      <div class="contenedor">
+        <!-- Imagen -->
+        <div class="imagen-grande">
+          <img src="vtubercompleto/kurieta.png" alt="Imagen Grande" />
+        </div>
+
+        <!-- Ficha y redes -->
+        <div class="contenedor-principal">
+		
+		 <!-- Agrupamos en un nuevo contenedor para centrar -->
+  <div class="bloque-ficha">
+  
+          <!-- Logo -->
+          <header>
+            <img src="logos/kurieta.png" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase">"Estrés, Ansiedad, Depresión, Hígado Encebollado.Cosas que la humanidad estaría mejor si no existieran"</p>
+          </header>
+
+          <!-- Redes -->
+          <div class="socials">
+            <a href="https://x.com/The_Kurieta"><img src="icons/x.png" alt="X" /></a>
+            <a href="https://www.twitch.tv/thekurieta"><img src="icons/twitch.png" alt="Twitch" /></a>
+            <a href="https://www.tiktok.com/@thekurietathk"><img src="icons/tiktok.png" alt="TikTok" /></a>
+            <a href="https://www.instagram.com/thekurieta"><img src="icons/instagram.png" alt="Instagram" /></a>
+			<a href="https://www.youtube.com/channel/UCdXtN5fJf7CTt_Jr7Jfldww"><img src="icons/youtube.png" alt="YouTube" /></a>
+          </div>
+
+          <!-- Ficha -->
+          <section class="datos">
+            <div class="ficha">
+              <div class="pais"><div class="titulo">País:</div><div class="contenido">Argentina</div></div>
+              <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">19 de diciembre</div></div>
+              <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1.50 m</div></div>
+              <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Yakisoba</div></div>
+              <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Higado encebollado</div></div>
+              <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido"> Rocket League</div></div>
+              <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">Cazadores de mitos</div></div>
+              <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido"> Lo-fi, Vaporwave, Synthwave, Chillstep, Phonk, Citypop </div></div>
+              <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido"></div></div>
+              <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Sagitario</div></div>
+              <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Gatos</div></div>
+              <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido"> Blanco/Negro/Verde/violeta</div></div>
+              <div class="dato"><div class="titulo">Modelo:</div><div class="contenido"></div></div>
+              <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#ArtratKuri / #Herartrat</div></div>
+            </div>
+          </section>
+
+          <!-- Botón atrás -->
+          <a href="../index.html" class="back-button"><span>⬅</span></a>
+        </div>
+      </div>
+	  
+	   <!-- 🚀 NUEVO CUADRO A LA DERECHA -->
+     <aside class="extra-cuadro">
+         <div class="emotes-box">
+          <div class="oshimarks">Oshimarks</div>
+           <div class="emotes">
+             <img src="emotes/wifi.png" alt="Emote 1">
+             <img src="emotes/raton.png" alt="Emote 2">
+           </div>
+          </div>
+        <div class="imagen-box">
+          <img src="diagrama/kurieta.png" alt="Imagen grande">
+        </div>
+      </aside>
+	  
+    </main>
+  </div>
+</body>
+</html>
