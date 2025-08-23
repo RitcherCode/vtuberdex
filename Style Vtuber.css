@@ -1,0 +1,1056 @@
+/* CSS */
+.dex-container{
+  position: relative;                 /* marco de referencia para las pantallas */
+  width: min(95vw, 900px);            /* escala responsiva del conjunto */
+  margin: 0 auto;                     /* centrado horizontal */
+}
+.dex-frame{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/* --- Pantalla superior --- */
+.top-screen{
+  position:absolute;
+  left:21.8%;     /* ⬅ ajusta finamente a tu PNG */
+  top:8.8%;       /* ⬅ */
+  width:56.4%;    /* ⬅ */
+  height:29%;     /* ⬅ */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;        /* nada se sale del marco de la pantalla */
+  pointer-events:none;    /* no bloquea clics */
+  z-index:2;
+}
+.dex-logo{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;     /* se ajusta sin recortarse */
+}
+
+/* --- Pantalla inferior --- */
+.bottom-screen{
+  position:absolute;
+  left:22%;       /* ⬅ ajusta finamente a tu PNG */
+  top:63.9%;      /* ⬅ */
+  width:56%;      /* ⬅ */
+  height:26%;     /* ⬅ */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:2;
+}
+.start-gif {
+  position: absolute;
+  top: -25%;             /* antes 13%, ahora sube un poco */
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 40%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-color: #5e89ff;
+color: #fff;
+text-align: center;
+}
+
+
+header {
+background: linear-gradient(90deg, #ff0077, #7700ff);
+padding: 20px;
+}
+
+
+.search-section {
+margin: 20px;
+}
+
+
+.search-section input {
+padding: 10px;
+width: 60%;
+border-radius: 8px;
+border: none;
+}
+
+
+.card-container {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+padding: 20px;
+}
+
+
+.vtuber-card {
+background: #1b2233;
+border-radius: 12px;
+padding: 15px;
+width: 250px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+
+.vtuber-card img {
+width: 100%;
+border-radius: 8px;
+}
+
+footer {
+background: #111522;
+padding: 15px;
+font-size: 14px;
+}
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas */
+    grid-template-rows: repeat(5, auto);   /* 5 filas */
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px; /* opcional, para centrar y limitar ancho */
+    margin: 0 auto;
+}
+
+.vtuber-card {
+    background: #1b2233;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(243, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vtuber-card img {
+    width: 120%;
+    max-width: 229px; /* tamaño fijo para uniformidad */
+    border-radius: 0px;
+}
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas por fila */
+    gap: 23px; /* espacio entre las tarjetas */
+    max-width: 1500px; /* opcional, para centrar y limitar ancho */
+    margin: 0 auto; /* centrar en la pantalla */
+}
+
+.vtuber-card {
+    background-color: #111827;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(177, 4, 4, 0.692);
+    transition: transform 0.2s ease;
+}
+
+.vtuber-card:hover {
+    transform: translateY(-5px);
+}
+
+.vtuber-card img {
+    width: 270px;
+    height: 130px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas fijas */
+    gap: 22px; /* Espacio entre cartas */
+}
+
+.vtuber-card {
+    background-color: rgb(57, 59, 66);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+}
+body {
+        background: #0b0d12;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        color: #e6eaf2;
+    }
+    .carta {
+        width: 220px;
+        background: linear-gradient(145deg, #151a22, #1f2632);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(0,0,0,.35);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        margin: 15px;
+        text-align: center;
+    }
+    .carta:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgb(151, 29, 29);
+    }
+    .carta img {
+        width: 100%;
+        height: auto;
+    }
+    .info {
+        padding: 10px;
+    }
+    .elemento {
+        color: #6ee7ff;
+        font-weight: bold;
+    }
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+.logo-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.logo-vtuberdex {
+  max-width: 1400px; /* ajusta el tamaño máximo */
+  width: 100%;
+  height: auto;
+}
+
+.subtitulo {
+  text-align: center;
+  font-size: 1.9em;
+  color: #ccc;
+  margin-top: -5px;
+}
+/* 🔹 Estilo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0f0f0f;
+  color: #fff;
+  text-align: center;
+}
+
+/* 🔹 Logo principal */
+.logo {
+  width: 300px;
+  transition: all 0.5s ease;
+}
+
+.logo:hover {
+  filter: brightness(1.3) drop-shadow(0 0 15px rgba(163, 3, 3, 0.8));
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* 🔹 Sección de búsqueda */
+.search-section {
+  margin: 20px 0;
+}
+
+.search-section input {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  width: 250px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* 🔹 Cards de VTubers */
+.vtuber-card {
+  background: #2c2c2c;
+  border-radius: 0px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* 👆 siempre aparece la manito */
+  margin: 15px;
+  display: inline-block;
+  width: 220px;
+}
+
+.vtuber-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgb(179, 0, 0);
+}
+
+/* 🔹 Imagen dentro de la card */
+.vtuber-card img {
+  width: 100%;
+  border-radius: 0px;
+  transition: filter 0.3s ease;
+}
+
+.vtuber-card:hover img {
+  filter: brightness(1.2);
+}
+
+/* 🔹 Nombre del VTuber */
+.vtuber-card h3 {
+  margin: 10px 0 0;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.vtuber-card:hover h3 {
+  color: #ff4444;
+}
+/* Fondo general */
+body {
+  margin: 0;
+  padding: 0;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Galería de VTubers */
+.vtuber-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 40px;
+}
+
+.card {
+  background: #000000;
+  border: 2px solid #a00;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgb(175, 6, 6);
+}
+/* Contenedor principal */
+.dex-container {
+  position: relative; /* Necesario para posicionar elementos dentro */
+  width: 100%;
+  max-width: 900px; /* opcional */
+  margin: 0 auto;
+}
+
+.dex-frame {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Pantalla superior (posición exacta dentro de la Dex) */
+.top-screen {
+  position: absolute;
+  top: 15%;   /* mueve el área verticalmente (ajusta según tu imagen) */
+  left: 23%; /* mueve el área horizontalmente */
+  width: 55%;  /* ancho de la pantalla */
+  height: 23%; /* alto de la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Logo ajustado a la pantalla */
+.dex-logo {
+  max-width: 94%;
+  max-height: 100%;
+  object-fit: contain;
+  
+}.dex-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bottom-screen {
+  position: absolute;   /* Posiciona dentro del marco */
+  left: 22%;            /* Ajusta hasta quedar alineado a la “pantalla inferior” de la Dex */
+  top: 65%;             /* Ajusta verticalmente hasta que “calce” */
+  width: 56%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.start-gif {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  position: absolute;
+}
+
+.vtuber-card {
+  width: 250px;
+  margin: 15px;
+  padding: 10px;
+  background: #111;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  display: inline-block; /* Para que se alineen en filas */
+  vertical-align: top;
+}
+
+.vtuber-card img {
+  width: 100%;
+  border-radius: 12px;
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+/* Efecto hover */
+.vtuber-card:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px #f3d110, 0 0 10px #ff9100;
+}
+
+.vtuber-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 10px #f3d110, 0 0 20px #ff9100;
+}
+.ficha {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #111;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: none; /* oculta por defecto */
+  z-index: 1000;
+}
+
+.image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-overlay img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.4);
+  pointer-events: none;
+}
+
+.image-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Estilo gamer ROJO para el filtro de país */
+#countryFilter {
+  margin-top: 80px;              /* separarlo del borde superior */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: #1d1d1d;
+  color: #ff4d4d;               /* rojo neón */
+  border: 2px solid #ff4d4d;
+  padding: 10px 15px;
+  font-family: 'Consolas', monospace;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+#countryFilter:hover {
+  box-shadow: 0 0 15px #ff4d4d, 0 0 25px #ff4d4d;
+  cursor: pointer;
+}
+
+#countryFilter:focus {
+  outline: none;
+  box-shadow: 0 0 20px #ff4d4d;
+}
+
+.search-section {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Input estilo consola */
+#searchInput {
+  background: #1d1d1d;
+  border: 2px solid #ff4d4d;
+  color: #ff4d4d;
+  padding: 10px 15px;
+  font-family: 'Consolas', monospace;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+
+}
+
+#searchInput::placeholder {
+  color: #ffffff;
+}
+
+#searchInput:focus {
+  outline: none;
+  box-shadow: 0 0 20px ;
+}
+
+/* Botón estilo pokedex sólido (sin brillo) */
+#searchBtn {
+  background: #ff0000;
+  color: #ffffff;
+  border: 2px solid #b30000;
+  padding: 10px 20px;
+  font-family: 'Consolas', monospace;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+#searchBtn:hover {
+  background: #cc0000; /* más oscuro al pasar el mouse */
+  color: #ffffff;
+}
+
+.filters-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;   /* asegura que ambos queden a la misma altura */
+  gap: 50px;
+  margin-top: -30px;      /* más arriba en la página */
+}
+
+.search-section {
+  margin: 0;
+  padding: 0;
+  display: flex;       /* para que input y botón queden alineados con el select */
+  align-items: center;
+}
+
+#countryFilter {
+  height: 44px;      /* Ajusta si tu input tiene otro alto */
+  line-height: 44px; /* Para que el texto quede centrado */
+  margin-top: 1px; 
+}
+
+/* Estilo gamer ROJO para el filtro de país */
+#groupFilter {
+  margin-top: 1px;              /* separarlo del borde superior */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: #1d1d1d;
+  color: #ff4d4d;               /* rojo neón */
+  border: 2px solid #ff4d4d;
+  padding: 10px 15px;
+  font-family: 'Consolas', monospace;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+#groupFilter:hover {
+  box-shadow: 0 0 15px #ff4d4d, 0 0 25px #ff4d4d;
+  cursor: pointer;
+}
+
+#groupFilter:focus {
+  outline: none;
+  box-shadow: 0 0 20px #ff4d4d;
+}
+
+/*colores por orden de las casillas*/
+
+.vtuber-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.vtuber-card {
+  background: #111;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.vtuber-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.vtuber-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.vtuber-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* 🎨 Colores personalizados */
+
+.card1 h2, .card1 { color: #ae0000; }
+.card2 h2, .card2 { color: #3de180; }
+.card3 h2, .card3 { color: #ff0000; }
+.card4 h2, .card4 { color: #ff2f72; }
+.card5 h2, .card5 { color: #544eae; }
+/*fila 2*/
+.card6 h2, .card6 { color: #5024b5; }
+.card7 h2, .card7 { color: #aa01f8; }
+.card8 h2, .card8 { color: #821cbd; }
+.card9 h2, .card9 { color: #63925e; }
+.card10 h2, .card10 { color: #c30000; }
+/*fila 3*/
+.card11 h2, .card11  { color: #2777b2; }
+.card12 h2, .card12  { color: #940845; }
+.card13 h2, .card13  { color: #07891b; }
+.card14 h2, .card14   { color: #4b4b4b; }
+.card15 h2, .card15  { color: #c45506; }
+/*fila4*/
+.card16 h2 { color: #7801fb; }   
+.card17 h2 { color: #516798; }   
+.card18 h2 { color: #4b4b4b; }   
+.card19 h2 { color: #1a37ff; }  
+.card20 h2 { color: #ee6201; }
+/*fila 5*/ 
+.card21 h2 { color: #dcb637; }   
+.card22 h2 { color: #2c967f; }   
+.card23 h2 { color: #fe0a8d; }   
+.card24 h2 { color: #af25b0; }   
+.card25 h2 { color: #20ca00; }
+/*fila 6*/
+.card26 h2 { color: #af8716; }  
+.card27 h2 { color: #027e04; }  
+.card28 h2 { color: #7215ea; }  
+.card29 h2 { color: #5a5a5a; } 
+.card30 h2 { color: #ff0b8e; }
+/*fila 7*/
+.card31 h2 { color: #5a5a5a; }  
+.card32 h2 { color: #1ece7b; }  
+.card33 h2 { color: #b6821d; }  
+.card34 h2 { color: #1539a9; }  
+.card35 h2 { color: #6b0b62; }
+/*fila 8*/
+.card36 h2, .card36 { color:#e30908; border-color:#e30908; } 
+.card37 h2, .card37 { color:#aa870f; border-color:#aa870f; }   
+.card38 h2, .card38 { color:#00bfff; border-color:#00bfff; }   
+.card39 h2, .card39 { color:#00ff7f; border-color:#00ff7f; }   
+.card40 h2, .card40 { color:#6407a7; border-color:#ffd700; }
+/*fila 9*/
+.card41 h2, .card41 { color:#ff29ab; border-color:#ff29ab; }   
+.card42 h2, .card42 { color:#c40cc2; border-color:#c40cc2; }   
+.card43 h2, .card43 { color:#6a6a6a; border-color:#6a6a6a; }   
+.card44 h2, .card44 { color:#ff0fcd; border-color:#ff0fcd; }   
+.card45 h2, .card45 { color:#e56003; border-color:#e56003; }
+/*fila 10*/
+.card46 h2, .card46 { color:#b73d0e; border-color:#b73d0e; }   
+.card47 h2, .card47 { color:#9400d3; border-color:#9400d3; }   
+.card48 h2, .card48 { color:#00fa9a; border-color:#00fa9a; }   
+.card49 h2, .card49 { color:#15addf; border-color:#15addf; }   
+.card50 h2, .card50 { color:#f40201; border-color:#f40201; }
+/*fila 11*/
+.card51 h2, .card51 { color:#e06f13; border-color:#e06f13; }   
+.card52 h2, .card52 { color:#ff1493; border-color:#ff1493; }   
+.card53 h2, .card53 { color:#ff0000; border-color:#ff0000; }   
+.card54 h2, .card54 { color:#dd265c; border-color:#dd265c; }   
+.card55 h2, .card55 { color:#2b6cb0; border-color:#2b6cb0; } 
+/*fila 12*/
+.card56 h2, .card56 { color:#5112e9; border-color:#5112e9; }  
+.card57 h2, .card57 { color:#747474; border-color:#ff8c00; }  
+.card58 h2, .card58 { color:#04bdeb; border-color:#04bdeb; }  
+.card59 h2, .card59 { color:#eb3f00; border-color:#eb3f00; }  
+.card60 h2, .card60 { color:#ee1935; border-color:#ee1935; }
+/*fila 13*/
+.card61 h2, .card61 { color:#ff1493; border-color:#ff1493; }  
+.card62 h2, .card62 { color:#ff03d5; border-color:#00ced1; }  
+.card63 h2, .card63 { color:#00eede; border-color:#00eede; }  
+.card64 h2, .card64 { color:#8a0630; border-color:#ffd700; }  
+.card65 h2, .card65 { color:#7f01a5; border-color:#20b2aa; }
+/*fila 14*/
+.card66 h2, .card66 { color:#4e60c7; border-color:#e63946; }  
+.card67 h2, .card67 { color:#ff7f32; border-color:#ff7f32; }  
+.card68 h2, .card68 { color:#800080; border-color:#800080; }  
+.card69 h2, .card69 { color:#c00000; border-color:#c00000; }  
+.card70 h2, .card70 { color:#ff69b4; border-color:#ff69b4; }
+/*fila 15*/
+.card71 h2, .card71 { color:#ff8c00; border-color:#a7582a; }  
+.card72 h2, .card72 { color:#00ced1; border-color:#00ced1; }  
+.card73 h2, .card73 { color:#7fff00; border-color:#7fff00; }  
+.card74 h2, .card74 { color:#ffd700; border-color:#ffd700; }  
+.card75 h2, .card75 { color:#433068; border-color:#433068; }
+/*fila 16*/
+.card76 h2, .card76 { color:#00bfff; border-color:#00bfff; }  
+.card77 h2, .card77 { color:#bc0000; border-color:#bc0000; }  
+.card78 h2, .card78 { color:#9932cc; border-color:#9932cc; }  
+.card79 h2, .card79 { color:#b74c22; border-color:#b74c22; }  
+.card80 h2, .card80 { color:#4682b4; border-color:#4682b4; } 
+/*fila 17*/
+.card81 h2, .card81 { color:#ff007f; border-color:#ff007f; }  
+.card82 h2, .card82 { color:#00bfff; border-color:#00bfff; }  
+.card83 h2, .card83 { color:#9932cc; border-color:#9932cc; }  
+.card84 h2, .card84 { color:#a50741; border-color:#a50741; } 
+.card85 h2, .card85 { color:#daa520; border-color:#daa520; }
+/*fila 18*/
+.card86 h2, .card86 { color:#8932b5; border-color:#8932b5; }  
+.card87 h2, .card87 { color:#6e16a8; border-color:#6e16a8; }  
+.card88 h2, .card88 { color:#2a37c1; border-color:#2a37c1; }  
+.card89 h2, .card89 { color:#ff1493; border-color:#ff1493; }  
+.card90 h2, .card90 { color:#008080; border-color:#008080; }
+/*fila 19*/
+.card91 h2, .card91 { color:#1e90ff; border-color:#1e90ff; }  
+.card92 h2, .card92 { color:#6c5038; border-color:#6c5038; }  
+.card93 h2, .card93 { color:#520ca0; border-color:#520ca0; }  
+.card94 h2, .card94 { color:#c90101; border-color:#c90101; }  
+.card95 h2, .card95 { color:#741397; border-color:#20b2aa; }
+/*fila 20*/
+.card96 h2, .card96 { color:#00ced1; border-color:#00ced1; }  
+.card97 h2, .card97 { color:#696969; border-color:#696969; }  
+.card98 h2, .card98 { color:#da005e; border-color:#da005e; }  
+.card99 h2, .card99 { color:#c60d0d; border-color:#ff4500; }  
+.card100 h2, .card100 { color:#4682b4; border-color:#4682b4; }
+/*fila 21*/
+.card101 h2, .card101 { color:#6a0dad; border-color:#6a0dad; }  
+.card102 h2, .card102 { color:#ff4d4d; border-color:#ff4d4d; }  
+.card103 h2, .card103 { color:#9932cc; border-color:#9932cc; }  
+.card104 h2, .card104 { color:#4b0082; border-color:#4b0082; }  
+.card105 h2, .card105 { color:#ff69b4; border-color:#ff69b4; }  
+/*fila 22*/
+.card106 h2, .card106 { color:#4f4b4b; border-color:#4f4b4b; }   
+.card107 h2, .card107 { color:#441f9d; border-color:#441f9d; }   
+.card108 h2, .card108 { color:#ff4500; border-color:#ff4500; }   
+.card109 h2, .card109 { color:#623e88; border-color:#8b0000; }   
+.card110 h2, .card110 { color:#9400d3; border-color:#9400d3; }
+/*fila 23*/
+.card111 h2, .card111 { color:#095ae7; border-color:#095ae7; }   
+.card112 h2, .card112 { color:#009a98; border-color:#009a98; }   
+.card113 h2, .card113 { color:#1295e5; border-color:#1295e5; }   
+.card114 h2, .card114 { color:#71b4ad; border-color:#71b4ad; }   
+.card115 h2, .card115 { color:#906d13; border-color:#906d13; }
+/*fila 24*/
+.card116 h2, .card116 { color:#0091ca; border-color:#0091ca; }   
+.card117 h2, .card117 { color:#944105; border-color:#944105; }   
+.card118 h2, .card118 { color:#ba0700; border-color:#ba0700; }   
+.card119 h2, .card119 { color:#40418d; border-color:#40418d; }   
+.card120 h2, .card120 { color:#74139e; border-color:#74139e; }
+/*fila 25*/
+.card121 h2, .card121 { color:#ff1493; border-color:#7f153a; }   
+.card122 h2, .card122 { color:#cd853f; border-color:#cd853f; }   
+.card123 h2, .card123 { color:#bb0782; border-color:#bb0782; }   
+.card124 h2, .card124 { color:#873cd6; border-color:#c0c0c0; }   
+.card125 h2, .card125 { color:#ffc0cb; border-color:#ffc0cb; }
+/*fila 26*/
+.card126 h2, .card126 { color:#fa6500; border-color:#fa6500; }  
+.card127 h2, .card127 { color:#a02ae0; border-color:#a02ae0; } 
+.card128 h2, .card128 { color:#01a4e5; border-color:#01a4e5; }  
+.card129 h2, .card129 { color:#32d1a1; border-color:#ff4500; }  
+.card130 h2, .card130 { color:#13a7ff; border-color:#13a7ff; }
+/*fila 27*/
+.card131 h2, .card131 { color:#d9d929; border-color:#d9d929; }  
+.card132 h2, .card132 { color:#780fce; border-color:#32cd32; }  
+.card133 h2, .card133 { color:#ff1c1b; border-color:#ff1c1b; }  
+.card134 h2, .card134 { color:#2b74e2; border-color:#8a2be2; }  
+.card135 h2, .card135 { color:#ff6a1b; border-color:#ff6a1b; }
+/*fila 28*/
+.card136 h2, .card136 { color:#fc1444; border-color:#fc1444; }  
+.card137 h2, .card137 { color:#ff9f14; border-color:#ff9f14; }  
+.card138 h2, .card138 { color:#6a29dd; border-color:#6a29dd; }  
+.card139 h2, .card139 { color:#ff31ad; border-color:#ff31ad; }  
+.card140 h2, .card140 { color:#ff1515; border-color:#ff1515; }  
+/*fila 29*/
+.card141 h2, .card141 { color:#7a01dd; border-color:#ff8c00; }
+.card142 h2, .card142 { color:#e02525; border-color:#00fa9a; }  
+.card143 h2, .card143 { color:#5b5b5b; border-color:#5b5b5b; }  
+.card144 h2, .card144 { color:#ec4747; border-color:#6495ed; }  
+.card145 h2, .card145 { color:#ff0000; border-color:#ff00ff; }  
+/*fila 30*/
+.card146 h2, .card146 { color:#caad0be7; border-color:#8b0000;}
+.card147 h2, .card147 { color:#ad17ff; border-color:#ad17ff; }   
+.card148 h2, .card148 { color:#daa520; border-color:#cd853f; }   
+.card149 h2, .card149 { color:#a020f0; border-color:#ffb6c1; }   
+.card150 h2, .card150 { color:#ff4500; border-color:#ff0000; }
+/*fila 31*/
+.card151 h2, .card151 { color:#ff0000; border-color:#4169e1; }   
+.card152 h2, .card152 { color:#5673c3; border-color:#5673c3; }   
+.card153 h2, .card153 { color:#ff69b4; border-color:#ff1493; }   
+.card154 h2, .card154 { color:#ff0000; border-color:#ff0000; }   
+.card155 h2, .card155 { color:#ff69b4; border-color:#90ee90; }
+/*fila 32*/
+.card156 h2, .card156 { color:#1e90ff; border-color:#00ffff; }
+.card157 h2, .card157 { color:#ff0000; border-color:#8b0000; }   
+.card158 h2, .card158 { color:#6b89d2; border-color:#6b89d2; }   
+.card159 h2, .card159 { color:#32cd32; border-color:#006400; }   
+.card160 h2, .card160 { color:#f492bb; border-color:#f492bb; }   
+/*fila 33*/
+.card161 h2, .card161 { color:#808080; border-color:#2f4f4f; }
+.card162 h2, .card162 { color:#800080; border-color:#4b0082; }
+.card163 h2, .card163 { color:#ffa07a; border-color:#cd5c5c; }
+.card164 h2, .card164 { color:#00ffff; border-color:#008080; }
+.card165 h2, .card165 { color:#00ced1; border-color:#000000; }
+/*fila 34*/
+.card166 h2, .card166 { color:#1e90ff; border-color:#000080; }
+.card167 h2, .card167 { color:#ff00ff; border-color:#8a2be2; }
+.card168 h2, .card168 { color:#4674fb; border-color:#4674fb; }
+.card169 h2, .card169 { color:#ff8c00; border-color:#ff4500; }
+.card170 h2, .card170 { color:#ffd700; border-color:#daa520; }
+/*fila 35*/
+.card171 h2, .card171 { color:#ff0040; border-color:#ff0000; }
+.card172 h2, .card172 { color:#737373; border-color:#737373; }
+.card173 h2, .card173 { color:#5c5c5c; border-color:#5c5c5c; }
+.card174 h2, .card174 { color:#550d9c; border-color:#800080; }
+.card175 h2, .card175 { color:#a232ce; border-color:#9400d3; }
+/*fila 36*/
+.card176 h2, .card176 { color:#00bfff; border-color:#00008b; }
+.card177 h2, .card177 { color:#7f9816; border-color:#7f9816; }
+.card178 h2, .card178 { color:#1772e5; border-color:#1772e5; }
+.card179 h2, .card179 { color:#fe214a; border-color:#fe214a; }
+.card180 h2, .card180 { color:#ff1515; border-color:#ff1515; }
+/*fila 37*/
+.card181 h2, .card181 { color:#9370db; border-color:#4b0082; }
+.card182 h2, .card182 { color:#ff8c00; border-color:#a0522d; }
+.card183 h2, .card183 { color:#9d2edd; border-color:#800080; }
+.card184 h2, .card184 { color:#a85209; border-color:#a85209; }
+.card185 h2, .card185 { color:#ff1493; border-color:#8b008b; }
+/*fila 38*/
+.card186 h2, .card186 { color:#a772f8; border-color:#a772f8; }
+.card187 h2, .card187 { color:#e73bf7; border-color:#0000cd; }
+.card188 h2, .card188 { color:#ffd700; border-color:#b8860b; }
+.card189 h2, .card189 { color:#ff69b4; border-color:#ff1493; }
+.card190 h2, .card190 { color:#ff4500; border-color:#ff0000; }
+/*fila 39*/
+.card191 h2, .card191 { color:#dd1010; border-color:#20b2aa; }
+.card192 h2, .card192 { color:#ff8310; border-color:#006400; }
+.card193 h2, .card193 { color:#743f8d; border-color:#ff8c00; }
+.card194 h2, .card194 { color:#fe235b; border-color:#fe235b; }
+.card195 h2, .card195 { color:#8f1238; border-color:#4b0082; }
+/*fila 40*/
+.card196 h2, .card196 { color:#b41406; border-color:#b41406; }
+.card197 h2, .card197 { color:#7201cf; border-color:#1e90ff; }
+.card198 h2, .card198 { color:#915a45; border-color:#915a45; }
+.card199 h2, .card199 { color:#8829c7; border-color:#c71585; }
+.card200 h2, .card200 { color:#c71585; border-color:#8b4513; }
+/*fila 41*/
+.card201 h2, .card201 { color:#a608ab; border-color:#db7093; }
+.card202 h2, .card202 { color:#c62bbc; border-color:#008b8b; }
+.card203 h2, .card203 { color:#da1d1d; border-color:#ff4500; }
+.card204 h2, .card204 { color:#e29e1f; border-color:#483d8b; }
+.card205 h2, .card205 { color:#08b8d7; border-color:#2e8b57; }
+/*fila 42*/
+.card206 h2, .card206 { color:#91102a; border-color:#8b0000; }
+.card207 h2, .card207 { color:#019c7a; border-color:#019c7a; }
+.card208 h2, .card208 { color:#960b25; border-color:#ff69b4; }
+.card209 h2, .card209 { color:#e8939f; border-color:#db7093; }
+.card210 h2, .card210 { color:#a42121; border-color:#8b0000; }
+/*fila 43*/
+.card211 h2, .card211 { color:#8a2be2; border-color:#4b0082; }
+.card212 h2, .card212 { color:#c648a5; border-color:#ff4500; }
+.card213 h2, .card213 { color:#663399; border-color:#8829c7; }
+.card214 h2, .card214 { color:#d4751c; border-color:#ff8c00; }
+.card215 h2, .card215 { color:#7340a7; border-color:#1e90ff; }
+/*fila 44*/
+.card216 h2, .card216 { color:#ff69b4; border-color:#ff1493; }
+.card217 h2, .card217 { color:#32cd32; border-color:#228b22; }
+.card218 h2, .card218 { color:#ffae00; border-color:#daa520; }
+.card219 h2, .card219 { color:#ff69b4; border-color:#db7093; } 
+.card220 h2, .card220 { color:#8346b1; border-color:#008080; }
+/*fila 45*/
+.card221 h2, .card221 { color:#4682b4; border-color:#4682b4; }
+.card222 h2, .card222 { color:#7a571f; border-color:#7a571f; }
+.card223 h2, .card223 { color:#dc143c; border-color:#8b0000; } 
+.card224 h2, .card224 { color:#688ebb; border-color:#688ebb; } 
+.card225 h2, .card225 { color:#747474; border-color:#4b0082; }
+/*fila 46*/
+.card226 h2, .card226 { color:#00ffd5; border-color:#0088a9; }
+.card227 h2, .card227 { color:#b74bff; border-color:#6a0dad; }
+.card228 h2, .card228 { color:#d83c03; border-color:#b22222; }
+.card229 h2, .card229 { color:#c11154; border-color:#db7093; }   
+.card230 h2, .card230 { color:#fd0002; border-color:#fd0002; }
+/*fila 47*/
+.card231 h2, .card231 { color:#1e90ff; border-color:#00008b; }   
+.card232 h2, .card232 { color:#2f6cb2; border-color:#800080; }
+.card233 h2, .card233 { color:#13baa9; border-color:#13baa9; }   
+.card234 h2, .card234 { color:#5a38f1; border-color:#5a38f1; }   
+.card235 h2, .card235 { color:#00bfff; border-color:#000080; } 
+/*fila 48*/
+.card236 h2, .card236 { color:#ffa500; border-color:#ff8c00; }
+.card237 h2, .card237 { color:#9370db; border-color:#4b0082; }
+.card238 h2, .card238 { color:#8e8e8e; border-color:#8e8e8e; }
+.card239 h2, .card239 { color:#ff69b4; border-color:#c71585; }
+.card240 h2, .card240 { color:#8346b1; border-color:#c71585; }
+/*fila 49*/
+.card241 h2, .card241 { color:#ff0000; border-color:#8b0000; }
+.card242 h2, .card242 { color:#8b1bfd; border-color:#8b1bfd; }
+.card243 h2, .card243 { color:#6e8800; border-color:#6e8800; }   
+.card244 h2, .card244 { color:#ff1a1a; border-color:#ff1a1a; }   
+.card245 h2, .card245 { color:#ff69b4; border-color:#db7093; }
+/*fila 50*/
+.card246 h2, .card246 { color:#f02842; border-color:#f02842; }   
+.card247 h2, .card247 { color:#0f8994; border-color:#0f8994; }   
+.card248 h2, .card248 { color:#c96c43; border-color:#c96c43; }   
+.card249 h2, .card249 { color:#00e5ff; border-color:#0088cc; }   
+.card250 h2, .card250 { color:#ee5818; border-color:#db7093; }
+/*fila 51*/
+.card251 h2, .card251 { color:#adff2f; border-color:#006400; }   
+.card252 h2, .card252 { color:#b9705f; border-color:#b9705f; }   
+.card253 h2, .card253 { color:#c71585; border-color:#800000; }   
+.card254 h2, .card254 { color:#ba55d3; border-color:#800080; }   
+.card255 h2, .card255 { color:#00ffff; border-color:#008b8b; } 
+/*fila 52*/
+.card256 h2, .card256 { color:#ffd700; border-color:#daa520; }  
+.card257 h2, .card257 { color:#dda0dd; border-color:#8a2be2; }   
+.card258 h2, .card258 { color:#ff1493; border-color:#8b008b; }   
+.card259 h2, .card259 { color:#603e60; border-color:#696969; }   
+.card260 h2, .card260 { color:#ff69b4; border-color:#c71585; }
+/*fila 53*/
+.card261 h2, .card261 { color:#00ffff; border-color:#008080; }   
+.card262 h2, .card262 { color:#6a0dad; border-color:#330066; }
+.card263 h2, .card263 { color:#ffd700; border-color:#000000; }   
+.card264 h2, .card264 { color:#9370db; border-color:#4b0082; }  
+.card265 h2, .card265 { color:#dda0dd; border-color:#8b008b; }
+/*fila 54*/
+.card266 h2, .card266 { color:#c73234; border-color:#c73234; }   
+.card267 h2, .card267 { color:#b67416; border-color:#8b4513; }   
+.card268 h2, .card268 { color:#ff00ff; border-color:#000080; }   
+.card269 h2, .card269 { color:#00ffff; border-color:#004466; }   
+.card270 h2, .card270 { color:#ff5883; border-color:#ff5883; }
+/*fila 55*/
+.card271 h2, .card271 { color:#ff0000; border-color:#330000; }
+.card272 h2, .card272 { color:#ff69b4; border-color:#800000; }
+.card273 h2, .card273 { color:#ffb6c1; border-color:#db7093; }
+.card274 h2, .card274 { color:#ba55d3; border-color:#4b0082; }
+.card275 h2, .card275 { color:#fc1090; border-color:#fc1090; }
+/*fila 56*/
+.card276 h2, .card276 { color:#b67416; border-color:#8b4513; }
+.card277 h2, .card277 { color:#ff1493; border-color:#8b0000; }
+.card278 h2, .card278 { color:#ff69b4; border-color:#800080; }
+.card279 h2, .card279 { color:#848484; border-color:#848484; }   
+.card280 h2, .card280 { color:#586d32; border-color:#586d32; } 
+/*fila 57*/
+.card281 h2, .card281 { color:#ff1493; border-color:#006666; }   
+.card282 h2, .card282 { color:#c9532b; border-color:#c9532b; }   
+.card283 h2, .card283 { color:#1e90ff; border-color:#b8860b; }
+.card284 h2, .card284 { color:#c71585; border-color:#663300; }   
+.card285 h2, .card285 { color:#6d6cb0; border-color:#6d6cb0; } 
+/*fila 58*/
+.card286 h2, .card286 { color:#ff1493; border-color:#660033; }  
+.card287 h2, .card287 { color:#524faa; border-color:#524faa; }   
+.card288 h2, .card288 { color:#b67416; border-color:#483d8b; }
+.card289 h2, .card289 { color:#ff0000; border-color:#ff1493; }   
+.card290 h2, .card290 { color:#6866b9; border-color:#6866b9; } 
+/*fila 59*/
+.card291 h2, .card291 { color:#9c1d49; border-color:#4b0082; }
+.card292 h2, .card292 { color:#09853f; border-color:#09853f; }
+.card293 h2, .card293 { color:#b67416; border-color:#006633; }   
+.card294 h2, .card294 { color:#dd89ad; border-color:#dd89ad; } 
+.card295 h2, .card295 { color:#7340a7; border-color:#c71585; }
+/*fila 60*/
+.card296 h2, .card296 { color:#197ffd; border-color:#197ffd; }
+.card297 h2, .card297 { color:#db7093; border-color:#cc6600; }
+.card298 h2, .card298 { color:#00d3d4; border-color:#00d3d4; }
+.card299 h2, .card299 { color:#4b0082; border-color:#db7093; }   
+.card300 h2, .card300 { color:#01aeb5; border-color:#01aeb5; }
+/*fila 61*/
+.card301 h2, .card301 { color:#82829a; border-color:#82829a; }
+.card302 h2, .card302 { color:#ffd700; border-color:#000080; }
+.card303 h2, .card303 { color:#9932cc; border-color:#4b0082; }
+.card304 h2, .card304 { color:#ff69b4; border-color:#800040; }   
+.card305 h2, .card305 { color:#5bc4e4; border-color:#5bc4e4; }
+/*fila 62*/
+.card306 h2, .card306 { color:#6966bd; border-color:#6966bd; }
+.card307 h2, .card307 { color:#016ee5; border-color:#016ee5; }
+.card308 h2, .card308 { color:#7c1bb9; border-color:#4b0082; }
+.card309 h2, .card309 { color:#40e0d0; border-color:#006666; }
+.card310 h2, .card310 { color:#b20000; border-color:#b20000; }
+/*fila 63*/
+.card311 h2, .card311 { color:#46e37c; border-color:#46e37c; }  
+.card312 h2, .card312 { color:#6b6b6b; border-color:#6b6b6b; }
+.card313 h2, .card313 { color:#9370db; border-color:#2f4f4f; }
+.card314 h2, .card314 { color:#c38167; border-color:#c38167; } 
+.card315 h2, .card315 { color:#ff0040; border-color:#8b0000; } 
+/*fila 64*/
+.card316 h2, .card316 { color:#1e90ff; border-color:#00008b; }
+.card317 h2, .card317 { color:#7fff00; border-color:#006400; }
+.card318 h2, .card318 { color:#743f8d; border-color:#4b0082; }
+.card319 h2, .card319 { color:#eb0303; border-color:#eb0303; }
+.card320 h2, .card320 { color:#59ad34; border-color:#59ad34; }
+/*fila 65*/
+.card321 h2, .card321 { color:#ba55d3; border-color:#4b0082; }
+.card322 h2, .card322 { color:#e90e46; border-color:#e90e46; }
+.card323 h2, .card323 { color:#87ceeb; border-color:#4682b4; } 
+.card324 h2, .card324 { color:#2b40cd; border-color:#2b40cd; }
+.card325 h2, .card325 { color:#a20b2c; border-color:#a20b2c; }
+/*fila 66*/
+.card326 h2, .card326 { color:#dda0dd; border-color:#800080; }
+.card327 h2, .card327 { color:#e60a3a; border-color:#e60a3a; }
+.card328 h2, .card328 { color:#9f2dcf; border-color:#ff69b4; }
+.card329 h2, .card329 { color:#1e4d82; border-color:#2f4f4f; }
+.card330 h2, .card330 { color:#ff0000; border-color:#4b0082; }
+/*fila 67*/
+.card331 h2, .card331 { color:#ff69b4; border-color:#ff1493; }
+.card332 h2, .card332 { color:#9370db; border-color:#2f4f4f; }
+.card333 h2, .card333 { color:#d34541; border-color:#d34541; }
+.card334 h2, .card334 { color:#414142; border-color:#000000; }
+.card335 h2, .card335 { color:#367773; border-color:#367773; }
+/*fila 68*/
+.card336 h2, .card336 { color:#ff0000; border-color:#8b0000; }
+.card337 h2, .card337 { color:#c85866; border-color:#c85866; }
+.card338 h2, .card338 { color:#b67416; border-color:#8b4513; }
+.card339 h2, .card339 { color:#275627; border-color:#006400; }
+.card340 h2, .card340 { color:#ff69b4; border-color:#800080; }
+/*fila 69*/
+.card341 h2, .card341 { color:#359935; border-color:#359935; }   
+.card342 h2, .card342 { color:#1e90ff; border-color:#00008b; }   
+.card343 h2, .card343 { color:#800080; border-color:#4b0082; }   
+.card344 h2, .card344 { color:#5c3c2b; border-color:#5c3c2b; }   
+.card345 h2, .card345 { color:#c82250; border-color:#c82250; }   
+/*fila 70*/
+.card346 h2, .card346 { color:#ff0000; border-color:#000080; }   
+.card347 h2, .card347 { color:#842c61; border-color:#842c61; }   
+.card348 h2, .card348 { color:#b67416; border-color:#8b4513; }   
+.card349 h2, .card349 { color:#00bfff; border-color:#1e90ff; }   
+.card350 h2, .card350 { color:#9932cc; border-color:#4b0082; }   
+/*fila 71*/
+.card351 h2, .card351 { color:#862623; border-color:#862623; }  
+.card352 h2, .card352 { color:#4682b4; border-color:#000000; }   
+colores actualizados.txt
+23 KB

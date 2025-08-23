@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VtuberDex</title>
+    <link rel="stylesheet" href="Style Vtuber.css">
+</head>
+
+
+
+<body>
+
+<!-- HTML -->
+<div class="dex-container">
+  <!-- Marco de la consola -->
+  <img src="DexVtuber.png" alt="Dex 3DS" class="dex-frame">
+
+  <!-- Pantalla superior (logo) -->
+  <div class="top-screen">
+    <img src="logo_6.webp" alt="Logo VtuberDex" class="dex-logo">
+  </div>
+
+  <!-- Pantalla inferior (PRESS START) -->
+  <div class="bottom-screen">
+    <img src="start.gif" alt="Press Start" class="start-gif">
+  </div>
+</div>
+
+<div class="filters-bar">
+  <section class="search-section">
+    <input type="text" id="searchInput" placeholder="Buscar VTuber...">
+    <button id="searchBtn">Buscar</button>
+  </section>
+
+<select id="countryFilter">
+  <option value="">-- Filtrar por país --</option>
+  <option value="Argentina">Argentina</option>
+  <option value="Bolivia">Bolivia</option>
+  <option value="Canarias">Canarias</option>
+  <option value="Chile">Chile</option>
+  <option value="Colombia">Colombia</option>
+  <option value="Costa Rica">Costa Rica</option>
+  <option value="Cuba">Cuba</option>
+  <option value="Ecuador">Ecuador</option>
+  <option value="El Salvador">El Salvador</option>
+  <option value="España">España</option>
+  <option value="Estados Unidos">Estados Unidos</option>
+  <option value="Galicia">Galicia</option>
+  <option value="Guatemala">Guatemala</option>
+  <option value="Holanda">Holanda</option>
+  <option value="Honduras">Honduras</option>
+  <option value="Italia">Italia</option>
+  <option value="Japón">Japón</option>
+  <option value="México">México</option>
+  <option value="Nicaragua">Nicaragua</option>
+  <option value="Panamá">Panamá</option>
+  <option value="Paraguay">Paraguay</option>
+  <option value="Perú">Perú</option>
+  <option value="Puerto Rico">Puerto Rico</option>
+  <option value="Republica Dominicana">Republica Dominicana</option>
+  <option value="Uruguay">Uruguay</option>
+  <option value="Venezuela">Venezuela</option>
+</select>
+
+  <!-- 🔹 Nuevo filtro por grupo/agencia -->
+  <select id="groupFilter">
+    <option value="">-- Filtrar por grupo/agencia --</option>
+    <option value="Akari Live">Akari Live</option>
+    <option value="VMagic">VMagic</option>
+    <option value="Moonly">Moonly</option>
+    <option value="SainooCorp">SainooCorp</option>
+    <option value="ONEESHI">ONEESHI</option>
+    <option value="LEP">LEP</option>
+    <option value="Mystic Wonderland">Mystic Wonderland</option>
+    <option value="PrismKind">PrismKind</option>
+    <option value="leFolk">leFolk</option>
+    <option value="WaraWaraLive">WaraWaraLive</option>
+    <option value="WanShelter">WanShelter</option>
+    <option value="NovaES">NovaES</option>
+    <option value="Celestials">Celestials</option>
+    <option value="Satellite">Satellite</option>
+	<option value="Yume Girls!">Yume Girls!</option>
+	<option value="Owozu">Owozu</option>
+	<option value="Mofu Stars">Mofu Stars</option>
+	<option value="UmiTora">UmiTora</option>
+	<option value="Kurokiwa☆Project">Kurokiwa☆Project</option>
+	<option value="La Liga de los Degenerados">La Liga de los Degenerados</option>
+	<option value="Sianna Live">Sianna Live</option>
+	<option value="AStras">AStras</option> 
+	<option value="Altherbit Group">Altherbit Group</option>
+    <option value="NEO Dengeki">NEO Dengeki</option>
+    <option value="Orixia Studio">Orixia Studio</option>
+	
+  </select>
+</div>
+
+    <div class="card-container">
+        <!-- Fila 1 -->
+        <div class="vtuber-card card1" data-pais="México" data-group="">
+            <img src="fichas/vtuber 1.jpg" alt="VTuber 1">
+            <h2>YEICOKP HARV</h2>
+        </div>
+
+        <div class="vtuber-card card2" data-pais="España">
+            <img src="fichas/vtuber 2.jpg" alt="VTuber 2">
+            <h2>CornyHolocean</h2>
+        </div>
+
+        <div class="vtuber-card card3" data-pais="España" data-group="Moonly">
+            <img src="fichas/vtuber 3.jpg" alt="VTuber 3">
+            <h2>El pibe sekiro</h2>
+        </div>
+
+        <div class="vtuber-card card4" data-pais="España">
+            <img src="fichas/vtuber 4.jpg" alt="VTuber 4">
+            <h2>Crimson Kalo</h2>
+        </div>
+
+        <div class="vtuber-card card5" data-pais="Chile" data-group="Moonly">
+            <img src="fichas/vtuber5.jpg" alt="VTuber 5">
+            <h2>Drawchii</h2>
+        </div>
+        <!-- Fila 2: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card6" data-pais="Cuba">
+            <img src="fichas/vtuber6.jpg" alt="VTuber 6">
+            <h2>OverbeastVT</h2>   
+        </div>
+
+        <div class="vtuber-card card7" data-pais="Argentina">
+            <img src="fichas/vtuber7.jpg" alt="VTuber 7">
+            <h2>Furezu.exe</h2>
+        </div>
+<div class="vtuber-card card8" data-pais="México" data-group="Moonly"> 
+            <img src="fichas/vtuber8.jpg" alt="VTuber 8">
+            <h2>StockDave VT</h2>
+        </div>
+
+        <div class="vtuber-card card9" data-pais="Argentina">
+            <img src="fichas/vtuber9.jpg" alt="VTuber 9">
+            <h2>Dr.Yusei</h2>
+        </div>
+<div class="vtuber-card card10" data-pais="Chile">
+            <img src="fichas/vtuber10.jpg" alt="VTuber 10">
+            <h2>Los Cuentos del Tio Rior</h2>
+        </div>
+<!-- Fila 3: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card11" data-pais="México" data-group="PrismKind">
+            <img src="fichas/vtuber11.jpg" alt="VTuber 11">
+            <h2>Amela Haddock</h2>
+        </div>
+
+        <div class="vtuber-card card12" data-pais="México">
+            <img src="fichas/vtuber12.jpg" alt="VTuber 12">
+            <h2>Sorel</h2>
+        </div>
+
+<div class="vtuber-card card13" data-pais="Venezuela">
+            <img src="fichas/vtuber13.jpg" alt="VTuber 13">
+            <h2>PIPA HIYOKO</h2>
+        </div>
+
+        <div class="vtuber-card card14" data-pais="España">
+            <img src="fichas/vtuber14.jpg" alt="VTuber 14">
+            <h2>Gomurya</h2>
+        </div>
+<div class="vtuber-card card15" data-pais="México">
+            <img src="fichas/vtuber15.jpg" alt="VTuber 15">
+            <h2>MizunoarkssVT</h2>
+        </div>
+<!-- Fila 4: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card16" data-pais="Chile">
+            <img src="fichas/vtuber16.jpg" alt="VTuber 16">
+            <h2>madKoding</h2>
+        </div>
+
+        <div class="vtuber-card card17" data-pais="México">
+            <img src="fichas/vtuber17.jpg" alt="VTuber 17">
+            <h2>Sora FirefreeVT</h2>
+        </div>
+
+<div class="vtuber-card card18" data-pais="Chile">
+            <img src="fichas/vtuber18.jpg" alt="VTuber 18">
+            <h2>GKuro Monochrome</h2>
+        </div>
+
+        <div class="vtuber-card card19" data-pais="Perú">
+            <img src="fichas/vtuber19.jpg" alt="VTuber 19">
+            <h2>Arrocin</h2>
+        </div>
+<div class="vtuber-card card20" data-pais="Chile">
+            <img src="fichas/vtuber20.jpg" alt="VTuber 20">
+            <h2>Detectibear</h2>
+        </div>
+<!-- Fila 5: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card21" data-pais="México">
+            <img src="fichas/vtuber21.jpg" alt="VTuber 21">
+            <h2>StarVT</h2>
+        </div>
+
+        <div class="vtuber-card card22" data-pais="México">
+            <img src="fichas/vtuber22.jpg" alt="VTuber 22">
+            <h2>Wolf Hikari</h2>
+        </div>
+
+<div class="vtuber-card card23" data-pais="Argentina">
+            <img src="fichas/vtuber23.jpg" alt="VTuber 23">
+            <h2>Kiki</h2>
+        </div>
+
+        <div class="vtuber-card card24" data-pais="Chile">
+            <img src="fichas/vtuber24.jpg" alt="VTuber 24">
+            <h2>Stella</h2>
+        </div>
+<div class="vtuber-card card25" data-pais="México">
+            <img src="fichas/vtuber25.jpg" alt="VTuber 25">
+            <h2>Ikal</h2>
+        </div>
+<!-- Fila 6: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card26" data-pais="Argentina">
+            <img src="fichas/vtuber26.jpg" alt="VTuber 26">
+            <h2>Puddingmg</h2>
+        </div>
+
+        <div class="vtuber-card card27" data-pais="Chile">
+            <img src="fichas/vtuber27.jpg" alt="VTuber 27">
+            <h2>BennySandia</h2>
+        </div>
+
+<div class="vtuber-card card28" data-pais="Estados Unidos">
+            <img src="fichas/vtuber28.jpg" alt="VTuber 28">
+            <h2>Retto_VT </h2>
+        </div>
+
+        <div class="vtuber-card card29" data-pais="México">
+            <img src="fichas/vtuber29.jpg" alt="VTuber 29">
+            <h2>HACKERTROLLER</h2>
+        </div>
+<div class="vtuber-card card30" data-pais="Estados Unidos">
+            <img src="fichas/vtuber30.jpg" alt="VTuber 30">
+            <h2>REIM0Y0</h2>
+        </div>
+<!-- Fila 7: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card31" data-pais="Argentina">
+            <img src="fichas/vtuber31.jpg" alt="VTuber 31">
+            <h2>FShiro</h2>
+        </div>
+
+        <div class="vtuber-card card32" data-pais="México">
+            <img src="fichas/vtuber32.jpg" alt="VTuber 32">
+            <h2>Okami Darakino</h2>
+        </div>
+
+<div class="vtuber-card card33" data-pais="México">
+            <img src="fichas/vtuber33.jpg" alt="VTuber 33">
+            <h2>Tsuki Akerman</h2>
+        </div>
+
+        <div class="vtuber-card card34" data-pais="Perú">
+            <img src="fichas/vtuber34.jpg" alt="VTuber 34">
+            <h2>Okumura</h2>
+        </div>
+<div class="vtuber-card card35" data-pais="Ecuador">
+            <img src="fichas/vtuber35.jpg" alt="VTuber 35">
+            <h2>LlamitaSpain</h2>
+        </div>
+<!-- Fila 8: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card36" data-pais="Chile">
+            <img src="fichas/vtuber36.jpg" alt="VTuber 36">
+            <h2>3D Ssen</h2>
+        </div>
+
+        <div class="vtuber-card card37" data-pais="México">
+            <img src="fichas/vtuber37.jpg" alt="VTuber 37">
+            <h2>Scorpgenm</h2>
+        </div>
+
+<div class="vtuber-card card38" data-pais="Perú">
+            <img src="fichas/vtuber38.jpg" alt="VTuber 38">
+            <h2>Dumyh Dum</h2>
+        </div>
+
+        <div class="vtuber-card card39" data-pais="España">
+            <img src="fichas/vtuber39.jpg" alt="VTuber 39">
+            <h2>pikapaty</h2>
+        </div>
+<div class="vtuber-card card40" data-pais="México">
+            <img src="fichas/vtuber40.jpg" alt="VTuber 40">
+            <h2>DarkussChara</h2>
+        </div>
+<!-- Fila 9: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card41" data-pais="México">
+            <img src="fichas/vtuber41.jpg" alt="VTuber 41">
+            <h2>Shenlong Fujiwara</h2>
+        </div>
+
+        <div class="vtuber-card card42" data-pais="España">
+            <img src="fichas/vtuber42.jpg" alt="VTuber 42">
+            <h2>IveeVT</h2>
+        </div>
+
+<div class="vtuber-card card43" data-pais="Chile" data-group="LEP">
+            <img src="fichas/vtuber43.jpg" alt="VTuber 43">
+            <h2>Alternative Five</h2>
+        </div>
+
+        <div class="vtuber-card card44" data-pais="Venezuela">
+            <img src="fichas/vtuber44.jpg" alt="VTuber 44">
+            <h2>DiFaii</h2>
+        </div>
+<div class="vtuber-card card45" data-pais="Chile">
+            <img src="fichas/vtuber45.jpg" alt="VTuber 45">
+            <h2>El Tio Sting</h2>
+        </div>
+<!-- Fila 10: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card46" data-pais="Bolivia">
+            <img src="fichas/vtuber46.jpg" alt="VTuber 46">
+            <h2>axirdia</h2>
+        </div>
+
+        <div class="vtuber-card card47" data-pais="Colombia">
+            <img src="fichas/vtuber47.jpg" alt="VTuber 47">
+            <h2>NiroVT</h2>
+        </div>
+
+<div class="vtuber-card card48" data-pais="Perú">
+            <img src="fichas/vtuber48.jpg" alt="VTuber 48">
+            <h2>Pipo Passcore</h2>
+        </div>
+
+        <div class="vtuber-card card49" data-pais="España">
+            <img src="fichas/vtuber49.jpg" alt="VTuber 49">
+            <h2>League Of Penguins</h2>
+        </div>
+<div class="vtuber-card card50" data-pais="Colombia">
+            <img src="fichas/vtuber50.jpg" alt="VTuber 50">
+            <h2>masckioi</h2>
+        </div>
+<!-- Fila 11: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card51" data-pais="Colombia">
+            <img src="fichas/vtuber51.jpg" alt="VTuber 51">
+            <h2>LE☠︎GAR</h2>
+        </div>
+
+        <div class="vtuber-card card52" data-pais="Chile" data-group="LEP">
+            <img src="fichas/vtuber52.jpg" alt="VTuber 52">
+            <h2>Onie Connie</h2>
+        </div>
+
+<div class="vtuber-card card53" data-pais="Chile">
+            <img src="fichas/vtuber53.jpg" alt="VTuber 53">
+            <h2>Estatrix</h2>
+        </div>
+
+        <div class="vtuber-card card54" data-pais="Chile" data-group="LEP">
+            <img src="fichas/vtuber54.jpg" alt="VTuber 54">
+            <h2>RinaUiVT</h2>
+        </div>
+<div class="vtuber-card card55" data-pais="Perú">
+            <img src="fichas/vtuber55.jpg" alt="VTuber 55">
+            <h2>MeliodasStaz</h2>
+        </div>
+<!-- Fila 12: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card56" data-pais="España">
+            <img src="fichas/vtuber56.jpg" alt="VTuber 56">
+            <h2>Sh_Devil</h2>
+        </div>
+
+        <div class="vtuber-card card57" data-pais="Perú">
+            <img src="fichas/vtuber57.jpg" alt="VTuber 57">
+            <h2>Codicius Code</h2>
+        </div>
+
+<div class="vtuber-card card58" data-pais="Perú">
+            <img src="fichas/vtuber58.jpg" alt="VTuber 58">
+            <h2>Adriancito0</h2>
+        </div>
+
+        <div class="vtuber-card card59" data-pais="Perú">
+            <img src="fichas/vtuber59.jpg" alt="VTuber 59">
+            <h2>Raven & Abbadon</h2>
+        </div>
+<div class="vtuber-card card60" data-pais="Chile">
+            <img src="fichas/vtuber60.jpg" alt="VTuber 60">
+            <h2>ChainaVT</h2>
+        </div>
+<!-- Fila 13: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card61" data-pais="Chile">
+            <img src="fichas/vtuber61.jpg" alt="VTuber 61">
+            <h2>Arimi Princess</h2>
+        </div>
+
+        <div class="vtuber-card card62" data-pais="México">
+            <img src="fichas/vtuber62.jpg" alt="VTuber 62">
+            <h2>Mitsuki Aisuru</h2>
+        </div>
+
+<div class="vtuber-card card63" data-pais="España">
+            <img src="fichas/vtuber63.jpg" alt="VTuber 63">
+            <h2>Neko Luffy</h2>
+        </div>
+
+        <div class="vtuber-card card64" data-pais="Chile">
+            <img src="fichas/vtuber64.jpg" alt="VTuber 64">
+            <h2>RESCMAD</h2>
+        </div>
+<div class="vtuber-card card65" data-pais="Costa Rica">
+            <img src="fichas/vtuber65.jpg" alt="VTuber 65">
+            <h2>Moruku Vtuber</h2>
+        </div>
+<!-- Fila 14: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card66" data-pais="Perú" data-group="Moonly">
+            <img src="fichas/vtuber66.jpg" alt="VTuber 66">
+            <h2>LuceoTTV</h2>
+        </div>
+
+        <div class="vtuber-card card67" data-pais="México">
+            <img src="fichas/vtuber67.jpg" alt="VTuber 67">
+            <h2>Sun Levy</h2>
+        </div>
+
+<div class="vtuber-card card68" data-pais="España">
+            <img src="fichas/vtuber68.jpg" alt="VTuber 68">
+            <h2>MisaVT</h2>
+        </div>
+
+		<div class="vtuber-card card69" data-pais="Chile" data-group="Moonly">
+			<a href="vtubers/ritchercode.html">
+			<img src="fichas/vtuber69.jpg" alt="VTuber 69">
+			</a>
+			<h2>Ritcher Code</h2>
+		</div>
+<div class="vtuber-card card70" data-pais="España">
+            <img src="fichas/vtuber70.jpg" alt="VTuber 70">
+            <h2>Kitsu</h2>
+        </div>
+<!-- Fila 15: simplemente sigue repitiendo el bloque de .vtuber-card -->
+<div class="vtuber-card card71" data-pais="España">
+            <img src="fichas/vtuber71.jpg" alt="VTuber 71">
+            <h2>Hey Yoru VT</h2>
+        </div>
+
+<div class="vtuber-card card72" data-pais="España">
+            <img src="fichas/vtuber72.jpg" alt="VTuber 72">
+            <h2>Erkendir von Darkclaw</h2>
+        </div>
+
+<div class="vtuber-card card73" data-pais="México">
+            <a href="vtubers/joythegoblin.html">
+            <img src="fichas/vtuber73.jpg" alt="VTuber 73">
+			</a>
+            <h2>Joy The Goblin</h2>
+        </div>
+
+        <div class="vtuber-card card74" data-pais="Chile" data-group="PrismKind">
+            <img src="fichas/vtuber74.jpg" alt="VTuber 74">
+            <h2>Valentine ✦ Kafziel</h2>
+        </div>
+<div class="vtuber-card card75" data-pais="Argentina">
+            <img src="fichas/vtuber75.jpg" alt="VTuber 75">
+            <h2>Serles Themce</h2>
+        </div>
+<!-- Fila 16: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card76" data-pais="México">
+            <img src="fichas/vtuber76.jpg" alt="VTuber 76">
+            <h2>Debbie Nigiryu</h2>
+        </div>
+
+        <div class="vtuber-card card77" data-pais="Bolivia">
+            <img src="fichas/vtuber77.jpg" alt="VTuber 77">
+            <h2>Meka-chan Twin Turbo VT</h2>
+        </div>
+
+<div class="vtuber-card card78" data-pais="México">
+            <img src="fichas/vtuber78.jpg" alt="VTuber 78">
+            <h2>Kaidon, The Conqueror</h2>
+        </div>
+
+        <div class="vtuber-card card79" data-pais="México">
+            <img src="fichas/vtuber79.jpg" alt="VTuber 79">
+            <h2>Panisuya</h2>
+        </div>
+<div class="vtuber-card card80" data-pais="Argentina">
+            <img src="fichas/vtuber80.jpg" alt="VTuber 80">
+            <h2>NoahPiolaVT</h2>
+        </div>
+<!-- Fila 17: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card81" data-pais="México">
+            <img src="fichas/vtuber81.jpg" alt="VTuber 81">
+            <h2>DaikiRichVT</h2>
+        </div>
+
+        <div class="vtuber-card card82" data-pais="México">
+            <img src="fichas/vtuber82.jpg" alt="VTuber 82">
+            <h2>𝐋𝐮𝐜𝐢𝐨_𝐏𝐞𝐫𝐞𝐳𝟎𝟎</h2>
+        </div>
+
+<div class="vtuber-card card83" data-pais="Argentina">
+            <a href="vtubers/kurieta.html">
+            <img src="fichas/vtuber83.jpg" alt="VTuber 83">
+            <h2>The Kurieta</h2>
+			</a>
+        </div>
+
+        <div class="vtuber-card card84" data-pais="Costa Rica">
+            <img src="fichas/vtuber84.jpg" alt="VTuber 84">
+            <h2>RaxielVT</h2>
+        </div>
+<div class="vtuber-card card85" data-pais="Chile">
+            <img src="fichas/vtuber85.jpg" alt="VTuber 85">
+            <h2>FirentWolfen</h2>
+        </div>
+<!-- Fila 18: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card86" data-pais="México">
+            <img src="fichas/vtuber86.jpg" alt="VTuber 86">
+            <h2>NatyDunkVT</h2>
+        </div>
+
+        <div class="vtuber-card card87" data-pais="México">
+            <img src="fichas/vtuber87.jpg" alt="VTuber 87">
+            <h2>Yue Nabi</h2>
+        </div>
+
+<div class="vtuber-card card88" data-pais="Venezuela">
+            <img src="fichas/vtuber88.jpg" alt="VTuber 88">
+            <h2>KeiWolf</h2>
+        </div>
+
+        <div class="vtuber-card card89" data-pais="Chile">
+            <img src="fichas/vtuber89.jpg" alt="VTuber 89">
+            <h2>EXENTASER</h2>
+        </div>
+<div class="vtuber-card card90" data-pais="Chile">
+            <img src="fichas/vtuber90.jpg" alt="VTuber 90">
+            <h2>Virion Arseth</h2>
+        </div>
+<!-- Fila 19: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card91" data-pais="Argentina">
+            <img src="fichas/vtuber91.jpg" alt="VTuber 91">
+            <h2>☆Prox☆SylverStar☆</h2>
+        </div>
+
+        <div class="vtuber-card card92" data-pais="España">
+            <img src="fichas/vtuber92.jpg" alt="VTuber 92">
+            <h2>KadiiVT</h2>
+        </div>
+
+<div class="vtuber-card card93" data-pais="Venezuela">
+            <img src="fichas/vtuber93.jpg" alt="VTuber 93">
+            <h2>FalnikVT</h2>
+        </div>
+
+        <div class="vtuber-card card94" data-pais="Argentina">
+            <img src="fichas/vtuber94.jpg" alt="VTuber 94">
+            <h2>KuroNekoVT</h2>
+        </div>
+<div class="vtuber-card card95" data-pais="México">
+            <img src="fichas/vtuber95.jpg" alt="VTuber 95">
+            <h2>Yuto Obsidian</h2>
+        </div>
+<!-- Fila 20: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card96" data-pais="Perú">
+            <img src="fichas/vtuber96.jpg" alt="VTuber 96">
+            <h2>ArceusGP</h2>
+        </div>
+
+        <div class="vtuber-card card97" data-pais="Perú" data-group="PrismKind">
+            <img src="fichas/vtuber97.jpg" alt="VTuber 97">
+            <h2>YutoKuroganeVT</h2>
+        </div>
+
+<div class="vtuber-card card98" data-pais="Chile">
+            <img src="fichas/vtuber98.jpg" alt="VTuber 98">
+            <h2>NyaruVT</h2>
+        </div>
+
+        <div class="vtuber-card card99" data-pais="Ecuador">
+            <img src="fichas/vtuber99.jpg" alt="VTuber 99">
+            <h2>RedFire_RDFR</h2>
+        </div>
+<div class="vtuber-card card100" data-pais="México">
+            <img src="fichas/vtuber100.jpg" alt="VTuber 100">
+            <h2>Animated Ink ️</h2>
+        </div>
+<!-- Fila 21: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card101" data-pais="Republica Dominicana">
+            <img src="fichas/vtuber101.jpg" alt="VTuber 101">
+            <h2>Captain Rider Horoobi</h2>
+        </div>
+
+        <div class="vtuber-card card102" data-pais="España">
+            <img src="fichas/vtuber102.jpg" alt="VTuber 102">
+            <h2>Elysia Devanlor</h2>
+        </div>
+
+<div class="vtuber-card card103" data-pais="México">
+            <img src="fichas/vtuber103.jpg" alt="VTuber 103">
+            <h2>JeStar</h2>
+        </div>
+
+<div class="vtuber-card card104" data-pais="Chile">
+            <img src="fichas/vtuber104.jpg" alt="VTuber 104">
+            <h2>Zereff 404</h2>
+        </div>
+		
+<div class="vtuber-card card105" data-pais="Chile">
+            <img src="fichas/vtuber105.jpg" alt="VTuber 105">
+            <h2>Javii Neko</h2>
+        </div>
+<!-- Fila 22: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card106" data-pais="Chile">
+            <img src="fichas/vtuber106.jpg" alt="VTuber 106">
+            <h2>Kohne</h2>
+        </div>
+
+        <div class="vtuber-card card107" data-pais="Puerto Rico">
+            <img src="fichas/vtuber107.jpg" alt="VTuber 107">
+            <h2>Amaris MoonVT</h2>
+        </div>
+
+<div class="vtuber-card card108" data-pais="México">
+            <img src="fichas/vtuber108.jpg" alt="VTuber 108">
+            <h2>Darklobo117</h2>
+        </div>
+
+        <div class="vtuber-card card109" data-pais="Argentina">
+            <img src="fichas/vtuber109.jpg" alt="VTuber 109">
+            <h2>TCrow</h2>
+        </div>
+<div class="vtuber-card card110" data-pais="Perú">
+            <img src="fichas/vtuber110.jpg" alt="VTuber 110">
+            <h2>Kagerou Draw</h2>
+        </div>
+<!-- Fila 23: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card111" data-pais="Chile">
+            <img src="fichas/vtuber111.jpg" alt="VTuber 111">
+            <h2> Lyra Oceanelle </h2>
+        </div>
+
+        <div class="vtuber-card card112" data-pais="Colombia">
+            <img src="fichas/vtuber112.jpg" alt="VTuber 112">
+            <h2> A𝚗𝚝𝚑𝚎ᵛᵗ </h2>
+        </div>
+
+<div class="vtuber-card card113" data-pais="Colombia">
+            <img src="fichas/vtuber113.jpg" alt="VTuber 113">
+            <h2>Auzura kumo</h2>
+        </div>
+
+        <div class="vtuber-card card114" data-pais="Holanda">
+            <img src="fichas/vtuber114.jpg" alt="VTuber 114">
+            <h2>seaphany</h2>
+        </div>
+<div class="vtuber-card card115" data-pais="Perú">
+            <img src="fichas/vtuber115.jpg" alt="VTuber 115">
+            <h2>Radiant</h2>
+        </div>
+<!-- Fila 24: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card116" data-pais="Colombia">
+            <img src="fichas/vtuber116.jpg" alt="VTuber 116">
+            <h2>Eclipse Noctis</h2>
+        </div>
+
+        <div class="vtuber-card card117" data-pais="Chile" data-group="Moonly">
+            <img src="fichas/vtuber117.jpg" alt="VTuber 117">
+            <h2>Nachonachin1</h2>
+        </div>
+
+<div class="vtuber-card card118" data-pais="Argentina">
+            <img src="fichas/vtuber118.jpg" alt="VTuber 118">
+            <h2>OneLevelVT</h2>
+        </div>
+
+        <div class="vtuber-card card119" data-pais="Colombia">
+            <img src="fichas/vtuber119.jpg" alt="VTuber 119">
+            <h2>Smiley</h2>
+        </div>
+<div class="vtuber-card card120" data-pais="México">
+            <img src="fichas/vtuber120.jpg" alt="VTuber 120">
+            <h2>Yuki Tsuki VT</h2>
+        </div>
+<!-- Fila 25: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card121" data-pais="Argentina">
+            <img src="fichas/vtuber121.jpg" alt="VTuber 121">
+            <h2>Ruby Crea</h2>
+        </div>
+
+        <div class="vtuber-card card122" data-pais="Colombia">
+            <img src="fichas/vtuber122.jpg" alt="VTuber 122">
+            <h2>Danniel Cookies</h2>
+        </div>
+
+<div class="vtuber-card card123" data-pais="México">
+            <img src="fichas/vtuber123.jpg" alt="VTuber 123">
+            <h2>MaibunnyVT</h2>
+        </div>
+
+        <div class="vtuber-card card124" data-pais="Republica Dominicana">
+            <img src="fichas/vtuber124.jpg" alt="VTuber 124">
+            <h2>Nicoxs</h2>
+        </div>
+		
+<div class="vtuber-card card125" data-pais="México">
+            <img src="fichas/vtuber125.jpg" alt="VTuber 125">
+            <h2>Mina Virtual</h2>
+        </div>
+<!-- Fila 26: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card126" data-pais="España">
+            <img src="fichas/vtuber126.jpg" alt="VTuber 126">
+            <h2>Pump Khenn</h2>
+        </div>
+
+        <div class="vtuber-card card127" data-pais="México">
+            <img src="fichas/vtuber127.jpg" alt="VTuber 127">
+            <h2>Nyaphie</h2>
+        </div>
+
+<div class="vtuber-card card128" data-pais="México">
+            <img src="fichas/vtuber128.jpg" alt="VTuber 128">
+            <h2>Pacraos</h2>
+        </div>
+
+        <div class="vtuber-card card129" data-pais="Argentina">
+            <img src="fichas/vtuber129.jpg" alt="VTuber 129">
+            <h2>Mika Winters</h2>
+        </div>
+<div class="vtuber-card card130" data-pais="Chile">
+            <img src="fichas/vtuber130.jpg" alt="VTuber 130">
+            <h2>Blau Seiker</h2>
+        </div>
+<!-- Fila 27: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card131" data-pais="Colombia" data-group="Moonly">
+            <img src="fichas/vtuber131.jpg" alt="VTuber 131">
+            <h2>Sweet Lemon</h2>
+        </div>
+
+        <div class="vtuber-card card132" data-pais="Perú">
+            <img src="fichas/vtuber132.jpg" alt="VTuber 132">
+            <h2>Kawary</h2>
+        </div>
+
+<div class="vtuber-card card133" data-pais="Argentina">
+            <img src="fichas/vtuber133.jpg" alt="VTuber 133">
+            <h2>Anyeluz</h2>
+        </div>
+
+        <div class="vtuber-card card134" data-pais="Colombia">
+            <img src="fichas/vtuber134.jpg" alt="VTuber 134">
+            <h2>Ruzat</h2>
+        </div>
+<div class="vtuber-card card135" data-pais="Estados Unidos, Perú">
+            <img src="fichas/vtuber135.jpg" alt="VTuber 135">
+            <h2>BreadTheMaria</h2>
+        </div>
+<!-- Fila 28: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card136" data-pais="España">
+            <img src="fichas/vtuber136.jpg" alt="VTuber 136">
+            <h2>Rivery</h2>
+        </div>
+
+        <div class="vtuber-card card137" data-pais="Perú">
+            <img src="fichas/vtuber137.jpg" alt="VTuber 137">
+            <h2>MilesNiVT</h2>
+        </div>
+
+<div class="vtuber-card card138" data-pais="Perú">
+            <img src="fichas/vtuber138.jpg" alt="VTuber 138">
+            <h2>TheSonicexeGP</h2>
+        </div>
+
+        <div class="vtuber-card card139" data-pais="Costa Rica">
+            <img src="fichas/vtuber139.jpg" alt="VTuber 139">
+            <h2>ImTtr4ncy</h2>
+        </div>
+<div class="vtuber-card card140" data-pais="Costa Rica">
+            <img src="fichas/vtuber140.jpg" alt="VTuber 140">
+            <h2>dodgie</h2>
+        </div>
+<!-- Fila 29: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card141" data-pais="México">
+            <img src="fichas/vtuber141.jpg" alt="VTuber 141">
+            <h2>Katilamon</h2>
+        </div>
+
+        <div class="vtuber-card card142" data-pais="México">
+            <img src="fichas/vtuber142.jpg" alt="VTuber 142">
+            <h2>𝑷𝒉𝒊𝒍𝒖𝒇𝒇𝒚</h2>
+        </div>
+
+<div class="vtuber-card card143" data-pais="Chile">
+            <img src="fichas/vtuber143.jpg" alt="VTuber 143">
+            <h2>Sile</h2>
+        </div>
+
+        <div class="vtuber-card card144" data-pais="México">
+            <img src="fichas/vtuber144.jpg" alt="VTuber 144">
+            <h2>LilitaVT</h2>
+        </div>
+<div class="vtuber-card card145" data-pais="España">
+            <img src="fichas/vtuber145.jpg" alt="VTuber 145">
+            <h2>Yasei Kohi</h2>
+        </div>
+<!-- Fila 30: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card146" data-pais="España">
+            <img src="fichas/vtuber146.jpg" alt="VTuber 146">
+            <h2>Suigintou</h2>
+        </div>
+
+        <div class="vtuber-card card147" data-pais="México">
+            <img src="fichas/vtuber147.jpg" alt="VTuber 147">
+            <h2>Godty</h2>
+        </div>
+
+<div class="vtuber-card card148" data-pais="Chile">
+            <img src="fichas/vtuber148.jpg" alt="VTuber 148">
+            <h2>Altema</h2>
+        </div>
+
+        <div class="vtuber-card card149" data-pais="España">
+            <img src="fichas/vtuber149.jpg" alt="VTuber 149">
+            <h2>PochitaVT</h2>
+        </div>
+<div class="vtuber-card card150" data-pais="México">
+            <img src="fichas/vtuber150.jpg" alt="VTuber 150">
+            <h2>KAORI BLAZE</h2>
+        </div>
+<!-- Fila 31: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card151" data-pais="Chile">
+            <img src="fichas/vtuber151.jpg" alt="VTuber 151">
+            <h2>Jakigun (Conexión Tamers)</h2>
+        </div>
+
+        <div class="vtuber-card card152" data-pais="Colombia">
+            <img src="fichas/vtuber152.jpg" alt="VTuber 152">
+            <h2>RaityKool</h2>
+        </div>
+
+<div class="vtuber-card card153" data-pais="Colombia">
+            <img src="fichas/vtuber153.jpg" alt="VTuber 153">
+            <h2>Funkyo Enma</h2>
+        </div>
+
+        <div class="vtuber-card card154" data-pais="Chile">
+		    <a href="vtubers/edomancer.html">
+            <img src="fichas/vtuber154.jpg" alt="VTuber 154">
+			</a>
+            <h2>Edomancer</h2>
+        </div>
+<div class="vtuber-card card155" data-pais="Perú">
+            <img src="fichas/vtuber155.jpg" alt="VTuber 155">
+            <h2>ShinoriNee</h2>
+        </div>
+<!-- Fila 32: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card156" data-pais="Argentina">
+            <img src="fichas/vtuber156.jpg" alt="VTuber 156">
+            <h2> Kalipso Kai </h2>
+        </div>
+
+        <div class="vtuber-card card157" data-pais="Chile">
+            <img src="fichas/vtuber157.jpg" alt="VTuber 157">
+            <h2>Morbid Huaso</h2>
+        </div>
+
+<div class="vtuber-card card158" data-pais="México">
+            <img src="fichas/vtuber158.jpg" alt="VTuber 158">
+            <h2>Pixel Tina</h2>
+        </div>
+
+        <div class="vtuber-card card159" data-pais="Perú">
+            <img src="fichas/vtuber159.jpg" alt="VTuber 159">
+            <h2>Arzo 19 Art</h2>
+        </div>
+<div class="vtuber-card card160" data-pais="Argentina">
+            <img src="fichas/vtuber160.jpg" alt="VTuber 160">
+            <h2>YuukaVT</h2>
+        </div>
+<!-- Fila 33: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card161" data-pais="Japón">
+            <img src="fichas/vtuber161.jpg" alt="VTuber 161">
+            <h2>Nara Shiranui</h2>
+        </div>
+
+        <div class="vtuber-card card162" data-pais="Venezuela">
+            <img src="fichas/vtuber162.jpg" alt="VTuber 162">
+            <h2>Posytive Beats</h2>
+        </div>
+
+<div class="vtuber-card card163" data-pais="Chile">
+            <img src="fichas/vtuber163.jpg" alt="VTuber 163">
+            <h2>Krusheku</h2>
+        </div>
+
+        <div class="vtuber-card card164" data-pais="México">
+            <img src="fichas/vtuber164.jpg" alt="VTuber 164">
+            <h2>Kyronix</h2>
+        </div>
+<div class="vtuber-card card165" data-pais="Argentina">
+            <img src="fichas/vtuber165.jpg" alt="VTuber 165">
+            <h2>DarkXPMC</h2>
+        </div>
+<!-- Fila 34: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card166" data-pais="España">
+            <img src="fichas/vtuber166.jpg" alt="VTuber 166">
+            <h2>Sora VTuber</h2>
+        </div>
+
+        <div class="vtuber-card card167" data-pais="Colombia">
+            <img src="fichas/vtuber167.jpg" alt="VTuber 167">
+            <h2>NIKA</h2>
+        </div>
+
+<div class="vtuber-card card168" data-pais="Perú">
+            <img src="fichas/vtuber168.jpg" alt="VTuber 168">
+            <h2>Fran42Resg</h2>
+        </div>
+
+        <div class="vtuber-card card169" data-pais="España">
+            <img src="fichas/vtuber169.jpg" alt="VTuber 169">
+            <h2>Lyneko</h2>
+        </div>
+<div class="vtuber-card card170" data-pais="Perú">
+            <img src="fichas/vtuber170.jpg" alt="VTuber 170">
+            <h2>Luka Lightwing</h2>
+        </div>
+<!-- Fila 35: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card171" data-pais="México">
+            <img src="fichas/vtuber171.jpg" alt="VTuber 171">
+            <h2>Chii Amano</h2>
+        </div>
+
+        <div class="vtuber-card card172" data-pais="Costa Rica">
+            <img src="fichas/vtuber172.jpg" alt="VTuber 172">
+            <h2>Zerodawer</h2>
+        </div>
+
+<div class="vtuber-card card173" data-pais="España">
+            <img src="fichas/vtuber173.jpg" alt="VTuber 173">
+            <h2>SAKE</h2>
+        </div>
+
+        <div class="vtuber-card card174" data-pais="Puerto Rico">
+            <img src="fichas/vtuber174.jpg" alt="VTuber 174">
+            <h2>Esferita</h2>
+        </div>
+<div class="vtuber-card card175" data-pais="España">
+            <img src="fichas/vtuber175.jpg" alt="VTuber 175">
+            <h2>Chromy</h2>
+        </div>
+<!-- Fila 36: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card176" data-pais="Bolivia">
+            <img src="fichas/vtuber176.jpg" alt="VTuber 176">
+            <h2>Azurapyon</h2>
+        </div>
+
+        <div class="vtuber-card card177" data-pais="España, Canarias">
+            <img src="fichas/vtuber177.jpg" alt="VTuber 177">
+            <h2>Bertaork El Tabernero Loco</h2>
+        </div>
+
+<div class="vtuber-card card178" data-pais="España">
+            <img src="fichas/vtuber178.jpg" alt="VTuber 178">
+            <h2>Jelite V</h2>
+        </div>
+
+        <div class="vtuber-card card179" data-pais="México">
+            <img src="fichas/vtuber179.jpg" alt="VTuber 179">
+            <h2>Mons</h2>
+        </div>
+<div class="vtuber-card card180" data-pais="Argentina">
+            <img src="fichas/vtuber180.jpg" alt="VTuber 180">
+            <h2>Ren Ashirogi</h2>
+        </div>
+<!-- Fila 37: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card181" data-pais="México">
+            <img src="fichas/vtuber181.jpg" alt="VTuber 181">
+            <h2>MrDonBamboo</h2>
+        </div>
+
+        <div class="vtuber-card card182" data-pais="España">
+            <img src="fichas/vtuber182.jpg" alt="VTuber 182">
+            <h2>Lirin</h2>
+        </div>
+
+<div class="vtuber-card card183" data-pais="España">
+            <img src="fichas/vtuber183.jpg" alt="VTuber 183">
+            <h2>Mitsuki Moon</h2>
+        </div>
+
+        <div class="vtuber-card card184" data-pais="Perú´">
+            <img src="fichas/vtuber184.jpg" alt="VTuber 184">
+            <h2>CukiVT</h2>
+        </div>
+<div class="vtuber-card card185" data-pais="México">
+            <img src="fichas/vtuber185.jpg" alt="VTuber 185">
+            <h2>CloserGrind</h2>
+        </div>
+<!-- Fila 38: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card186" data-pais="Perú">
+            <img src="fichas/vtuber186.jpg" alt="VTuber 186">
+            <h2>Gumi Seiryu</h2>
+        </div>
+
+        <div class="vtuber-card card187" data-pais="México">
+            <img src="fichas/vtuber187.jpg" alt="VTuber 187">
+            <h2>Zuzu & Zaza</h2>
+        </div>
+
+<div class="vtuber-card card188" data-pais="México" data-group="Moonly">
+            <img src="fichas/vtuber188.jpg" alt="VTuber 188">
+            <h2>Tzintzun</h2>
+        </div>
+
+        <div class="vtuber-card card189" data-pais="Chile">
+            <img src="fichas/vtuber189.jpg" alt="VTuber 189">
+            <h2>MarshmallowVT</h2>
+        </div>
+<div class="vtuber-card card190" data-pais="Chile">
+            <img src="fichas/vtuber190.jpg" alt="VTuber 190">
+            <h2>StellVT</h2>
+        </div>
+<!-- Fila 39: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card191" data-pais="Argentina">
+            <img src="fichas/vtuber191.jpg" alt="VTuber 191">
+            <h2>Navin_Dubs</h2>
+        </div>
+
+        <div class="vtuber-card card192" data-pais="Chile">
+            <img src="fichas/vtuber192.jpg" alt="VTuber 192">
+            <h2>PuduQl_</h2>
+        </div>
+
+<div class="vtuber-card card193" data-pais="México">
+            <img src="fichas/vtuber193.jpg" alt="VTuber 193">
+            <h2>Haji Castella</h2>
+        </div>
+
+        <div class="vtuber-card card194" data-pais="Perú´">
+            <img src="fichas/vtuber194.jpg" alt="VTuber 194">
+            <h2>SoobMc</h2>
+        </div>
+		
+<div class="vtuber-card card195" data-pais="Chile" data-group="Moonly">
+            <img src="fichas/vtuber195.jpg" alt="VTuber 195">
+            <h2>Shiki Noraneko</h2>
+        </div>
+<!-- Fila 40: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card196" data-pais="México">
+            <img src="fichas/vtuber196.jpg" alt="VTuber 196">
+            <h2>Jexreton</h2>
+        </div>
+
+        <div class="vtuber-card card197" data-pais="Argentina">
+            <img src="fichas/vtuber197.jpg" alt="VTuber 197">
+            <h2>1_Nothing_0</h2>
+        </div>
+
+<div class="vtuber-card card198" data-pais="Ecuador">
+            <img src="fichas/vtuber198.jpg" alt="VTuber 198">
+            <h2>VTkairo</h2>
+        </div>
+
+        <div class="vtuber-card card199" data-pais="Guatemala">
+            <img src="fichas/vtuber199.jpg" alt="VTuber 199">
+            <h2>KanahVT</h2>
+        </div>
+		
+<div class="vtuber-card card200" data-pais="México">
+            <img src="fichas/vtuber200.jpg" alt="VTuber 200">
+            <h2>Chery Rutherford</h2>
+        </div>
+<!-- Fila 41: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card201" data-pais="México">
+            <img src="fichas/vtuber201.jpg" alt="VTuber 201">
+            <h2>Yukino Akaihi</h2>
+        </div>
+
+        <div class="vtuber-card card202" data-pais="Argentina">
+            <img src="fichas/vtuber202.jpg" alt="VTuber 202">
+            <h2>Can Megurin</h2>
+        </div>
+
+<div class="vtuber-card card203" data-pais="Venezuela">
+            <img src="fichas/vtuber203.jpg" alt="VTuber 203">
+            <h2>Dracorusterra</h2>
+        </div>
+
+        <div class="vtuber-card card204" data-pais="Chile" data-group="Moonly">
+            <img src="fichas/vtuber204.jpg" alt="VTuber 204">
+            <h2>Kumogin Kato</h2>
+        </div>
+		
+<div class="vtuber-card card205" data-pais="México">
+            <img src="fichas/vtuber205.jpg" alt="VTuber 205">
+            <h2>Jean Fischer</h2>
+        </div>
+<!-- Fila 42: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card206" data-pais="México">
+            <img src="fichas/vtuber206.jpg" alt="VTuber 206">
+            <h2>EvelinAkko</h2>
+        </div>
+
+        <div class="vtuber-card card207" data-pais="México">
+            <img src="fichas/vtuber207.jpg" alt="VTuber 207">
+            <h2>Desmond Graves</h2>
+        </div>
+
+<div class="vtuber-card card208" data-pais="España">
+            <img src="fichas/vtuber208.jpg" alt="VTuber 208">
+            <h2>Candy Onion</h2>
+        </div>
+
+        <div class="vtuber-card card209" data-pais="Argentina">
+            <img src="fichas/vtuber209.jpg" alt="VTuber 209">
+            <h2>Rozu</h2>
+        </div>
+		
+<div class="vtuber-card card210" data-pais="España" data-group="Moonly">
+            <img src="fichas/vtuber210.jpg" alt="VTuber 210">
+            <h2>Nanaku Ito</h2>
+        </div>
+<!-- Fila 43: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card211" data-pais="Chile" data-group="Moonly">
+            <img src="fichas/vtuber211.jpg" alt="VTuber 211">
+            <h2>ExeRerVT</h2>
+        </div>
+
+        <div class="vtuber-card card212" data-pais="México">
+            <img src="fichas/vtuber212.jpg" alt="VTuber 212">
+            <h2>SucreMay</h2>
+        </div>
+
+<div class="vtuber-card card213" data-pais="Estados Unidos" data-group="Moonly">
+            <img src="fichas/vtuber213.jpg" alt="VTuber 213">
+            <h2>Nyanny</h2>
+        </div>
+
+        <div class="vtuber-card card214" data-pais="España">
+            <img src="fichas/vtuber214.jpg" alt="VTuber 214">
+            <h2>Vivi Magica</h2>
+        </div>
+		
+<div class="vtuber-card card215" data-pais="Argentina">
+            <img src="fichas/vtuber215.jpg" alt="VTuber 215">
+            <h2>Paw Maru</h2>
+        </div>
+<!-- Fila 44: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card216" data-pais="Argentina">
+            <img src="fichas/vtuber216.jpg" alt="VTuber 216">
+            <h2>Kioko Mizuka</h2>
+        </div>
+
+        <div class="vtuber-card card217" data-pais="México">
+            <img src="fichas/vtuber217.jpg" alt="VTuber 217">
+            <h2>Azkangi</h2>
+        </div>
+
+<div class="vtuber-card card218" data-pais="España">
+            <img src="fichas/vtuber218.jpg" alt="VTuber 218">
+            <h2>Mitzi Zenitza</h2>
+        </div>
+
+        <div class="vtuber-card card219" data-pais="Uruguay">
+            <img src="fichas/vtuber219.jpg" alt="VTuber 219">
+            <h2>shapixVT</h2>
+        </div>
+		
+<div class="vtuber-card card220" data-pais="España">
+            <img src="fichas/vtuber220.jpg" alt="VTuber 220">
+            <h2>Unapayasy</h2>
+        </div>
+<!-- Fila 45: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card221" data-pais="México">
+            <img src="fichas/vtuber221.jpg" alt="VTuber 221">
+            <h2>Don Jaibo</h2>
+        </div>
+
+        <div class="vtuber-card card222" data-pais="México">
+            <img src="fichas/vtuber222.jpg" alt="VTuber 222">
+            <h2>Lucketry</h2>
+        </div>
+
+<div class="vtuber-card card223" data-pais="Perú">
+            <img src="fichas/vtuber223.jpg" alt="VTuber 223">
+            <h2>Dima Rathnow</h2>
+        </div>
+
+        <div class="vtuber-card card224" data-pais="México">
+            <img src="fichas/vtuber224.jpg" alt="VTuber 224">
+            <h2>Dany Dark Kat</h2>
+        </div>
+<div class="vtuber-card card225" data-pais="Chile">
+            <img src="fichas/vtuber225.jpg" alt="VTuber 225">
+            <h2>HoruVT</h2>
+        </div>
+<!-- Fila 46: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card226" data-pais="Colombia">
+            <img src="fichas/vtuber226.jpg" alt="VTuber 226">
+            <h2>ShizukaVT</h2>
+        </div>
+
+        <div class="vtuber-card card227" data-pais="España">
+            <img src="fichas/vtuber227.jpg" alt="VTuber 227">
+            <h2>Alexia Robotto</h2>
+        </div>
+
+<div class="vtuber-card card228" data-pais="Chile">
+            <img src="fichas/vtuber228.jpg" alt="VTuber 228">
+            <h2>Mon Ragnar</h2>
+        </div>
+
+        <div class="vtuber-card card229" data-pais="Chile">
+            <img src="fichas/vtuber229.jpg" alt="VTuber 229">
+            <h2>Petiite VT</h2>
+        </div>
+<div class="vtuber-card card230" data-pais="Republica Dominicana">
+            <img src="fichas/vtuber230.jpg" alt="VTuber 230">
+            <h2>ShimpiVT</h2>
+        </div>
+<!-- Fila 47: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card231" data-pais="México">
+            <img src="fichas/vtuber231.jpg" alt="VTuber 231">
+            <h2>Hina Mina</h2>
+        </div>
+
+        <div class="vtuber-card card232" data-pais="Argentina">
+            <img src="fichas/vtuber232.jpg" alt="VTuber 232">
+            <h2>ShaiZoe</h2>
+        </div>
+
+<div class="vtuber-card card233" data-pais="Argentina">
+            <img src="fichas/vtuber233.jpg" alt="VTuber 233">
+            <h2>Fuel</h2>
+        </div>
+
+        <div class="vtuber-card card234" data-pais="México">
+            <img src="fichas/vtuber234.jpg" alt="VTuber 234">
+            <h2>Zoel Angel</h2>
+        </div>
+<div class="vtuber-card card235" data-pais="Bolivia">
+            <img src="fichas/vtuber235.jpg" alt="VTuber 235">
+            <h2>Ztaellar</h2>
+        </div>
+<!-- Fila 48: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card236" data-pais="Perú">
+            <img src="fichas/vtuber236.jpg" alt="VTuber 236">
+            <h2>Sharon Lyra</h2>
+        </div>
+
+        <div class="vtuber-card card237" data-pais="México">
+            <img src="fichas/vtuber237.jpg" alt="VTuber 237">
+            <h2>Polette Miedo</h2>
+        </div>
+
+<div class="vtuber-card card238" data-pais="Chile">
+            <img src="fichas/vtuber238.jpg" alt="VTuber 238">
+            <h2>Shiro</h2>
+        </div>
+
+        <div class="vtuber-card card239" data-pais="México">
+            <img src="fichas/vtuber239.jpg" alt="VTuber 239">
+            <h2>E V E R G U M 08</h2>
+        </div>
+<div class="vtuber-card card240" data-pais="México">
+            <img src="fichas/vtuber240.jpg" alt="VTuber 240">
+            <h2>Jerix</h2>
+        </div>
+<!-- Fila 49: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card241" data-pais="Chile">
+            <img src="fichas/vtuber241.jpg" alt="VTuber 241">
+            <h2>𝗚𝗜𝗙𝗧𝗦𝗖𝗛𝗟𝗔𝗡𝗚𝗘𝗡</h2>
+        </div>
+
+        <div class="vtuber-card card242" data-pais="México">
+            <img src="fichas/vtuber242.jpg" alt="VTuber 242">
+            <h2>Non Flashy</h2>
+        </div>
+
+<div class="vtuber-card card243" data-pais="España, Canarias">
+            <img src="fichas/vtuber243.jpg" alt="VTuber 243">
+            <h2>Grögg Gorg</h2>
+        </div>
+
+        <div class="vtuber-card card244" data-pais="Chile">
+            <img src="fichas/vtuber244.jpg" alt="VTuber 244">
+            <h2>Miwa Xisawa VT</h2>
+        </div>
+<div class="vtuber-card card245" data-pais="Chile">
+            <img src="fichas/vtuber245.jpg" alt="VTuber 245">
+            <h2>Rose Azuki</h2>
+        </div>
+<!-- Fila 50: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card246" data-pais="México">
+            <img src="fichas/vtuber246.jpg" alt="VTuber 246">
+            <h2>Rrinkss</h2>
+        </div>
+
+        <div class="vtuber-card card247" data-pais="México">
+            <img src="fichas/vtuber247.jpg" alt="VTuber 247">
+            <h2>Aika Elentari</h2>
+        </div>
+
+<div class="vtuber-card card248" data-pais="México">
+            <img src="fichas/vtuber248.jpg" alt="VTuber 248">
+            <h2>LilyBell</h2>
+        </div>
+
+        <div class="vtuber-card card249" data-pais="España, Galicia">
+            <img src="fichas/vtuber249.jpg" alt="VTuber 249">
+            <h2>Ruri Kurobara</h2>
+        </div>
+<div class="vtuber-card card250" data-pais="México">
+            <img src="fichas/vtuber250.jpg" alt="VTuber 250">
+            <h2>Keirame</h2>
+        </div>
+<!-- Fila 51: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card251" data-pais="México">
+            <img src="fichas/vtuber251.jpg" alt="VTuber 251">
+            <h2>EudyDae</h2>
+        </div>
+
+        <div class="vtuber-card card252" data-pais="México">
+            <img src="fichas/vtuber252.jpg" alt="VTuber 252">
+            <h2>Doki</h2>
+        </div>
+
+<div class="vtuber-card card253" data-pais="España">
+            <img src="fichas/vtuber253.jpg" alt="VTuber 253">
+            <h2>Ciner𖹭sa</h2>
+        </div>
+
+        <div class="vtuber-card card254" data-pais="Chile">
+            <img src="fichas/vtuber254.jpg" alt="VTuber 254">
+            <h2>Harper Strikes</h2>
+        </div>
+<div class="vtuber-card card255" data-pais="México">
+            <img src="fichas/vtuber255.jpg" alt="VTuber 255">
+            <h2>Axelot</h2>
+        </div>
+<!-- Fila 52: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card256" data-pais="México">
+            <img src="fichas/vtuber256.jpg" alt="VTuber 256">
+            <h2>Toko</h2>
+        </div>
+
+        <div class="vtuber-card card257" data-pais="México">
+            <img src="fichas/vtuber257.jpg" alt="VTuber 257">
+            <h2>Gretha</h2>
+        </div>
+
+<div class="vtuber-card card258" data-pais="España, Canarias">
+            <img src="fichas/vtuber258.jpg" alt="VTuber 258">
+            <h2>Vomori Hiko</h2>
+        </div>
+
+        <div class="vtuber-card card259" data-pais="Costa Rica">
+            <img src="fichas/vtuber259.jpg" alt="VTuber 259">
+            <h2>SrAkko</h2>
+        </div>
+<div class="vtuber-card card260" data-pais="Chile">
+            <img src="fichas/vtuber260.jpg" alt="VTuber 260">
+            <h2>MiiileChan</h2>
+        </div>
+<!-- Fila 53: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card261" data-pais="Panamá">
+            <img src="fichas/vtuber261.jpg" alt="VTuber 261">
+            <h2>MintyQueen</h2>
+        </div>
+
+        <div class="vtuber-card card262" data-pais="Colombia">
+            <img src="fichas/vtuber262.jpg" alt="VTuber 262">
+            <h2>LaTwosky76</h2>
+        </div>
+
+<div class="vtuber-card card263" data-pais="Argentina">
+            <a href="vtubers/nathqueenbee.html">
+            <img src="fichas/vtuber263.jpg" alt="VTuber 263">
+			</a>
+            <h2>Nath Queen Bee</h2>
+        </div>
+
+        <div class="vtuber-card card264" data-pais="Panamá">
+            <img src="fichas/vtuber264.jpg" alt="VTuber 264">
+            <h2>AleXanDro</h2>
+        </div>
+		
+<div class="vtuber-card card265" data-pais="México">
+            <img src="fichas/vtuber265.jpg" alt="VTuber 265">
+            <h2>MikiVine</h2>
+        </div>
+<!-- Fila 54: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card266" data-pais="México">
+            <img src="fichas/vtuber266.jpg" alt="VTuber 266">
+            <h2>Saiko</h2>
+        </div>
+
+        <div class="vtuber-card card267" data-pais="México">
+            <img src="fichas/vtuber267.jpg" alt="VTuber 267">
+            <h2>Mari Nanjo</h2>
+        </div>
+
+<div class="vtuber-card card268" data-pais="Venezuela">
+            <img src="fichas/vtuber268.jpg" alt="VTuber 268">
+            <h2>Kanade Koodo</h2>
+        </div>
+
+        <div class="vtuber-card card269" data-pais="México">
+            <img src="fichas/vtuber269.jpg" alt="VTuber 269">
+            <h2>Albus Blackfire</h2>
+        </div>
+<div class="vtuber-card card270" data-pais="Chile">
+            <img src="fichas/vtuber270.jpg" alt="VTuber 270">
+            <h2>Lunaria</h2>
+        </div>
+<!-- Fila 55: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card271" data-pais="España" data-group="SainooCorp">
+            <img src="fichas/vtuber271.jpg" alt="VTuber 271">
+            <h2>Ignya Panthara</h2>
+        </div>
+
+        <div class="vtuber-card card272" data-pais="Venezuela">
+            <img src="fichas/vtuber272.jpg" alt="VTuber 272">
+            <h2>Nugget Meow</h2>
+        </div>
+
+<div class="vtuber-card card273" data-pais="Republica Dominicana">
+            <img src="fichas/vtuber273.jpg" alt="VTuber 273">
+            <h2>Mimi Purr</h2>
+        </div>
+
+        <div class="vtuber-card card274" data-pais="Venezuela">
+            <img src="fichas/vtuber274.jpg" alt="VTuber 274">
+            <h2>Purin Seishin</h2>
+        </div>
+<div class="vtuber-card card275" data-pais="España, Canarias">
+            <img src="fichas/vtuber275.jpg" alt="VTuber 275">
+            <h2>R3mu</h2>
+        </div>
+<!-- Fila 56: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card276" data-pais="México">
+            <img src="fichas/vtuber276.jpg" alt="VTuber 276">
+            <h2>AshleyGaming66</h2>
+        </div>
+
+        <div class="vtuber-card card277" data-pais="Argentina">
+            <img src="fichas/vtuber277.jpg" alt="VTuber 277">
+            <h2>Cister Violet</h2>
+        </div>
+
+<div class="vtuber-card card278" data-pais="Colombia">
+            <img src="fichas/vtuber278.jpg" alt="VTuber 278">
+            <h2>MATTITO VT</h2>
+        </div>
+
+        <div class="vtuber-card card279" data-pais="México">
+            <img src="fichas/vtuber279.jpg" alt="VTuber 279">
+            <h2>AnesragaVT</h2>
+        </div>
+<div class="vtuber-card card280" data-pais="México">
+            <img src="fichas/vtuber280.jpg" alt="VTuber 280">
+            <h2>GeragerVT</h2>
+        </div>
+<!-- Fila 57: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card281" data-pais="Italia, Chile">
+            <img src="fichas/vtuber281.jpg" alt="VTuber 281">
+            <h2>Femboy Neki VT</h2>
+        </div>
+
+        <div class="vtuber-card card282" data-pais="Colombia">
+            <img src="fichas/vtuber282.jpg" alt="VTuber 282">
+            <h2>Dahlia Ka'i</h2>
+        </div>
+
+<div class="vtuber-card card283" data-pais="Argentina">
+            <img src="fichas/vtuber283.jpg" alt="VTuber 283">
+            <h2>Aurora Atria</h2>
+        </div>
+
+        <div class="vtuber-card card284" data-pais="Venezuela, Colombia">
+            <img src="fichas/vtuber284.jpg" alt="VTuber 284">
+            <h2>GelPatLu</h2>
+        </div>
+<div class="vtuber-card card285" data-pais="Perú">
+            <img src="fichas/vtuber285.jpg" alt="VTuber 285">
+            <h2>Firshi</h2>
+        </div>
+<!-- Fila 58: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card286" data-pais="México">
+            <img src="fichas/vtuber286.jpg" alt="VTuber 286">
+            <h2>Adeline Black</h2>
+        </div>
+
+        <div class="vtuber-card card287" data-pais="Costa Rica">
+            <img src="fichas/vtuber287.jpg" alt="VTuber 287">
+            <h2>Mysia Black</h2>
+        </div>
+
+<div class="vtuber-card card288" data-pais="Chile">
+            <img src="fichas/vtuber288.jpg" alt="VTuber 288">
+            <h2>Merie Black</h2>
+        </div>
+
+        <div class="vtuber-card card289" data-pais="México">
+            <img src="fichas/vtuber289.jpg" alt="VTuber 289">
+            <h2>YadiDoll</h2>
+        </div>
+<div class="vtuber-card card290" data-pais="España">
+            <img src="fichas/vtuber290.jpg" alt="VTuber 290">
+            <h2>Yosius Kaldium</h2>
+        </div>
+<!-- Fila 59: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card291" data-pais="Venezuela">
+            <img src="fichas/vtuber291.jpg" alt="VTuber 291">
+            <h2>Katarina Akina</h2>
+        </div>
+
+        <div class="vtuber-card card292" data-pais="Argentina">
+            <img src="fichas/vtuber292.jpg" alt="VTuber 292">
+            <h2>MoonieChishiya</h2>
+        </div>
+
+<div class="vtuber-card card293" data-pais="Chile" data-group="SainooCorp">
+            <img src="fichas/vtuber293.jpg" alt="VTuber 293">
+            <h2>Naya Onuphyrus</h2>
+        </div>
+
+        <div class="vtuber-card card294" data-pais="Venezuela" data-group="SainooCorp">
+            <img src="fichas/vtuber294.jpg" alt="VTuber 294">
+            <h2>Eyra Flamenko</h2>
+        </div>
+<div class="vtuber-card card295" data-pais="México, Japón">
+            <img src="fichas/vtuber295.jpg" alt="VTuber 295">
+            <h2>Kirigumo ♡ Orpine</h2>
+        </div>
+<!-- Fila 60: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card296" data-pais="Argentina" data-group="SainooCorp">
+            <img src="fichas/vtuber296.jpg" alt="VTuber 296">
+            <h2>Hikari Ookami</h2>
+        </div>
+
+        <div class="vtuber-card card297" data-pais="Chile">
+            <img src="fichas/vtuber297.jpg" alt="VTuber 297">
+            <h2>Panquequit00</h2>
+        </div>
+
+<div class="vtuber-card card298" data-pais="Chile">
+            <img src="fichas/vtuber298.jpg" alt="VTuber 298">
+            <h2>Tsuji Saori</h2>
+        </div>
+
+        <div class="vtuber-card card299" data-pais="Colombia">
+            <img src="fichas/vtuber299.jpg" alt="VTuber 299">
+            <h2>Pooky Boo</h2>
+        </div>
+<div class="vtuber-card card300" data-pais="Japón, Argentina">
+            <img src="fichas/vtuber300.jpg" alt="VTuber 300">
+            <h2>Meica05</h2>
+        </div>
+<!-- Fila 70: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card301" data-pais="Colombia">
+            <img src="fichas/vtuber301.jpg" alt="VTuber 301">
+            <h2>NaruhishiVT</h2>
+        </div>
+
+        <div class="vtuber-card card302" data-pais="Argentina">
+            <img src="fichas/vtuber302.jpg" alt="VTuber 302">
+            <h2>Zephyros VT</h2>
+        </div>
+
+<div class="vtuber-card card303" data-pais="México">
+            <img src="fichas/vtuber303.jpg" alt="VTuber 303">
+            <h2>Lyzui</h2>
+        </div>
+
+        <div class="vtuber-card card304" data-pais="Colombia" data-group="Moonly">
+            <img src="fichas/vtuber304.jpg" alt="VTuber 304">
+            <h2>cami Senpai</h2>
+        </div>
+		
+<div class="vtuber-card card305" data-pais="México">
+            <a href="vtubers/micchi285.html">
+            <img src="fichas/vtuber305.jpg" alt="VTuber 305">
+			</a>
+            <h2>Micchi285</h2>
+        </div>
+<!-- Fila 71: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card306" data-pais="México">
+            <img src="fichas/vtuber306.jpg" alt="VTuber 306">
+            <h2>Fanny</h2>
+        </div>
+
+        <div class="vtuber-card card307" data-pais="Republica Dominicana">
+            <img src="fichas/vtuber307.jpg" alt="VTuber 307">
+            <h2>SkillZ</h2>
+        </div>
+
+<div class="vtuber-card card308" data-pais="Bolivia">
+            <img src="fichas/vtuber308.jpg" alt="VTuber 308">
+            <h2>Adri purplewalker </h2>
+        </div>
+
+        <div class="vtuber-card card309" data-pais="México">
+            <img src="fichas/vtuber309.jpg" alt="VTuber 309">
+            <h2>Mojirou</h2>
+        </div>
+<div class="vtuber-card card310" data-pais="Chile">
+            <img src="fichas/vtuber310.jpg" alt="VTuber 310">
+            <h2>Misux</h2>
+        </div>
+<!-- Fila 72: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card311" data-pais="México">
+            <img src="fichas/vtuber311.jpg" alt="VTuber 311">
+            <h2>Lalolined</h2>
+        </div>
+
+        <div class="vtuber-card card312" data-pais="Perú">
+            <img src="fichas/vtuber312.jpg" alt="VTuber 312">
+            <h2>SuperAlejo66</h2>
+        </div>
+
+<div class="vtuber-card card313" data-pais="Argentina">
+            <img src="fichas/vtuber313.jpg" alt="VTuber 313">
+            <h2>Wolfshiro</h2>
+        </div>
+
+        <div class="vtuber-card card314" data-pais="España, Canarias">
+            <img src="fichas/vtuber314.jpg" alt="VTuber 314">
+            <h2>Camy Kaiser</h2>
+        </div>
+<div class="vtuber-card card315" data-pais="México">
+            <img src="fichas/vtuber315.jpg" alt="VTuber 315">
+            <h2>Khiby</h2>
+        </div>
+<!-- Fila 73: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card316" data-pais="Venezuela">
+            <img src="fichas/vtuber316.jpg" alt="VTuber 316">
+            <h2>Sam Sensei</h2>
+        </div>
+
+        <div class="vtuber-card card317" data-pais="Argentina">
+            <img src="fichas/vtuber317.jpg" alt="VTuber 317">
+            <h2>Renkunshiti</h2>
+        </div>
+
+<div class="vtuber-card card318" data-pais="Perú">
+            <img src="fichas/vtuber318.jpg" alt="VTuber 318">
+            <h2>Orion</h2>
+        </div>
+
+        <div class="vtuber-card card319" data-pais="Venezuela">
+            <img src="fichas/vtuber319.jpg" alt="VTuber 319">
+            <h2>Yokhaine</h2>
+        </div>
+<div class="vtuber-card card320" data-pais="Chile">
+            <img src="fichas/vtuber320.jpg" alt="VTuber 320">
+            <h2>DanemiKrool</h2>
+        </div>
+<!-- Fila 74: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card321" data-pais="Argentina">
+            <img src="fichas/vtuber321.jpg" alt="VTuber 321">
+            <h2>Rufi</h2>
+        </div>
+
+        <div class="vtuber-card card322" data-pais="México">
+            <img src="fichas/vtuber322.jpg" alt="VTuber 322">
+            <h2>Aki Chan</h2>
+        </div>
+
+<div class="vtuber-card card323" data-pais="México">
+            <img src="fichas/vtuber323.jpg" alt="VTuber 323">
+            <h2>Imperium Kosumo</h2>
+        </div>
+
+        <div class="vtuber-card card324" data-pais="Chile">
+            <img src="fichas/vtuber324.jpg" alt="VTuber 324">
+            <h2>Risa Lab</h2>
+        </div>
+<div class="vtuber-card card325" data-pais="México">
+            <img src="fichas/vtuber325.jpg" alt="VTuber 325">
+            <h2>Nicte Cervus</h2>
+        </div>
+<!-- Fila 75: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card326" data-pais="Argentina">
+            <img src="fichas/vtuber326.jpg" alt="VTuber 326">
+            <h2>Neith</h2>
+        </div>
+
+        <div class="vtuber-card card327" data-pais="Puerto Rico">
+            <img src="fichas/vtuber327.jpg" alt="VTuber 327">
+            <h2>Shin Kikuchi</h2>
+        </div>
+
+<div class="vtuber-card card328" data-pais="Perú">
+            <img src="fichas/vtuber328.jpg" alt="VTuber 328">
+            <h2>Lyra Stella</h2>
+        </div>
+
+        <div class="vtuber-card card329" data-pais="Colombia">
+            <img src="fichas/vtuber329.jpg" alt="VTuber 329">
+            <h2>shary owo</h2>
+        </div>
+<div class="vtuber-card card330" data-pais="Argentina">
+            <img src="fichas/vtuber330.jpg" alt="VTuber 330">
+            <h2>Kurai Zaki</h2>
+        </div>
+<!-- Fila 76: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card331" data-pais="Venezuela">
+            <img src="fichas/vtuber331.jpg" alt="VTuber 331">
+            <h2>4ᖾɾɩ</h2>
+        </div>
+
+        <div class="vtuber-card card332" data-pais="México">
+            <img src="fichas/vtuber332.jpg" alt="VTuber 332">
+            <h2>Nifarus</h2>
+        </div>
+
+<div class="vtuber-card card333" data-pais="Chile">
+            <img src="fichas/vtuber333.jpg" alt="VTuber 333">
+            <h2>Astra-Hop</h2>
+        </div>
+
+        <div class="vtuber-card card334" data-pais="México">
+            <img src="fichas/vtuber334.jpg" alt="VTuber 334">
+            <h2>SiddharthaVT</h2>
+        </div>
+<div class="vtuber-card card335" data-pais="España">
+            <img src="fichas/vtuber335.jpg" alt="VTuber 335">
+            <h2>Mimi Freiheit</h2>
+        </div>
+<!-- Fila 77: simplemente sigue repitiendo el bloque de .vtuber-card -->
+        <div class="vtuber-card card336" data-pais="Chile">
+            <img src="fichas/vtuber336.jpg" alt="VTuber 336">
+            <h2>BunnyBlasty</h2>
+        </div>
+
+        <div class="vtuber-card card337" data-pais="Ecuador">
+            <img src="fichas/vtuber337.jpg" alt="VTuber 337">
+            <h2>Tozura</h2>
+        </div>
+
+<div class="vtuber-card card338" data-pais="Perú">
+            <img src="fichas/vtuber338.jpg" alt="VTuber 338">
+            <h2>Honey Label</h2>
+        </div>
+
+        <div class="vtuber-card card339" data-pais="México">
+            <img src="fichas/vtuber339.jpg" alt="VTuber 339">
+            <h2>Zelmore Ryuguet</h2>
+        </div>
+<div class="vtuber-card card340" data-pais="Chile">
+            <img src="fichas/vtuber340.jpg" alt="VTuber 340">
+            <h2>Kim Ookami</h2>
+        </div>
+		
+<!-- Fila 78: simplemente sigue repitiendo el bloque de .vtuber-card -->
+		<div class="vtuber-card card341" data-pais="Chile">
+            <img src="fichas/vtuber341.jpg" alt="VTuber 341">
+            <h2>Nene Is Online</h2>
+        </div>
+
+        <div class="vtuber-card card342" data-pais="Guatemala">
+            <img src="fichas/vtuber342.jpg" alt="VTuber 342">
+            <h2>Soryurin</h2>
+        </div>
+
+<div class="vtuber-card card343" data-pais="Colombia">
+            <a href="vtubers/emikukis.html">
+            <img src="fichas/vtuber343.jpg" alt="VTuber 343">
+            <h2> Emikukis </h2>
+			</a>
+        </div>
+
+        <div class="vtuber-card card344" data-pais="México">
+            <img src="fichas/vtuber344.jpg" alt="VTuber 344">
+            <h2>Willow Sundae</h2>
+        </div>
+<div class="vtuber-card card345" data-pais="Argentina">
+            <img src="fichas/vtuber345.jpg" alt="VTuber 345">
+            <h2>Suwie</h2>
+        </div>
+		<div class="vtuber-card card346" data-pais="Chile" data-group="Satellite">
+            <img src="fichas/vtuber346.jpg" alt="VTuber 346">
+            <h2>Sebas Contre</h2>
+        </div>
+
+        <div class="vtuber-card card347" data-pais="México" data-group="Satellite">
+            <img src="fichas/vtuber347.jpg" alt="VTuber 347">
+            <h2>Chrome Cottomtail</h2>
+        </div>
+
+<div class="vtuber-card card348" data-pais="Chile" data-group="Satellite">
+            <img src="fichas/vtuber348.jpg" alt="VTuber 348">
+            <h2> Magic Gladius </h2>
+			</div>
+
+        <div class="vtuber-card card349" data-pais="México" data-group="Satellite">
+            <img src="fichas/vtuber349.jpg" alt="VTuber 349">
+            <h2>Its Yami</h2>
+        </div>
+<div class="vtuber-card card350" data-pais="México">
+            <img src="fichas/vtuber350.jpg" alt="VTuber 350">
+            <h2>Aru Shiori</h2>
+        </div>
+		<div class="vtuber-card card351" data-pais="Perú">
+            <img src="fichas/vtuber351.jpg" alt="VTuber 351">
+            <h2>Luiz Metara</h2>
+        </div>
+<div class="vtuber-card card352" data-pais="Argentina">
+            <img src="fichas/vtuber352.jpg" alt="VTuber 352">
+            <h2>Arisu Gamu</h2>
+        </div>
+</seccion>
+<!-- 🔹 Contenedor del overlay -->
+<div class="image-overlay" id="imageOverlay">
+  <img id="overlayImg" src="" alt="Imagen ampliada">
+</div>
+
+
+
+<script>
+  const cards = document.querySelectorAll('.vtuber-card img');
+  const overlay = document.getElementById('imageOverlay');
+  const overlayImg = document.getElementById('overlayImg');
+
+  let timer; // temporizador para los 2 segundos
+
+  cards.forEach(img => {
+    img.addEventListener('mouseenter', () => {
+      // espera 2 segundos antes de mostrar
+      timer = setTimeout(() => {
+        overlayImg.src = img.src;
+        overlay.classList.add('show');
+      }, 1000);
+    });
+
+    img.addEventListener('mouseleave', () => {
+      clearTimeout(timer); // si sale antes de los 2 segundos, no muestra nada
+    });
+  });
+
+  // 🔹 cerrar el overlay apenas muevas el mouse
+  document.addEventListener('mousemove', () => {
+    if (overlay.classList.contains('show')) {
+      overlay.classList.remove('show');
+    }
+  });
+</script>
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  const vtuberCards = document.querySelectorAll('.vtuber-card');
+
+  function buscarVtuber() {
+    const filter = searchInput.value.toLowerCase().trim(); // normalizar
+    let encontrado = null;
+
+    vtuberCards.forEach(card => {
+      const imgAlt = card.querySelector('img').alt.toLowerCase();
+      const name = card.querySelector('h2').textContent.toLowerCase();
+
+      if (imgAlt.includes(filter) || name.includes(filter)) {
+        if (!encontrado) encontrado = card; // tomar el primero que coincida
+      }
+    });
+
+    if (encontrado) {
+      encontrado.scrollIntoView({ behavior: "smooth", block: "center" });
+      encontrado.style.outline = "3px solid yellow"; 
+      setTimeout(() => {
+        encontrado.style.outline = "none";
+      }, 2000);
+    } else {
+      alert("No se encontró ningún VTuber con ese nombre o número.");
+    }
+  }
+
+  searchBtn.addEventListener('click', buscarVtuber);
+  searchInput.addEventListener('keydown', (event) => {
+    if (event.key === "Enter") {
+      buscarVtuber();
+    }
+  });
+</script>
+<script>
+ const countryFilter = document.getElementById('countryFilter');
+const allCards = document.querySelectorAll('.vtuber-card');
+
+countryFilter.addEventListener('change', () => {
+  const selected = countryFilter.value.toLowerCase().trim();
+
+  allCards.forEach(card => {
+    const paises = card.dataset.pais.toLowerCase().split(",").map(p => p.trim()); 
+    // separa en array y limpia espacios
+
+    if (selected === "") {
+      card.style.display = "block"; // mostrar todo
+    } else {
+      if (paises.includes(selected)) {
+        card.style.display = "block"; // si coincide con alguno
+      } else {
+        card.style.display = "none";
+      }
+    }
+  });
+});
+</script>
+<script>
+const groupFilter = document.getElementById('groupFilter');
+groupFilter.addEventListener('change', () => {
+  const selected = groupFilter.value.toLowerCase().trim();
+
+  allCards.forEach(card => {
+    const dataGroup = card.dataset.group ? card.dataset.group.toLowerCase() : "";
+    const grupos = dataGroup.split(",").map(g => g.trim());
+
+    if (selected === "" || grupos.includes(selected)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+</script>
+</body>
