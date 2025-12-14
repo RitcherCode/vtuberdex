@@ -1,241 +1,4 @@
-/* CSS */
-.dex-container{
-  position: relative;                 /* marco de referencia para las pantallas */
-  width: min(95vw, 900px);            /* escala responsiva del conjunto */
-  margin: 0 auto;                     /* centrado horizontal */
-}
-.dex-frame{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-/* --- Pantalla superior --- */
-.top-screen{
-  position:absolute;
-  left:21.8%;     /* ⬅ ajusta finamente a tu PNG */
-  top:8.8%;       /* ⬅ */
-  width:56.4%;    /* ⬅ */
-  height:29%;     /* ⬅ */
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;        /* nada se sale del marco de la pantalla */
-  pointer-events:none;    /* no bloquea clics */
-  z-index:2;
-}
-.dex-logo{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;     /* se ajusta sin recortarse */
-}
-
-/* --- Pantalla inferior --- */
-.bottom-screen{
-  position:absolute;
-  left:22%;       /* ⬅ ajusta finamente a tu PNG */
-  top:63.9%;      /* ⬅ */
-  width:56%;      /* ⬅ */
-  height:26%;     /* ⬅ */
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:2;
-}
-.start-gif {
-  position: absolute;
-  top: -25%;             /* antes 13%, ahora sube un poco */
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 40%;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-body {
-margin: 0;
-font-family: Arial, sans-serif;
-background-color: #5e89ff;
-color: #fff;
-text-align: center;
-}
-
-
-header {
-background: linear-gradient(90deg, #ff0077, #7700ff);
-padding: 20px;
-}
-
-
-.search-section {
-margin: 20px;
-}
-
-
-.search-section input {
-padding: 10px;
-width: 60%;
-border-radius: 8px;
-border: none;
-}
-
-
-.card-container {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
-gap: 20px;
-padding: 20px;
-}
-
-
-.vtuber-card {
-background: #1b2233;
-border-radius: 12px;
-padding: 15px;
-width: 250px;
-box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
-
-
-.vtuber-card img {
-width: 100%;
-border-radius: 8px;
-}
-
-footer {
-background: #111522;
-padding: 15px;
-font-size: 14px;
-}
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columnas */
-    grid-template-rows: repeat(5, auto);   /* 5 filas */
-    gap: 20px;
-    padding: 20px;
-    max-width: 1600px; /* opcional, para centrar y limitar ancho */
-    margin: 0 auto;
-}
-
-.vtuber-card {
-    background: #1b2233;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(243, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.vtuber-card img {
-    width: 120%;
-    max-width: 229px; /* tamaño fijo para uniformidad */
-    border-radius: 0px;
-}
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columnas por fila */
-    gap: 23px; /* espacio entre las tarjetas */
-    max-width: 1500px; /* opcional, para centrar y limitar ancho */
-    margin: 0 auto; /* centrar en la pantalla */
-}
-
-.vtuber-card {
-    background-color: #111827;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    color: white;
-    box-shadow: 0 4px 8px rgba(177, 4, 4, 0.692);
-    transition: transform 0.2s ease;
-}
-
-.vtuber-card:hover {
-    transform: translateY(-5px);
-}
-
-.vtuber-card img {
-    width: 270px;
-    height: 130px;
-    border-radius: 8px;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-.card-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columnas fijas */
-    gap: 22px; /* Espacio entre cartas */
-}
-
-.vtuber-card {
-    background-color: rgb(57, 59, 66);
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    color: white;
-}
-body {
-        background: #0b0d12;
-        font-family: sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        color: #e6eaf2;
-    }
-    .carta {
-        width: 220px;
-        background: linear-gradient(145deg, #151a22, #1f2632);
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 8px 28px rgba(0,0,0,.35);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-        margin: 15px;
-        text-align: center;
-    }
-    .carta:hover {
-        transform: scale(1.05);
-        box-shadow: 0 12px 35px rgb(151, 29, 29);
-    }
-    .carta img {
-        width: 100%;
-        height: auto;
-    }
-    .info {
-        padding: 10px;
-    }
-    .elemento {
-        color: #6ee7ff;
-        font-weight: bold;
-    }
-    .grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-.logo-container {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.logo-vtuberdex {
-  max-width: 1400px; /* ajusta el tamaño máximo */
-  width: 100%;
-  height: auto;
-}
-
-.subtitulo {
-  text-align: center;
-  font-size: 1.9em;
-  color: #ccc;
-  margin-top: -5px;
-}
-/* 🔹 Estilo general */
+/* 🎮 Estilos generales */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -244,108 +7,29 @@ body {
   text-align: center;
 }
 
-/* 🔹 Logo principal */
-.logo {
-  width: 300px;
-  transition: all 0.5s ease;
-}
-
-.logo:hover {
-  filter: brightness(1.3) drop-shadow(0 0 15px rgba(163, 3, 3, 0.8));
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-/* 🔹 Sección de búsqueda */
-.search-section {
-  margin: 20px 0;
-}
-
-.search-section input {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  width: 250px;
-  font-size: 16px;
-  outline: none;
-}
-
-/* 🔹 Cards de VTubers */
-.vtuber-card {
-  background: #2c2c2c;
-  border-radius: 0px;
-  padding: 16px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; /* 👆 siempre aparece la manito */
-  margin: 15px;
-  display: inline-block;
-  width: 220px;
-}
-
-.vtuber-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 20px rgb(179, 0, 0);
-}
-
-/* 🔹 Imagen dentro de la card */
-.vtuber-card img {
-  width: 100%;
-  border-radius: 0px;
-  transition: filter 0.3s ease;
-}
-
-.vtuber-card:hover img {
-  filter: brightness(1.2);
-}
-
-/* 🔹 Nombre del VTuber */
-.vtuber-card h3 {
-  margin: 10px 0 0;
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
-
-.vtuber-card:hover h3 {
-  color: #ff4444;
-}
-/* Fondo general */
-body {
-  margin: 0;
-  padding: 0;
-  background: #111;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-
-/* Galería de VTubers */
-.vtuber-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
-  padding: 40px;
-}
-
-.card {
-  background: #000000;
-  border: 2px solid #a00;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  color: #fff;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgb(175, 6, 6);
-}
-/* Contenedor principal */
+/* Contenedor Dex */
 .dex-container {
-  position: relative; /* Necesario para posicionar elementos dentro */
+  position: relative;
   width: 100%;
-  max-width: 900px; /* opcional */
+  max-width: 900px;
   margin: 0 auto;
 }
+
+/* Pantalla superior: vuelve a los valores que calzan con tu PNG */
+.top-screen{
+  position:absolute;
+  left:21.8%;
+  top:8.8%;
+  width:56.4%;
+  height:29%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:2;
+}
+.dex-logo{ max-width:90%; max-height:100%; object-fit:contain; }
 
 .dex-frame {
   width: 100%;
@@ -353,101 +37,113 @@ body {
   display: block;
 }
 
-/* Pantalla superior (posición exacta dentro de la Dex) */
-.top-screen {
+.top-screen, .bottom-screen {
   position: absolute;
-  top: 15%;   /* mueve el área verticalmente (ajusta según tu imagen) */
-  left: 23%; /* mueve el área horizontalmente */
-  width: 55%;  /* ancho de la pantalla */
-  height: 23%; /* alto de la pantalla */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
 
-/* Logo ajustado a la pantalla */
-.dex-logo {
-  max-width: 94%;
-  max-height: 100%;
-  object-fit: contain;
-  
-}.dex-container {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+.top-screen {
+  top: 15%;
+  left: 23%;
+  width: 55%;
+  height: 23%;
 }
 
 .bottom-screen {
-  position: absolute;   /* Posiciona dentro del marco */
-  left: 22%;            /* Ajusta hasta quedar alineado a la “pantalla inferior” de la Dex */
-  top: 65%;             /* Ajusta verticalmente hasta que “calce” */
+  left: 22%;
+  top: 59%;
   width: 56%;
   height: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
 }
 
 .start-gif {
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  max-height: 100%;
   object-fit: contain;
   position: absolute;
+
+}
+
+/* Filtros */
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap; /* para que bajen en pantallas chicas */
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px auto;
+  max-width: 95%;
+  z-index: 9999;   /* 🔑 Se asegura de estar arriba */
+  pointer-events: auto; /* 🔑 Aceptan clics */
+}
+
+.search-section {
+  display: flex;
+  gap: 10px;
+}
+
+#searchInput, #searchBtn, #countryFilter, #groupFilter, #Artists{
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-family: 'Consolas', monospace;
+  font-size: 15px;
+  border: 2px solid #ff4d4d;
+  background: #1d1d1d;
+  color: #ff4d4d;
+}
+
+#searchBtn {
+  background: #ff0000;
+  border: 2px solid #b30000;
+  color: white;
+  cursor: pointer;
+}
+#searchBtn:hover {
+  background: #cc0000;
+}
+
+/* Cards VTuber */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 🔥 responsivo */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .vtuber-card {
-  width: 250px;
-  margin: 15px;
-  padding: 10px;
   background: #111;
-  border-radius: 12px;
+  padding: 15px;
   text-align: center;
-  transition: all 0.4s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  display: inline-block; /* Para que se alineen en filas */
-  vertical-align: top;
+}
+
+.vtuber-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px #ff4d4d;
 }
 
 .vtuber-card img {
   width: 100%;
-  border-radius: 12px;
-  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
-/* Efecto hover */
-.vtuber-card:hover img {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px #f3d110, 0 0 10px #ff9100;
+.vtuber-card h2 {
+  font-size: 18px;
+  margin: 0;
 }
 
-.vtuber-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 10px #f3d110, 0 0 20px #ff9100;
-}
-.ficha {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #111;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  display: none; /* oculta por defecto */
-  z-index: 1000;
-}
-
+/* Overlay */
 .image-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.8);
   display: flex;
   justify-content: center;
@@ -457,176 +153,56 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .image-overlay img {
-  max-width: 80%;
-  max-height: 80%;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255,255,255,0.4);
-  pointer-events: none;
+  max-width: 90%;
+  max-height: 90%;
 }
-
 .image-overlay.show {
   visibility: visible;
   opacity: 1;
 }
 
-/* Estilo gamer ROJO para el filtro de país */
-#countryFilter {
-  margin-top: 80px;              /* separarlo del borde superior */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-  background: #1d1d1d;
-  color: #ff4d4d;               /* rojo neón */
-  border: 2px solid #ff4d4d;
-  padding: 10px 15px;
-  font-family: 'Consolas', monospace;
-  font-size: 16px;
-  border-radius: 8px;
-  transition: all 0.2s ease-in-out;
+/* 📱 Media Queries para pantallas pequeñas */
+@media (max-width: 1024px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 }
 
-#countryFilter:hover {
-  box-shadow: 0 0 15px #ff4d4d, 0 0 25px #ff4d4d;
-  cursor: pointer;
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  .vtuber-card h2 {
+    font-size: 16px;
+  }
+  .filters-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
-#countryFilter:focus {
-  outline: none;
-  box-shadow: 0 0 20px #ff4d4d;
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: 1fr 1fr; /* 2 columnas en móvil */
+    gap: 10px;
+  }
+  .vtuber-card {
+    padding: 10px;
+  }
+  .vtuber-card h2 {
+    font-size: 14px;
+  }
+  .filters-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+  #searchInput {
+    width: 100%;
+  }
 }
 
-.search-section {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* Input estilo consola */
-#searchInput {
-  background: #1d1d1d;
-  border: 2px solid #ff4d4d;
-  color: #ff4d4d;
-  padding: 10px 15px;
-  font-family: 'Consolas', monospace;
-  font-size: 15px;
-  border-radius: 6px;
-  transition: all 0.2s ease-in-out;
-
-}
-
-#searchInput::placeholder {
-  color: #ffffff;
-}
-
-#searchInput:focus {
-  outline: none;
-  box-shadow: 0 0 20px ;
-}
-
-/* Botón estilo pokedex sólido (sin brillo) */
-#searchBtn {
-  background: #ff0000;
-  color: #ffffff;
-  border: 2px solid #b30000;
-  padding: 10px 20px;
-  font-family: 'Consolas', monospace;
-  font-size: 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-#searchBtn:hover {
-  background: #cc0000; /* más oscuro al pasar el mouse */
-  color: #ffffff;
-}
-
-.filters-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;   /* asegura que ambos queden a la misma altura */
-  gap: 50px;
-  margin-top: -30px;      /* más arriba en la página */
-}
-
-.search-section {
-  margin: 0;
-  padding: 0;
-  display: flex;       /* para que input y botón queden alineados con el select */
-  align-items: center;
-}
-
-#countryFilter {
-  height: 44px;      /* Ajusta si tu input tiene otro alto */
-  line-height: 44px; /* Para que el texto quede centrado */
-  margin-top: 1px; 
-}
-
-/* Estilo gamer ROJO para el filtro de país */
-#groupFilter {
-  margin-top: 1px;              /* separarlo del borde superior */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-
-  background: #1d1d1d;
-  color: #ff4d4d;               /* rojo neón */
-  border: 2px solid #ff4d4d;
-  padding: 10px 15px;
-  font-family: 'Consolas', monospace;
-  font-size: 16px;
-  border-radius: 8px;
-  transition: all 0.2s ease-in-out;
-}
-
-#groupFilter:hover {
-  box-shadow: 0 0 15px #ff4d4d, 0 0 25px #ff4d4d;
-  cursor: pointer;
-}
-
-#groupFilter:focus {
-  outline: none;
-  box-shadow: 0 0 20px #ff4d4d;
-}
-
-/*colores por orden de las casillas*/
-
-.vtuber-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.vtuber-card {
-  background: #111;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease;
-}
-
-.vtuber-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-}
-
-.vtuber-card img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.vtuber-card h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0;
-}
 
 /* 🎨 Colores personalizados */
 
@@ -634,7 +210,7 @@ body {
 .card2 h2, .card2 { color: #3de180; }
 .card3 h2, .card3 { color: #ff0000; }
 .card4 h2, .card4 { color: #ff2f72; }
-.card5 h2, .card5 { color: #544eae; }
+.card5 h2, .card5 { color: #bd5b68; }
 /*fila 2*/
 .card6 h2, .card6 { color: #5024b5; }
 .card7 h2, .card7 { color: #aa01f8; }
@@ -668,7 +244,7 @@ body {
 /*fila 7*/
 .card31 h2 { color: #5a5a5a; }  
 .card32 h2 { color: #1ece7b; }  
-.card33 h2 { color: #b6821d; }  
+.card33 h2 { color: #af8512; }  
 .card34 h2 { color: #1539a9; }  
 .card35 h2 { color: #6b0b62; }
 /*fila 8*/
@@ -781,7 +357,7 @@ body {
 .card125 h2, .card125 { color:#ffc0cb; border-color:#ffc0cb; }
 /*fila 26*/
 .card126 h2, .card126 { color:#fa6500; border-color:#fa6500; }  
-.card127 h2, .card127 { color:#a02ae0; border-color:#a02ae0; } 
+.card127 h2, .card127 { color:#a00021; border-color:#a00021; }
 .card128 h2, .card128 { color:#01a4e5; border-color:#01a4e5; }  
 .card129 h2, .card129 { color:#32d1a1; border-color:#ff4500; }  
 .card130 h2, .card130 { color:#13a7ff; border-color:#13a7ff; }
@@ -837,7 +413,7 @@ body {
 .card171 h2, .card171 { color:#ff0040; border-color:#ff0000; }
 .card172 h2, .card172 { color:#737373; border-color:#737373; }
 .card173 h2, .card173 { color:#5c5c5c; border-color:#5c5c5c; }
-.card174 h2, .card174 { color:#550d9c; border-color:#800080; }
+.card174 h2, .card174 { color:#d60032; border-color:#d60032; }
 .card175 h2, .card175 { color:#a232ce; border-color:#9400d3; }
 /*fila 36*/
 .card176 h2, .card176 { color:#00bfff; border-color:#00008b; }
@@ -918,7 +494,7 @@ body {
 .card239 h2, .card239 { color:#ff69b4; border-color:#c71585; }
 .card240 h2, .card240 { color:#8346b1; border-color:#c71585; }
 /*fila 49*/
-.card241 h2, .card241 { color:#ff0000; border-color:#8b0000; }
+.card241 h2, .card241 { color:#c9023d; border-color:#c9023d; }
 .card242 h2, .card242 { color:#8b1bfd; border-color:#8b1bfd; }
 .card243 h2, .card243 { color:#6e8800; border-color:#6e8800; }   
 .card244 h2, .card244 { color:#ff1a1a; border-color:#ff1a1a; }   
@@ -974,9 +550,9 @@ body {
 /*fila 58*/
 .card286 h2, .card286 { color:#ff1493; border-color:#660033; }  
 .card287 h2, .card287 { color:#524faa; border-color:#524faa; }   
-.card288 h2, .card288 { color:#b67416; border-color:#483d8b; }
-.card289 h2, .card289 { color:#ff0000; border-color:#ff1493; }   
-.card290 h2, .card290 { color:#6866b9; border-color:#6866b9; } 
+.card288 h2, .card288 { color:#ff0000; border-color:#ff1493; }   
+.card289 h2, .card289 { color:#6866b9; border-color:#6866b9; } 
+.card290 h2, .card290 { color:#b67416; border-color:#483d8b; }
 /*fila 59*/
 .card291 h2, .card291 { color:#9c1d49; border-color:#4b0082; }
 .card292 h2, .card292 { color:#09853f; border-color:#09853f; }
@@ -1052,5 +628,149 @@ body {
 /*fila 71*/
 .card351 h2, .card351 { color:#862623; border-color:#862623; }  
 .card352 h2, .card352 { color:#4682b4; border-color:#000000; }   
+.card353 h2, .card353 { color:#59169d; border-color:#59169d; } 
+.card354 h2, .card354 { color:#2e2e4c; border-color:#2e2e4c; }
+.card355 h2, .card355 { color:#a30a2a; border-color:#a30a2a; } 
+.card356 h2, .card356 { color:#5c3979; border-color:#5c3979; }  
+.card357 h2, .card357 { color:#c04600; border-color:#c04600; } 
+.card358 h2, .card358 { color:#4b1a57; border-color:#4b1a57; } 
+.card359 h2, .card359 { color:#fb265c; border-color:#fb265c; } 
+.card360 h2, .card360 { color:#88439a; border-color:#88439a; } 
+.card361 h2, .card361 { color:#90771d; border-color:#90771d; } 
+.card362 h2, .card362 { color:#8716b5; border-color:#8716b5; } 
+.card363 h2, .card363 { color:#c62516; border-color:#c62516; } 
+.card364 h2, .card364 { color:#9e3cf3; border-color:#9e3cf3; } 
+.card365 h2, .card365 { color:#910415; border-color:#910415; } 
+.card366 h2, .card366 { color:#360e62; border-color:#360e62; } 
+.card367 h2, .card367 { color:#0056a0; border-color:#0056a0; } 
+.card368 h2, .card368 { color:#9c5400; border-color:#9c5400; }
+.card369 h2, .card369 { color:#ab4020; border-color:#ab4020; } 
+.card370 h2, .card370 { color:#4f4069; border-color:#4f4069; }
+.card371 h2, .card371 { color:#702685; border-color:#702685; } 
+.card372 h2, .card372 { color:#565656; border-color:#565656; }
+.card373 h2, .card373 { color:#53435e; border-color:#53435e; } 
+.card374 h2, .card374 { color:#be007f; border-color:#be007f; }
+.card375 h2, .card375 { color:#683578; border-color:#683578; } 
+.card376 h2, .card376 { color:#be2424; border-color:#be2424; }
+.card377 h2, .card377 { color:#575757; border-color:#575757; } 
+.card378 h2, .card378 { color:#bd7416; border-color:#bd7416; }
+.card379 h2, .card379 { color:#f20069; border-color:#f20069; } 
+.card380 h2, .card380 { color:#463669; border-color:#463669; }
+.card381 h2, .card381 { color:#3ca824; border-color:#3ca824; }
+.card382 h2, .card382 { color:#a02ae0; border-color:#a02ae0; } 
+.card383 h2, .card383 { color:#ffa0b8; border-color:#ffa0b8; }
+.card384 h2, .card384 { color:#08716a; border-color:#08716a; }
+.card385 h2, .card385 { color:#503a8c; border-color:#503a8c; }
+.card386 h2, .card386 { color:#843f5b; border-color:#843f5b; }
+.card387 h2, .card387 { color:#cf6ea1; border-color:#cf6ea1; }
+.card388 h2, .card388 { color:#424b86; border-color:#424b86; }
+.card389 h2, .card389 { color:#b74465; border-color:#b74465; }
+.card390 h2, .card390 { color:#8c00c4; border-color:#8c00c4; }
+.card391 h2, .card391 { color:#fb86b3; border-color:#fb86b3; }
+.card392 h2, .card392 { color:#6a26a1; border-color:#6a26a1; }
+.card393 h2, .card393 { color:#d70000; border-color:#d70000; }
+.card394 h2, .card394 { color:#4f5b83; border-color:#4f5b83; }
+.card395 h2, .card395 { color:#8a1c4b; border-color:#8a1c4b; }
+.card396 h2, .card396 { color:#9e6547; border-color:#9e6547; }
+.card397 h2, .card397 { color:#febad3; border-color:#febad3; }
+.card398 h2, .card398 { color:#b50351; border-color:#b50351; }
+.card399 h2, .card399 { color:#00cccd; border-color:#00cccd; }
+.card400 h2, .card400 { color:#24a095; border-color:#24a095; }
+.card401 h2, .card401 { color:#6619b3; border-color:#6619b3; }
+.card402 h2, .card402 { color:#962455; border-color:#962455; }
+.card403 h2, .card403 { color:#cc0000; border-color:#cc0000; }
+.card404 h2, .card404 { color:#585858; border-color:#585858; }
+.card405 h2, .card405 { color:#894f44; border-color:#894f44; }
+.card406 h2, .card406 { color:#c3380f; border-color:#c3380f; }
+.card407 h2, .card407 { color:#bd0253; border-color:#bd0253; }
+.card408 h2, .card408 { color:#8c562a; border-color:#8c562a; }
+.card409 h2, .card409 { color:#3b3784; border-color:#3b3784; }
+.card410 h2, .card410 { color:#cd0039; border-color:#cd0039; }
+.card411 h2, .card411 { color:#811ead; border-color:#811ead; }
+.card412 h2, .card412 { color:#724387; border-color:#724387; }
+.card413 h2, .card413 { color:#dfc25a; border-color:#dfc25a; }
+.card414 h2, .card414 { color:#c84162; border-color:#c84162; }
+.card415 h2, .card415 { color:#524966; border-color:#524966; }
+.card416 h2, .card416 { color:#1e77c3; border-color:#1e77c3; }
+.card417 h2, .card417 { color:#78051e; border-color:#78051e; }
+.card418 h2, .card418 { color:#b11435; border-color:#b11435; }
+.card419 h2, .card419 { color:#00becc; border-color:#00becc; }
+.card420 h2, .card420 { color:#204c9f; border-color:#204c9f; }
+.card421 h2, .card421 { color:#64da56; border-color:#64da56; }
+.card422 h2, .card422 { color:#476a98; border-color:#476a98; }
+.card423 h2, .card423 { color:#cc0000; border-color:#cc0000; }
+.card424 h2, .card424 { color:#474965; border-color:#474965; }
+.card425 h2, .card425 { color:#883f23; border-color:#883f23; }
+.card426 h2, .card426 { color:#51378d; border-color:#51378d; }
+.card427 h2, .card427 { color:#3d3f91; border-color:#3d3f91; }
+.card428 h2, .card428 { color:#0027aa; border-color:#0027aa; }
+.card429 h2, .card429 { color:#3e9175; border-color:#3e9175; }
+.card430 h2, .card430 { color:#369198; border-color:#369198; }
+.card431 h2, .card431 { color:#970063; border-color:#970063; }
+.card432 h2, .card432 { color:#b51436; border-color:#b51436; }
+.card433 h2, .card433 { color:#0d7c85; border-color:#0d7c85; }
+.card434 h2, .card434 { color:#c30356; border-color:#c30356; }
+.card435 h2, .card435 { color:#7d3713; border-color:#7d3713; }
+.card436 h2, .card436 { color:#d22382; border-color:#d22382; }
+.card437 h2, .card437 { color:#ff3074; border-color:#ff3074; }
+.card438 h2, .card438 { color:#ff3074; border-color:#ff3074; }
+.card439 h2, .card439 { color:#b51436; border-color:#b51436; }
+.card440 h2, .card440 { color:#5f5775; border-color:#5f5775; }
+.card441 h2, .card441 { color:#563f93; border-color:#563f93; }
+.card442 h2, .card442 { color:#3e7b97; border-color:#3e7b97; }
+.card443 h2, .card443 { color:#bb492f; border-color:#bb492f; }
+.card444 h2, .card444 { color:#2daf06; border-color:#2daf06; }
+.card445 h2, .card445 { color:#4c7c37; border-color:#4c7c37; }
+.card446 h2, .card446 { color:#983575; border-color:#983575; }
+.card447 h2, .card447 { color:#505050; border-color:#505050; }
+.card448 h2, .card448 { color:#8f5f1c; border-color:#8f5f1c; }
+.card449 h2, .card449 { color:#bc8e00; border-color:#bc8e00; }
+.card450 h2, .card450 { color:#7a1520; border-color:#7a1520; }
+.card451 h2, .card451 { color:#7d4c7a; border-color:#7d4c7a; }
+.card452 h2, .card452 { color:#800330; border-color:#800330; }
+.card453 h2, .card453 { color:#600b8f; border-color:#600b8f; }
+.card454 h2, .card454 { color:#9e5f22; border-color:#9e5f22; }
+.card455 h2, .card455 { color:#3ea1a9; border-color:#3ea1a9; }
+.card456 h2, .card456 { color:#f6a3bf; border-color:#f6a3bf; }
+.card457 h2, .card457 { color:#e73871; border-color:#e73871; }
+.card458 h2, .card458 { color:#2b9bab; border-color:#2b9bab; }
+.card459 h2, .card459 { color:#9d14db; border-color:#9d14db; }
+.card460 h2, .card460 { color:#bb1f70; border-color:#bb1f70; }
+.card461 h2, .card461 { color:#9c0000; border-color:#9c0000; }
+.card462 h2, .card462 { color:#a8276f; border-color:#a8276f; }
+.card463 h2, .card463 { color:#555555; border-color:#555555; }
+.card464 h2, .card464 { color:#3b3659; border-color:#3b3659; }
+.card465 h2, .card465 { color:#008fc8; border-color:#008fc8; }
+.card466 h2, .card466 { color:#a504b6; border-color:#a504b6; }
+.card467 h2, .card467 { color:#485e0d; border-color:#485e0d; }
+.card468 h2, .card468 { color:#ae2bc9; border-color:#ae2bc9; } 
+.card469 h2, .card469 { color:#0056c8; border-color:#0056c8; }
+.card470 h2, .card470 { color:#e277a5; border-color:#e277a5; }
+.card471 h2, .card471 { color:#a40d0d; border-color:#a40d0d; }
+.card472 h2, .card472 { color:#227979; border-color:#227979; }
+.card473 h2, .card473 { color:#417432; border-color:#417432; }
+.card474 h2, .card474 { color:#0c8dab; border-color:#0c8dab; }
+.card475 h2, .card475 { color:#5e5d93; border-color:#5e5d93; }
+.card476 h2, .card476 { color:#c90358; border-color:#c90358; }
+.card477 h2, .card477 { color:#710aa4; border-color:#710aa4; }
+.card478 h2, .card478 { color:#606060; border-color:#606060; }
+.card479 h2, .card479 { color:#8c3ea4; border-color:#8c3ea4; }
+.card480 h2, .card480 { color:#9ea4ff; border-color:#9ea4ff; }
+.card481 h2, .card481 { color:#e791d1; border-color:#e791d1; }
+.card482 h2, .card482 { color:#ff0000; border-color:#ff0000; }
+.card483 h2, .card483 { color:#6661a8; border-color:#6661a8; }
+.card484 h2, .card484 { color:#a49094; border-color:#a49094; }
+.card485 h2, .card485 { color:#5d4d99; border-color:#5d4d99; }
+.card486 h2, .card486 { color:#694584; border-color:#694584; }
+.card487 h2, .card487 { color:#623e6e; border-color:#623e6e; }
+.card488 h2, .card488 { color:#d00000; border-color:#d00000; }
+.card489 h2, .card489 { color:#636363; border-color:#636363; }
+.card490 h2, .card490 { color:#88b46b; border-color:#88b46b; }
+.card491 h2, .card491 { color:#4972c5; border-color:#4972c5; }
+.card492 h2, .card492 { color:#7921a9; border-color:#7921a9; }
+.card493 h2, .card493 { color:#4972c5; border-color:#4972c5; }
+
+
 colores actualizados.txt
 23 KB
+
