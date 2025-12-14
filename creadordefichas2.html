@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Generador de Fichas VTuber + RPG</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif;background:#111;color:#fff;display:flex;justify-content:center;align-items:flex-start;padding:30px}
+  .formulario{width:860px;background:#1e1e1e;padding:20px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,.7)}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .campo{margin-bottom:14px}
+  .campo label{display:block;margin-bottom:6px;font-weight:700}
+  .campo input,.campo textarea,.campo select{width:100%;padding:8px;border-radius:8px;border:none;outline:none;background:#111;color:#fff;text-align:center}
+  .nota{font-size:12px;opacity:.8}
+  .boton{width:100%;padding:12px;background:#4CAF50;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:16px;color:#fff;margin-top:6px}
+  .boton.limpiar{background:#c0392b}
+
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+  .stat{background:#222;padding:10px;border-radius:8px;text-align:center}
+  .stat input{width:80%;text-align:center}
+  .faccion-preview img{width:80px;height:80px;object-fit:contain;display:block;margin:6px auto}
+  .puntos-restantes{font-weight:bold;text-align:center;margin-top:10px;color:#ffcc00}
+  .totales{background:#000;padding:10px;border-radius:8px;margin-top:20px}
+  .tabla-totales{width:100%;border-collapse:collapse;margin-top:10px}
+  .tabla-totales td{padding:6px 8px;border-bottom:1px solid #333}
+  .tabla-totales .stat-col{background-color:var(--color-fondo,#222);color:var(--color-texto,#00ffcc);font-weight:bold;width:50%}
+  .tabla-totales .valor-col{text-align:right;width:50%}
+  canvas{margin-top:20px;background:#222;border-radius:10px;padding:10px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="formulario">
+    <h2>Generador de Ficha VTuber</h2>
+
+    <!-- FORMULARIO VTUBER -->
+    <div class="campo"><label>Nombre (archivo)</label><input type="text" id="nombre" placeholder="ej: emikukis"></div>
+ 
+
+    <!-- ======== RPG ======== -->
+    <h2>⚙️ Sistema RPG</h2>
+
+      <!-- ===== FACCIONES ===== -->
+    <div class="fila">
+      <div>
+        <label>Facción 1</label>
+        <select id="faccion1" onchange="actualizarFaccion(1)">
+          <option value="">-- Seleccionar --</option>
+          <option value="Abyssal">Abyssal</option>
+          <option value="Aetherion Valor">Aetherion Valor</option>
+          <option value="Apex Duelist">Apex Dualist</option>
+          <option value="Arcane Nexus">Arcane Nexus</option>
+          <option value="Chaos Ascendant">Chaos Ascendant</option>
+          <option value="Dreamlike">Dreamlike</option>
+          <option value="Gaian Oracle">Gaian Oracle</option>
+          <option value="Glitchborn">Glitchborn</option>
+          <option value="Grovecaller">Grovecaller</option>
+          <option value="Heaven's Arbiter">Heaven's Arbiter</option>
+          <option value="Inspirae">Inspirae</option>
+          <option value="Machina Revenant">Machina Revenant</option>
+          <option value="Mutant">Mutant</option>
+          <option value="Mythical Legacy">Mythical Legacy</option>
+          <option value="Necrotic">Necrotic</option>
+          <option value="Netherbane">Netherbane</option>
+          <option value="Primal Monarch">Primal Monarch</option>
+          <option value="Resonantia">Resonantia</option>
+          <option value="Star Wanderers">Star Wanderers</option>
+          <option value="Terran">Terran</option>
+          <option value="Veilbreaker">Veilbreaker</option>
+        </select>
+        <div class="faccion-preview">
+          <img id="iconoFaccion1" src="" alt="">
+        </div>
+      </div>
+
+      <div>
+        <label>Facción 2</label>
+        <select id="faccion2" onchange="actualizarFaccion(2)">
+          <option value="">-- Seleccionar --</option>
+          <option value="Abyssal">Abyssal</option>
+          <option value="Aetherion Valor">Aetherion Valor</option>
+          <option value="Apex Dualist">Apex Dualist</option>
+          <option value="Arcane Nexus">Arcane Nexus</option>
+          <option value="Chaos Ascendant">Chaos Ascendant</option>
+          <option value="Dreamlike">Dreamlike</option>
+          <option value="Gaian Oracle">Gaian Oracle</option>
+          <option value="Glitchborn">Glitchborn</option>
+          <option value="Grovecaller">Grovecaller</option>
+          <option value="Heaven's Arbiter">Heaven's Arbiter</option>
+          <option value="Inspirae">Inspirae</option>
+          <option value="Machina Revenant">Machina Revenant</option>
+          <option value="Mutant">Mutant</option>
+          <option value="Mythical Legacy">Mythical Legacy</option>
+          <option value="Necrotic">Necrotic</option>
+          <option value="Netherbane">Netherbane</option>
+          <option value="Primal Monarch">Primal Monarch</option>
+          <option value="Resonantia">Resonantia</option>
+          <option value="Star Wanderers">Star Wanderers</option>
+          <option value="Terran">Terran</option>
+          <option value="Veilbreaker">Veilbreaker</option>
+        </select>
+        <div class="faccion-preview">
+          <img id="iconoFaccion2" src="" alt="">
+        </div>
+      </div>
+    </div>
+
+    <h3>📊 Distribución de Atributos</h3>
+    <p>Cada stat parte con <b>40</b> puntos base. Dispones de <b>200</b> para distribuir (máx. 100 por stat).</p>
+
+    <div class="stats-grid">
+      <div class="stat"><label>Fuerza</label><input type="number" id="str" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Destreza</label><input type="number" id="dex" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Constitución</label><input type="number" id="con" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Inteligencia</label><input type="number" id="int" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Sabiduría</label><input type="number" id="wis" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Carisma</label><input type="number" id="cha" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+    </div>
+
+    <div id="puntosRestantes" class="puntos-restantes">Puntos restantes: 200</div>
+
+    <div class="totales">
+      <h3>📋 Estadísticas Totales</h3>
+	  
+	   <!-- 🎨 Selectores de color -->
+  <div style="text-align:center; margin-bottom:10px;">
+    <label for="colorRadar" style="font-weight:bold;">Color del Radar:</label>
+    <label for="colorTexto" style="font-weight:bold;">Color del Texto:</label>
+    <input type="color" id="colorTexto" value="#00ffff" oninput="actualizarColoresTabla()">
+    <label for="colorFondo" style="font-weight:bold; margin-left:10px;">Fondo de la Columna:</label>
+    <input type="color" id="colorFondo" value="#1a1a1a" oninput="actualizarColoresTabla()">
+  </div>
+
+      <table class="tabla-totales">
+        <tbody>
+          <tr><td class="stat-col">HP</td><td class="valor-col" id="hp"></td></tr>
+          <tr><td class="stat-col">MP</td><td class="valor-col" id="mp"></td></tr>
+          <tr><td class="stat-col">Ataque</td><td class="valor-col" id="atk"></td></tr>
+          <tr><td class="stat-col">Defensa</td><td class="valor-col" id="def"></td></tr>
+          <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col" id="matk"></td></tr>
+          <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col" id="mdef"></td></tr>
+          <tr><td class="stat-col">Velocidad</td><td class="valor-col" id="spd"></td></tr>
+          <tr><td class="stat-col">Evasión</td><td class="valor-col" id="eva"></td></tr>
+          <tr><td class="stat-col">Precisión</td><td class="valor-col" id="acc"></td></tr>
+          <tr><td class="stat-col">Crítico</td><td class="valor-col" id="crit"></td></tr>
+          <tr><td class="stat-col">Suerte</td><td class="valor-col" id="luk"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <canvas id="chartStats" width="400" height="400"></canvas>
+	
+	      <!-- 🎨 Selector de color del radar -->
+      <div style="text-align:center; margin-bottom:10px;">
+        <label for="colorRadar" style="font-weight:bold;">Color del Radar:</label>
+        <input type="color" id="colorRadar" value="#ff0000" oninput="actualizarGraficoColor()">
+      </div>
+
+
+
+
+    <button class="boton" onclick="generar()">Guardar (HTML + CSS)</button>
+    <button class="boton limpiar" onclick="limpiar()">Limpiar</button>
+  </div>
+
+<script>
+const puntosBase=40,puntosTotales=200,stats=['str','dex','con','int','wis','cha'];
+
+const faccionBonos = {
+  "Netherbane": { cha: 20, str: 15 },
+  "Veilbreaker": { cha: 20, int: 15 },
+  "Abyssal": { wis: 20, con: 15 },
+  "Aetherion Valor": { cha: 20, con: 15 },
+  "Apex Dualist": { dex: 20, str: 15 },
+  "Arcane Nexus": { int: 25, wis: 10 },
+  "Dreamlike": { int: 20, con: 15 },
+  "Gaian Oracle": { wis: 20, int: 15 },
+  "Glitchborn": { int: 25, dex: 15 },
+  "Grovecaller": { str: 20, con: 15 },
+  "Heaven Arbiter": { cha: 25, wis: 10 },
+  "Chaos Ascendant": { cha: 20, str: 15 },
+  "Machina Revenant": { con: 20, str: 15 },
+  "Mutant": { con: 15, str: 25 },
+  "Mythical Legacy": { str: 25, cha: 15 },
+  "Necrotic": { int: 25, con: 15 },
+  "Primal Monarch": { str: 25, dex: 15 },
+  "Resonantia": { cha: 25, dex: 10 },
+  "Star Wanderers": { cha: 20, int: 15 },
+  "Terran": { str: 5, dex: 5, con: 5, int: 15, wis: 5, cha: 5 },
+  "Inspirae": { int: 25, cha: 15 }
+};
+
+let chart;
+function actualizarFaccion(n){const s=document.getElementById("faccion"+n),i=document.getElementById("iconoFaccion"+n),v=s.value;i.src=v?`facciones/${v}.png`:"";i.alt=v;i.style.display=v?"block":"none";actualizarStats();}
+function obtenerBonos(){const f1=document.getElementById('faccion1').value,f2=document.getElementById('faccion2').value,b={str:0,dex:0,con:0,int:0,wis:0,cha:0};[f1,f2].forEach(f=>{if(f&&faccionBonos[f])for(const k in faccionBonos[f])b[k]+=faccionBonos[f][k];});return b;}
+function actualizarStats() {
+  let usados = 0;
+  const v = {};
+
+  // 1️⃣ Obtener valores base con límites 40–100
+  stats.forEach(s => {
+    let val = parseInt(document.getElementById(s).value) || puntosBase;
+    if (val < 40) val = 40;
+    if (val > 100) val = 100;
+    v[s] = val;
+  });
+
+  // 2️⃣ Calcular puntos usados
+  usados = stats.reduce((a, s) => a + (v[s] - puntosBase), 0);
+  let r = puntosTotales - usados;
+
+  // 3️⃣ Evitar que se asignen más puntos de los disponibles
+  if (r < 0) {
+    const act = document.activeElement;
+    if (act && stats.includes(act.id)) {
+      const e = usados - puntosTotales;
+      v[act.id] -= e;
+      if (v[act.id] < 40) v[act.id] = 40;
+      document.getElementById(act.id).value = v[act.id];
+      usados = puntosTotales;
+      r = 0;
+    }
+  }
+
+  // 4️⃣ Aplicar bonos de facción
+  const b = obtenerBonos();
+  const t = {};
+
+
+
+
+  // 5️⃣ Limitar total (base + bono) a 100
+  stats.forEach(s => {
+    t[s] = v[s] + b[s];
+    if (t[s] > 100) {
+      // Si el bono empuja sobre 100, reducimos el valor base máximo permitido
+      v[s] = 100 - b[s];
+      if (v[s] < 40) v[s] = 40;
+      document.getElementById(s).value = v[s];
+      t[s] = 100;
+    }
+  });
+
+  // 6️⃣ Actualizar puntos restantes visualmente
+  document.getElementById('puntosRestantes').textContent = `Puntos restantes: ${r}`;
+  document.getElementById('puntosRestantes').style.color = r <= 0 ? "#ff4444" : "#ffcc00";
+
+  // 7️⃣ Calcular estadísticas derivadas
+  const d = {
+    hp: t.con * 15,
+    mp: t.int * 10,
+    atk: t.str * 2,
+    def: t.con * 1.5,
+    matk: t.int * 2.2,
+    mdef: t.wis * 1.8,
+    spd: t.dex * 1.5,
+    eva: t.dex * 0.8,
+    acc: t.dex * 1.2,
+    crit: t.cha * 0.5,
+    luk: Math.round((t.wis + t.cha) / 2 / 10)
+  };
+
+  for (let k in d) document.getElementById(k).textContent = Math.round(d[k]);
+
+  // 8️⃣ Actualizar radar
+  actualizarGrafico(t);
+}
+
+function actualizarColoresTabla() {
+  const colorTexto = document.getElementById("colorTexto").value;
+  const colorFondo = document.getElementById("colorFondo").value;
+
+  document.querySelectorAll(".stat-col").forEach(td => {
+    td.style.color = colorTexto;
+    td.style.backgroundColor = colorFondo;
+  });
+}
+
+function actualizarGraficoColor() {
+  const color = document.getElementById("colorRadar").value;
+  if (!chart) return;
+  chart.data.datasets[0].borderColor = color;
+  chart.data.datasets[0].backgroundColor = color + "80"; // misma tonalidad semitransparente
+  chart.update();
+}
+
+function actualizarGrafico(d) {
+  const v = stats.map(s => d[s]);
+  const ctx = document.getElementById('chartStats');
+
+  // tomar el color actual del selector
+  const color = document.getElementById("colorRadar")?.value || "#ff0000";
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['Fuerza', 'Destreza', 'Constitución', 'Inteligencia', 'Sabiduría', 'Carisma'],
+      datasets: [{
+        label: 'Atributos Totales',
+        data: v,
+        borderColor: color,
+        backgroundColor: color + "80", // mismo tono semitransparente
+        pointBackgroundColor: '#fff',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        r: {
+          angleLines: { color: '#888' },
+          grid: { color: '#666' },
+          beginAtZero: true,
+          min: 40,
+          max: 100,
+          ticks: { stepSize: 10, color: '#fff' },
+          pointLabels: { color: '#fff', font: { size: 13 } }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+
+// 🟢 Función para generar y descargar el HTML final (versión con estilo mejorado)
+function generar() {
+  const nombre = document.getElementById("nombre").value.trim() || "ficha_vtuber";
+  const faccion1 = document.getElementById("faccion1").value || "—";
+  const faccion2 = document.getElementById("faccion2").value || "—";
+  const icono1 = document.getElementById("iconoFaccion1").src || "";
+  const icono2 = document.getElementById("iconoFaccion2").src || "";
+  const colorTexto = document.getElementById("colorTexto").value;
+  const colorFondo = document.getElementById("colorFondo").value;
+  const colorRadar = document.getElementById("colorRadar").value;
+
+  // 🧮 Capturar las estadísticas totales directamente desde la tabla actual
+  const filas = Array.from(document.querySelectorAll(".tabla-totales tr")).map(tr => {
+    const stat = tr.querySelector(".stat-col").textContent;
+    const valor = tr.querySelector(".valor-col").textContent;
+    return `<tr>
+              <td class="stat-col">${stat}</td>
+              <td class="valor-col">${valor}</td>
+            </tr>`;
+  }).join("");
+
+  // 📈 Capturar el radar actual como imagen (solo si existe el chart)
+  const canvas = document.getElementById("chartStats");
+  let radarIMG = "";
+  try {
+    radarIMG = canvas.toDataURL("image/png");
+  } catch (e) {
+    console.warn("No se pudo capturar el radar:", e);
+  }
+
+  // 🧾 Crear contenido HTML final
+  const html = `
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+  <meta charset="UTF-8">
+  <title>${nombre} - Ficha RPG</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 90%;
+      max-width: 700px;
+      border: 2px solid white;
+    }
+    td, th {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid white;
+    }
+    .stat-col {
+      background-color: ${colorFondo};
+      color: ${colorTexto};
+      font-weight: bold;
+      width: 50%;
+    }
+    .valor-col {
+      width: 50%;
+    }
+    .tabla-facciones {
+      margin-top: 20px;
+    }
+    .tabla-facciones th {
+      background-color: ${colorFondo};
+      color: ${colorTexto};
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .tabla-facciones img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+    }
+    .radar-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .radar-container img {
+      max-width: 600px;
+      border-radius: 12px;
+      background: #222;
+      padding: 15px;
+      border: 2px solid white;
+    }
+  </style>
+  </head>
+  <body>
+    <h2>${nombre}</h2>
+
+    <table class="tabla-facciones">
+      <tr>
+        <th>${faccion1}</th>
+        <th>${faccion2}</th>
+      </tr>
+      <tr>
+        <td>${icono1 ? `<img src="${icono1}" alt="${faccion1}">` : "—"}</td>
+        <td>${icono2 ? `<img src="${icono2}" alt="${faccion2}">` : "—"}</td>
+      </tr>
+    </table>
+
+    <h3>📋 Estadísticas Totales</h3>
+    <table>${filas}</table>
+
+    <div class="radar-container">
+      <h3>📊 Radar de Atributos</h3>
+      ${radarIMG ? `<img src="${radarIMG}" alt="Radar Stats">` : "<p>(Radar no disponible)</p>"}
+    </div>
+  </body>
+  </html>
+  `;
+
+  // 💾 Crear Blob y forzar descarga del archivo
+  const blob = new Blob([html], { type: "text/html" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${nombre}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+
+    // 🔴 Botón Limpiar
+    function limpiar(){
+      document.querySelectorAll("input").forEach(input=>{
+        if(input.type === "file"){
+          input.value = null; // limpia file inputs
+        }else{
+          input.value = "";
+        }
+      });
+    }
+	
+
+
+</script>
+</body>
+</html>

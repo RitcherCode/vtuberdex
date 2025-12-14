@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Joven Link</title>
+    <link rel="icon" href="favicon/jovenlink.ico" type="image/x-icon">
+<style>
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #efcc00, #352d00);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+canvas#honeyCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+#vtuber-phrase {
+  text-align: center;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 420px;         /* 🔹 controla el ancho ideal de la frase */
+  margin: 1rem auto;
+  padding: 0 4px;
+  white-space: normal;      /* 🔹 permite que el texto se ajuste automáticamente */
+  word-wrap: break-word;    /* 🔹 evita cortes raros */
+
+  /* 🩸 Tono vino gótico */
+  color: #d2b404;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #ffeb00;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+/* Botón RPG */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 22px;
+  background: linear-gradient(145deg, #ffcd43, #361909);
+  border: 2px solid #ffffff;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ffcd43, inset 0 0 8px #ffcd43;
+  transition: all 0.25s ease;
+}
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #ffcd43, inset 0 0 10px #ffcd43;
+}
+.back-button span {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+/* Superior */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.imagen-grande img {
+  width: 600px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+  margin-top: 90px;
+  
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  width: 480px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ca800a, inset 0 0 15px #ca800a; /* brillo estático */
+}
+
+header img {
+  width: 360px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.25s ease, filter 0.4s ease;
+  filter: none;
+  background: none;
+  border-radius: 6px;
+}
+
+/* 🌰✨ Glow café oscuro ajustado al borde */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #7E4C40)
+    drop-shadow(0 0 2px #9A6A5D)
+    drop-shadow(0 0 3px #B78B7C)
+    drop-shadow(0 0 4px #D9B3A8);
+  animation: neonEdgeBrownDark 1.5s ease-in-out infinite alternate;
+}
+
+/* ⚡ Pulso cálido café oscuro */
+@keyframes neonEdgeBrownDark {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #7E4C40)
+      drop-shadow(0 0 2px #9A6A5D)
+      drop-shadow(0 0 3px #B78B7C)
+      drop-shadow(0 0 4px #D9B3A8);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #9A6A5D)
+      drop-shadow(0 0 3px #B78B7C)
+      drop-shadow(0 0 4px #D9B3A8)
+      drop-shadow(0 0 5px #ECD9D3);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #7E4C40)
+      drop-shadow(0 0 2px #9A6A5D)
+      drop-shadow(0 0 3px #B78B7C)
+      drop-shadow(0 0 4px #D9B3A8);
+    opacity: 0.9;
+  }
+}
+
+
+
+/* Ficha */
+.ficha {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.dato, .pais {
+  display: flex;
+  margin: 6px 0;
+  background: #020001;
+  border-radius: 6px;
+  overflow: hidden;
+  color: white;
+}
+.titulo {
+  width: 170px;
+  background: #7e4c40;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.contenido {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Sección inferior (Stats + Radar) */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+
+/* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  	margin-top: -60px !important;   /* sube ligeramente el contenedor */
+    margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 90%;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ca800a, inset 0 0 15px #ca800a; /* brillo estático */
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ca800a, inset 0 0 15px #ca800a; /* brillo estático */
+}
+.stat-col {
+  background-color: #7e4c40;
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+  
+  
+}
+.valor-col {
+  width: 50%;
+  background: #000;
+  color: #fff;
+}
+
+/* Facciones */
+.tabla-facciones th {
+  background-color: #7e4c40;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  
+}
+.tabla-facciones tr:nth-child(2) {
+  background-color: #000;
+  
+}
+.tabla-facciones img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Radar - grande, centrado y con brillo estático */
+.radar-container {
+  flex: 1;
+  min-width: 600px;
+  text-align: center;
+  margin-left: 90px;   /* mantiene el desplazamiento lateral */
+  margin-top: 40px;    /* alineado con tablas */
+  margin-right: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-container img {
+  width: 1000px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #111 60%, #000);
+  padding: 1px;
+  border: 3px solid #fff;
+
+  /* ✨ Igual brillo que la tabla de estadísticas */
+  box-shadow: 0 0 10px #ca800a, inset 0 0 15px #ca800a;
+
+  transition: none;
+}
+
+.exp-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.exp-bar-container {
+  width: 150px;
+  height: 20px;
+  background-color: #1a1a1a; /* Fondo oscuro de la barra vacía */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px #000 inset;
+  position: relative;
+}
+
+.exp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    #ffd966,  /* miel clara */
+    #ffb703,  /* ámbar */
+    #d97706   /* miel oscura */
+  );
+  animation: shine 3s linear infinite;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.exp-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* Sección de skills */
+.skills-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 35px;
+  color: #ffd966;
+  text-shadow: 0 0 8px #000000, 0 0 18px #000000;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.skills-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 2px solid white;
+  text-align: center;
+
+}
+.skills-table th {
+  background: #7e4c40;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid white;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #ca800a, inset 0 0 15px #ca800a; /* brillo estático */
+}
+.skills-table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid white;
+  padding: 10px;
+  
+}
+.skills-table img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* ======================================================
+   📱 FIX DEFINITIVO — centrado y proporción en móviles
+   ====================================================== */
+@media (max-width: 1024px) {
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+ body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  font-family: Arial, sans-serif !important;
+  color: #fff !important;
+  /* ⚒️ Mantiene la identidad dorado-negro pero más profundo */
+  background: linear-gradient(135deg, #efcc00, #352d00);
+  background-attachment: fixed !important;
+  margin-bottom: 10px !important; /* menos espacio debajo de la imagen */
+}
+
+canvas#honeyCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+}
+
+  /* 🧩 Contenedor principal más compacto y centrado */
+  .contenedor-principal {
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 10px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    transform: translateY(-10px) !important; /* Ajusta el valor según tu vista */
+    margin-bottom: 20px !important;
+  }
+  
+#vtuber-phrase {
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  width: calc(100% - 8px);
+  margin: 2rem auto;
+  padding: 0 4px;
+
+  /* 🩸 Tono vino gótico */
+  color: #d2b404;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #ffdc10;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+
+  /* 🖼 Imagen grande centrada */
+  .imagen-grande {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+  }
+
+  .imagen-grande img {
+    width: 80% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+  
+  #vtuber-phrase {
+  font-size: 13px !important;    /* 🔹 más pequeño en móviles */
+  line-height: 1.3 !important;   /* 🔹 menos separación */
+  text-align: center !important; /* 🔹 centrado perfecto */
+  max-width: 95% !important;     /* 🔹 más compacto en pantallas chicas */
+  margin: 8px auto !important;
+}
+
+  /* 🛰 Radar 100% centrado y visible en todos los móviles */
+  .radar-container {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 260px !important;        /* 🔹 ancho compacto */
+    margin: 0 auto 15px auto !important;
+    left: 50% !important;               /* 🔹 centrado absoluto */
+    transform: translateX(-50%) !important;
+    overflow: visible !important;       /* 🔹 evita recortes */
+    box-sizing: border-box !important;
+	
+  }
+
+  .radar-container img,
+  .radar-container canvas {
+    width: 100% !important;              /* 🔹 un poco más grande */
+    max-width: 300px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+ .ficha {
+    width: 95% !important;
+    max-width: 340px !important;
+    padding: 8px 4px !important; /* 🔹 menos espacio lateral */
+    margin: 15px auto !important;
+    border-radius: 10px !important;
+    gap: 5px !important;
+    background: #fff !important;
+  }
+
+  /* 🧱 Fila de dato más ajustada */
+  .ficha .dato,
+  .ficha .pais {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    background: #020001 !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    border: 1px solid #ffffff !important;
+    margin: 2px 0 !important; /* 🔹 separa menos verticalmente */
+  }
+
+  /* 🏷️ Título del campo */
+  .ficha .titulo {
+    width: 38% !important;  /* 🔹 más ancho para aprovechar el espacio */
+    background: #7e4c40 !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: #fff !important;
+    padding: 5px 4px !important; /* 🔹 menos padding horizontal */
+    font-size: 11px !important;
+    border-right: 1px solid #000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 📄 Contenido del campo */
+  .ficha .contenido {
+    flex: 1 !important;
+    background: #000 !important;
+    color: #fff !important;
+    text-align: center !important;
+    padding: 5px 3px !important; /* 🔹 menos padding lateral */
+    font-size: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    word-break: break-word !important;
+  }
+  
+  /* 🧪 Barra de experiencia visible y responsiva */
+  .xp-container {
+    width: 90% !important;
+    max-width: 300px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.4) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin: 10px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .xp-bar {
+    height: 100% !important;
+    background: linear-gradient(90deg, #ff1e56, #ff0844, #ff1e56) !important;
+    box-shadow: 0 0 10px #ff1e56 !important;
+    transition: width 0.4s ease-in-out !important;
+    border-radius: 10px 0 0 10px !important;
+    width: 0% !important; /* ← se actualiza dinámicamente desde JS */
+  }
+
+  .xp-text {
+    position: absolute !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    letter-spacing: 1px !important;
+    z-index: 2 !important;
+  }
+
+
+
+  /* ⚔ Skills (si las tienes después) */
+  .skills-section {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto 30px auto !important;
+    padding: 5px !important;
+    text-align: center !important;
+  }
+
+  .skills-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 auto !important;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 12px !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+
+/* Botón volver con menos margen */
+  .back-button {
+    margin: 15px auto !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ✅ Compatibilidad con animaciones en Chromium */
+@-webkit-keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; -webkit-filter: brightness(1); }
+  50% { opacity: 1; -webkit-filter: brightness(1.2); }
+}
+@keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="imagen-grande">
+          <img src="vtubercompleto/jovenlink.png" alt="" />
+  </div>
+  <div class="contenedor-principal">
+    <header>
+            <img src="logos/jovenlink.png" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase"></p>
+    </header>
+
+          <!-- Redes -->
+          <div class="socials">
+            <a href="https://x.com/jovenlinkart1"><img src="icons/x.png" alt="X" /></a>
+            <a href="https://www.twitch.tv/joven_link"><img src="icons/twitch.png" alt="Twitch" /></a>
+            <a href="https://www.tiktok.com/@joven_link?lang=es"><img src="icons/tiktok.png" alt="TikTok" /></a>
+            <a href="https://www.instagram.com/joven_link/"><img src="icons/instagram.png" alt="Instagram" /></a>
+			<a href="https://www.youtube.com/@joven_link"><img src="icons/youtube.png" alt="YouTube" /></a>
+          </div>
+
+    <section class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">Chile</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">23 de Noviembre</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1.75 m</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">todo tipo de comidas dulces, aunque si hablamos de platillos, pues la lasaña (lasagna)</div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">comidas picantes o agrias, pero mi peor ejemplo es el ají</div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">Super Mario RPG</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">El chavo del 8</div></div>
+                <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">Cherri, Ansichan, Chevy, Beetlebug</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">Tate no yuusha</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Sagitario</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Abeja :3</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Amarillo :3</div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">io mismo uwu</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#jovenlink</div></div>
+    </section>
+
+    <a href="index.html" class="back-button"><span>⬅</span>Volver</a>
+  </div>
+</main>
+
+<section class="bottom-section">
+  <div class="left-side">
+    <table class="tabla-facciones">
+      <tr><th>Inspirae</th><th>Terran</th></tr>
+      <tr>
+        <td><img src="facciones/Inspirae.png"></td>
+        <td><img src="facciones/Primal%20Monarch.png"></td>
+      </tr>
+    </table>
+
+    <table>
+	    <td class="stat-col">Nivel</td>
+    <td class="valor-col" id="nivel">1</td>
+  </tr>
+  <tr>
+    <td class="stat-col">EXP</td>
+    <td class="valor-col">
+      <div class="exp-wrapper">
+        <div class="exp-bar-container">
+          <div class="exp-bar-fill" id="expBar"></div>
+        </div>
+        <small class="exp-text" id="expText">15 / 55 XP</small>
+      </div>
+    </td>
+  </tr>      
+      <tr><td class="stat-col">HP</td><td class="valor-col">1005</td></tr>
+      <tr><td class="stat-col">MP</td><td class="valor-col">1000</td></tr>
+      <tr><td class="stat-col">Ataque</td><td class="valor-col">150</td></tr>
+      <tr><td class="stat-col">Defensa</td><td class="valor-col">101</td></tr>
+      <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col">220</td></tr>
+      <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col">153</td></tr>
+      <tr><td class="stat-col">Velocidad</td><td class="valor-col">140</td></tr>
+      <tr><td class="stat-col">Evasión</td><td class="valor-col">74</td></tr>
+      <tr><td class="stat-col">Precisión</td><td class="valor-col">112</td></tr>
+      <tr><td class="stat-col">Crítico</td><td class="valor-col">50</td></tr>
+      <tr><td class="stat-col">Suerte</td><td class="valor-col">10</td></tr>
+    </table>
+  </div>
+
+  <div class="radar-container">
+   <img src="diagrama/jovenlink.png"></div>
+</section>
+
+<!-- Skills centradas -->
+<section class="skills-section">
+  <h2 class="section-title">Active Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Inspirae.png"></td><td>Ofensivo</td><td>Hive of Creation</td><td>Ataque Mágico Base ×1.5; aplica <span style="color:#b00101; font-weight:bold;">Sangrado</span>  por 2 turnos y otorga <span style="color:#8a1f00; font-weight:bold;">Inspiratio</span> al usuario por 2 turnos.</td></tr>
+    <tr><td><img src="facciones/Primal%20Monarch.png"></td><td>Ofensivo</td><td>Buzzing Charge</td><td>Ataque Base +25; aplica <span style="color:#ac9300; font-weight:bold;">Parálisis</span> por 1 turno y reduce el Ataque Base del enemigo en 15 por 2 turnos.
+</td></tr>
+  </table>
+
+  <h2 class="section-title">Passive Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Inspirae.png"></td><td>Soporte</td><td>Sovereign Inspiration</td><td>Mientras <span style="color:#8a1f00; font-weight:bold;">Inspiratio</span> esté activo, los efectos de tus estados negativos duran +1 turno.</td></tr>
+    <tr><td><img src="facciones/Primal%20Monarch.png"></td><td>Soporte</td><td>Hive Resilience</td><td>Cuando recibes daño de un golpe crítico, reduces el daño recibido en un 25% y obtienes +10 Constitución por 1 turno.</td></tr>
+  </table>
+
+  <h2 class="section-title">Ultimate Skill</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr>
+      <td><img src="facciones/Inspirae.png"><img src="facciones/Primal%20Monarch.png"></td>
+      <td>Ultimate</td><td>Apotheosis Apis Ars </td><td>Ataque Mágico Base ×1.8, 3 veces consecutivas.<br>
+Aplica <span style="color:#b39903; font-weight:bold;">Radiactivo</span> y <span style="color:#074fcc; font-weight:bold;">Miedo</span> por 2 turnos.<br>
+<br>Mientras el enemigo esté bajo <span style="color:#074fcc; font-weight:bold;">Miedo</span>, se activa <span style="color:#f68001; font-weight:bold;"><br>Enjambre</span> y recuperas el HP/MP equivalente al daño causado por <span style="color:#f68001; font-weight:bold;"><br>Enjambre</span>.<br>
+<span style="color:#f68001; font-weight:bold;"><br>Enjambre</span>: Mientras tu enemigo posea el estado <span style="color:#074fcc; font-weight:bold;">Miedo</span> o <span style="color:#ac9300; font-weight:bold;">Parálisis</span>, pierde 2% de HP y MP.</td>
+    </tr>
+  </table>
+</section>
+<canvas id="honeyCanvas"></canvas>
+<script>
+// ===============================
+//  CANVAS BASE — FONDO FIJO
+// ===============================
+const canvas = document.getElementById("honeyCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.style.position = "fixed";
+canvas.style.top = "0";
+canvas.style.left = "0";
+canvas.style.width = "100vw";
+canvas.style.height = "100vh";
+canvas.style.pointerEvents = "none";
+canvas.style.zIndex = "-1";
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", () => {
+  resizeCanvas();
+  generateHexagons();
+});
+
+// ===============================
+//  CONFIG HEX (POINTY–TOP)
+// ===============================
+const hexSize = 60;
+const hexHeight = Math.sqrt(3) * hexSize;  // altura de hex pointy-top
+const hexWidth = hexSize * 2;
+const vertSpacing = hexHeight * 0.75;      // spacing vertical
+const horizSpacing = hexSize * 1.5;        // spacing horizontal
+const innerRatio = 0.62;
+
+let hexagons = [];
+
+// ===============================
+//  GENERAR PATRÓN TIPO PANAL
+// ===============================
+function generateHexagons() {
+  hexagons = [];
+  let gy = 0;
+
+  for (let y = 0; y < canvas.height + hexHeight; y += vertSpacing) {
+    let gx = 0;
+
+    for (let x = 0; x < canvas.width + horizSpacing; x += horizSpacing) {
+      const offsetX = (gy % 2) ? hexSize * 0.75 : 0;
+
+      hexagons.push({
+        x: x + offsetX,
+        y: y,
+        glow: 0,
+        glowTime: Math.random() * 10,
+        gridX: gx,
+        gridY: gy,
+        delay: 0
+      });
+
+      gx++;
+    }
+    gy++;
+  }
+
+  // delay elegante
+  hexagons.forEach(h => {
+    h.delay = (h.gridX + h.gridY) * 0.04;
+  });
+}
+
+generateHexagons();
+
+// ===============================
+//  CONTROL DE ACTIVIDAD
+// ===============================
+let waveStart = null;
+let lastActivity = Date.now();
+let inactivityTimer = null;
+
+function registerActivity() {
+  lastActivity = Date.now();
+  restartInactivityTimer();
+}
+
+function restartInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(() => turnOff(), 10000);
+}
+
+function startWave() {
+  if (waveStart !== null) return;
+  waveStart = Date.now();
+  restartInactivityTimer();
+}
+
+function turnOff() {
+  hexagons.forEach(h => h.glow = 0);
+  waveStart = null;
+}
+
+// ===============================
+//  INPUT (PC + MÓVIL)
+// ===============================
+let lastX = null, lastY = null;
+function detectMove(x, y) {
+  if (lastX === null) { lastX = x; lastY = y; return false; }
+  const moved = (Math.abs(x - lastX) > 2 || Math.abs(y - lastY) > 2);
+  lastX = x; 
+  lastY = y;
+  return moved;
+}
+
+document.addEventListener("mousemove", e => {
+  registerActivity();
+  if (!waveStart && detectMove(e.clientX, e.clientY)) startWave();
+});
+
+document.addEventListener("click", () => turnOff());
+
+["touchstart","touchmove","touchend"].forEach(evt => {
+  document.addEventListener(evt, () => {
+    registerActivity();
+    if (!waveStart) startWave();
+  }, { passive: true });
+});
+
+document.addEventListener("scroll", () => {
+  registerActivity();
+  if (!waveStart) startWave();
+}, { passive: true });
+
+// ===============================
+//  RENDER PRINCIPAL
+// ===============================
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const now = Date.now();
+  const globalTime = now / 400;
+
+  hexagons.forEach(h => {
+    if (waveStart) {
+      const t = (now - waveStart) / 1000;
+      if (t > h.delay) {
+        h.glow = Math.min(1, (t - h.delay) * 1.5);
+      }
+    }
+
+    let baseColor = "#5a3b06";
+    let innerColor = "#3d2a0f";
+
+    if (h.glow > 0) {
+      const pulse = (Math.sin(globalTime + h.glowTime) + 1) / 2;
+      const blur = 12 + pulse * 25;
+
+      ctx.shadowBlur = blur;
+      ctx.shadowColor = "rgba(180,140,40,0.55)";
+
+      baseColor = `rgba(200,160,50,${h.glow * 0.85})`;
+      innerColor = `rgba(140,100,30,${h.glow * 0.85})`;
+    } else {
+      ctx.shadowBlur = 0;
+    }
+
+    drawHex(h.x, h.y, hexSize);
+    ctx.fillStyle = baseColor;
+    ctx.fill();
+
+    drawHex(h.x, h.y, hexSize * innerRatio);
+    ctx.fillStyle = innerColor;
+    ctx.fill();
+  });
+
+  requestAnimationFrame(draw);
+}
+
+// ===============================
+//  HEXÁGONO POINTY TOP (ROTADO 30°)
+// ===============================
+function drawHex(x, y, size) {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const a = (Math.PI / 3 * i) + Math.PI / 6; // ← ROTACIÓN 30º
+    const px = x + size * Math.cos(a);
+    const py = y + size * Math.sin(a);
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+}
+
+draw();
+
+// ===========================
+// BARRA DE EXPERIENCIA MANUAL
+// ===========================
+function updateBarManual() {
+  const text = expText.textContent.trim();
+
+  const match = text.match(/(\d+)\s*\/\s*(\d+)/);
+  if (!match) return;
+
+  const currentXP = parseInt(match[1], 10);
+  const maxXP = parseInt(match[2], 10);
+
+  const percent = maxXP > 0 ? Math.min((currentXP / maxXP) * 100, 100) : 0;
+
+  expBar.style.width = percent + "%";
+}
+
+// Ejecutar al cargar
+updateBarManual();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Esferita</title>
+    <link rel="icon" href="favicon/esferita.ico" type="image/x-icon">
+<style>
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+canvas#honeyCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+#vtuber-phrase {
+  text-align: center;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 420px;         /* 🔹 controla el ancho ideal de la frase */
+  margin: 1rem auto;
+  padding: 0 4px;
+  white-space: normal;      /* 🔹 permite que el texto se ajuste automáticamente */
+  word-wrap: break-word;    /* 🔹 evita cortes raros */
+
+  /* 🩸 Tono vino gótico */
+  color: #d2b404;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #ffeb00;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+/* Botón RPG */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 22px;
+  background: linear-gradient(145deg, #7326b2, #000000);
+  border: 2px solid #ffffff;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #8810dc, inset 0 0 8px #8810dc;
+  transition: all 0.25s ease;
+}
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #8810dc, inset 0 0 10px #8810dc;
+}
+.back-button span {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+/* Superior */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.imagen-grande img {
+  width: 480px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+  margin-top: -50px;
+  
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  width: 480px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #8810dc, inset 0 0 15px #8810dc; /* brillo estático */
+}
+
+header img {
+  width: 250px;
+  display: block;
+  margin: 0 auto 10px auto;
+  margin-top: -20px;
+  
+}
+header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.25s ease, filter 0.4s ease;
+  filter: none;
+  background: none;
+  border-radius: 6px; /* suaviza esquinas si el icono es cuadrado */
+}
+
+/* 💜 Borde de neón morado */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #9b33ff)
+    drop-shadow(0 0 2px #c33fff)
+    drop-shadow(0 0 3px #d366ff)
+    drop-shadow(0 0 4px #e699ff);
+  animation: neonEdgePurple 1.5s ease-in-out infinite alternate;
+}
+
+/* ⚡ Parpadeo tipo neón — tono morado */
+@keyframes neonEdgePurple {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #9b33ff)
+      drop-shadow(0 0 2px #c33fff)
+      drop-shadow(0 0 3px #d366ff)
+      drop-shadow(0 0 4px #e699ff);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #c33fff)
+      drop-shadow(0 0 3px #d366ff)
+      drop-shadow(0 0 4px #e699ff)
+      drop-shadow(0 0 5px #f2ccff);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #9b33ff)
+      drop-shadow(0 0 2px #c33fff)
+      drop-shadow(0 0 3px #d366ff)
+      drop-shadow(0 0 4px #e699ff);
+    opacity: 0.9;
+  }
+}
+
+
+
+/* Ficha */
+.ficha {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.dato, .pais {
+  display: flex;
+  margin: 6px 0;
+  background: #020001;
+  border-radius: 6px;
+  overflow: hidden;
+  color: white;
+}
+.titulo {
+  width: 170px;
+  background: #52296f;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.contenido {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Sección inferior (Stats + Radar) */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+
+/* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  	margin-top: -60px !important;   /* sube ligeramente el contenedor */
+    margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 90%;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #8810dc, inset 0 0 15px #8810dc; /* brillo estático */
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #8810dc, inset 0 0 15px #8810dc; /* brillo estático */
+}
+.stat-col {
+  background-color: #52296f;
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+  
+  
+}
+.valor-col {
+  width: 50%;
+  background: #000;
+  color: #fff;
+}
+
+/* Facciones */
+.tabla-facciones th {
+  background-color: #52296f;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  
+}
+.tabla-facciones tr:nth-child(2) {
+  background-color: #000;
+  
+}
+.tabla-facciones img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Radar - grande, centrado y con brillo estático */
+.radar-container {
+  flex: 1;
+  min-width: 600px;
+  text-align: center;
+  margin-left: 90px;   /* mantiene el desplazamiento lateral */
+  margin-top: 40px;    /* alineado con tablas */
+  margin-right: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-container img {
+  width: 1000px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #111 60%, #000);
+  padding: 1px;
+  border: 3px solid #fff;
+
+  /* ✨ Igual brillo que la tabla de estadísticas */
+  box-shadow: 0 0 10px #8810dc, inset 0 0 15px #8810dc;
+
+  transition: none;
+}
+
+.exp-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.exp-bar-container {
+  width: 150px;
+  height: 20px;
+  background-color: #1a1a1a; /* Fondo oscuro de la barra vacía */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px #000 inset;
+  position: relative;
+}
+
+.exp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #a44fff, #6a00ff);
+  animation: shine 3s linear infinite;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.exp-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* Sección de skills */
+.skills-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 30px;
+  color: #c58ed1;
+  text-shadow: 0 0 40px #000000, 0 0 40px #000000;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+
+}
+
+.skills-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 2px solid white;
+  text-align: center;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #8810dc, inset 0 0 15px #8810dc; /* brillo estático */
+}
+.skills-table th {
+  background: #52296f;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid white;
+}
+.skills-table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid white;
+  padding: 10px;
+}
+.skills-table img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* ======================================================
+   📱 FIX DEFINITIVO — centrado y proporción en móviles
+   ====================================================== */
+@media (max-width: 1024px) {
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+ body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  font-family: Arial, sans-serif !important;
+  color: #fff !important;
+  /* ⚒️ Mantiene la identidad dorado-negro pero más profundo */
+  background-attachment: fixed !important;
+  margin-bottom: 10px !important; /* menos espacio debajo de la imagen */
+}
+
+
+
+  /* 🧩 Contenedor principal más compacto y centrado */
+  .contenedor-principal {
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 10px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+	margin-top: -130px !important;   /* sube ligeramente el contenedor */
+    margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+  }
+  
+#vtuber-phrase {
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  width: calc(100% - 8px);
+  margin: 2rem auto;
+  padding: 0 4px;
+
+  /* 🩸 Tono vino gótico */
+  color: #d2b404;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #ffdc10;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+
+  /* 🖼 Imagen grande centrada */
+  .imagen-grande {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+  }
+
+  .imagen-grande img {
+    width: 80% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+  
+  #vtuber-phrase {
+  font-size: 13px !important;    /* 🔹 más pequeño en móviles */
+  line-height: 1.3 !important;   /* 🔹 menos separación */
+  text-align: center !important; /* 🔹 centrado perfecto */
+  max-width: 95% !important;     /* 🔹 más compacto en pantallas chicas */
+  margin: 8px auto !important;
+}
+
+  /* 🛰 Radar 100% centrado y visible en todos los móviles */
+  .radar-container {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 260px !important;        /* 🔹 ancho compacto */
+    margin: 0 auto 15px auto !important;
+    left: 50% !important;               /* 🔹 centrado absoluto */
+    transform: translateX(-50%) !important;
+    overflow: visible !important;       /* 🔹 evita recortes */
+    box-sizing: border-box !important;
+	
+  }
+
+  .radar-container img,
+  .radar-container canvas {
+    width: 100% !important;              /* 🔹 un poco más grande */
+    max-width: 300px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+ .ficha {
+    width: 95% !important;
+    max-width: 340px !important;
+    padding: 8px 4px !important; /* 🔹 menos espacio lateral */
+    margin: 15px auto !important;
+    border-radius: 10px !important;
+    gap: 5px !important;
+    background: #fff !important;
+  }
+
+  /* 🧱 Fila de dato más ajustada */
+  .ficha .dato,
+  .ficha .pais {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    background: #020001 !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    border: 1px solid #ffffff !important;
+    margin: 2px 0 !important; /* 🔹 separa menos verticalmente */
+  }
+
+  /* 🏷️ Título del campo */
+  .ficha .titulo {
+    width: 38% !important;  /* 🔹 más ancho para aprovechar el espacio */
+    background: #52296f !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: #fff !important;
+    padding: 5px 4px !important; /* 🔹 menos padding horizontal */
+    font-size: 11px !important;
+    border-right: 1px solid #000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 📄 Contenido del campo */
+  .ficha .contenido {
+    flex: 1 !important;
+    background: #000 !important;
+    color: #fff !important;
+    text-align: center !important;
+    padding: 5px 3px !important; /* 🔹 menos padding lateral */
+    font-size: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    word-break: break-word !important;
+  }
+  
+  /* 🧪 Barra de experiencia visible y responsiva */
+  .xp-container {
+    width: 90% !important;
+    max-width: 300px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.4) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin: 10px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .xp-bar {
+    height: 100% !important;
+    background: linear-gradient(90deg, #ff1e56, #ff0844, #ff1e56) !important;
+    box-shadow: 0 0 10px #ff1e56 !important;
+    transition: width 0.4s ease-in-out !important;
+    border-radius: 10px 0 0 10px !important;
+    width: 0% !important; /* ← se actualiza dinámicamente desde JS */
+  }
+
+  .xp-text {
+    position: absolute !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    letter-spacing: 1px !important;
+    z-index: 2 !important;
+  }
+
+
+
+  /* ⚔ Skills (si las tienes después) */
+  .skills-section {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto 30px auto !important;
+    padding: 5px !important;
+    text-align: center !important;
+  }
+
+  .skills-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 auto !important;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 12px !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+
+/* Botón volver con menos margen */
+  .back-button {
+    margin: 15px auto !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ✅ Compatibilidad con animaciones en Chromium */
+@-webkit-keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; -webkit-filter: brightness(1); }
+  50% { opacity: 1; -webkit-filter: brightness(1.2); }
+}
+@keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="imagen-grande">
+          <img src="vtubercompleto/esferita.png" alt="" />
+  </div>
+  <div class="contenedor-principal">
+    <header>
+            <img src="logos/esferita.gif" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase"></p>
+    </header>
+	
+	<script src="https://unpkg.com/gifuct-js/dist/gifuct.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+
+
+          <!-- Redes -->
+          <div class="socials">
+            <a href="https://x.com/EsferitaVT"><img src="icons/x.png" alt="X" /></a>
+            <a href="https://www.twitch.tv/esferita"><img src="icons/twitch.png" alt="Twitch" /></a>
+            <a href="https://www.facebook.com/Esferiita/"><img src="icons/facebook.png" alt="Facebook" /></a>
+            <a href="https://www.instagram.com/esferiita"><img src="icons/instagram.png" alt="Instagram" /></a>
+
+          </div>
+
+    <section class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">Puerto Rico pero vivo en Argentina </div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">20 de Enero</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1,55 m</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Arroz</div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Pizza,Pan y Lasagna</div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">Baldur's Gate 3</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">No tengo</div></div>
+                <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">No tengo</div></div>
+                <div class="dato"><div class="titulo">Anime <br> favorito:</div><div class="contenido">Violet Evergarden <br> The darling in the franxx</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Zorro,Perros,Panda,Roedores</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Morado</div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">PROYECTO AR-AI.I(artista y rigger)</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#Esferart</div></div>
+    </section>
+
+    <a href="index.html" class="back-button"><span>⬅</span>Volver</a>
+  </div>
+</main>
+
+<section class="bottom-section">
+  <div class="left-side">
+    <table class="tabla-facciones">
+      <tr><th>Mythical Legacy</th><th>Arcane Nexus</th></tr>
+      <tr>
+        <td><img src="facciones/Mythical%20Legacy.png"></td>
+        <td><img src="facciones/Arcane%20Nexus.png"></td>
+      </tr>
+    </table>
+
+    <table>
+	    <td class="stat-col">Nivel</td>
+    <td class="valor-col" id="nivel">1</td>
+  </tr>
+  <tr>
+    <td class="stat-col">EXP</td>
+    <td class="valor-col">
+      <div class="exp-wrapper">
+        <div class="exp-bar-container">
+          <div class="exp-bar-fill" id="expBar"></div>
+        </div>
+        <small class="exp-text" id="expText">15 / 55 XP</small>
+      </div>
+    </td>
+  </tr>      
+      <tr><td class="stat-col">HP</td><td class="valor-col">1200</td></tr>
+      <tr><td class="stat-col">MP</td><td class="valor-col">950</td></tr>
+      <tr><td class="stat-col">Ataque</td><td class="valor-col">160</td></tr>
+      <tr><td class="stat-col">Defensa</td><td class="valor-col">120</td></tr>
+      <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col">209</td></tr>
+      <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col">162</td></tr>
+      <tr><td class="stat-col">Velocidad</td><td class="valor-col">128</td></tr>
+      <tr><td class="stat-col">Evasión</td><td class="valor-col">68</td></tr>
+      <tr><td class="stat-col">Precisión</td><td class="valor-col">102</td></tr>
+      <tr><td class="stat-col">Crítico</td><td class="valor-col">43</td></tr>
+      <tr><td class="stat-col">Suerte</td><td class="valor-col">9</td></tr>
+    </table>
+  </div>
+
+  <div class="radar-container">
+   <img src="diagrama/esferita.png"></div>
+</section>
+
+<!-- Skills centradas -->
+<section class="skills-section">
+  <h2 class="section-title">Active Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Mythical%20Legacy.png"></td><td>Soporte</td><td>Phoenix Rebirth</td><td>Si el HP del usuario cae por debajo del 25%, restaura +20 HP y Obtiene <span style="color:#233932; font-weight:bold;">Potencial Evolutivo</span> por 2 turnos</td></tr>
+    <tr><td><img src="facciones/Arcane%20Nexus.png"></td><td>Ofensivo</td><td>Shadowbolt</td><td>Ataque Mágico Base +30, aplica <span style="color:#ac9300; font-weight:bold;">Parálisis</span>  y <span style="color:#074fcc; font-weight:bold;">Miedo</span> por 2 turnos.
+</td></tr>
+  </table>
+
+  <h2 class="section-title">Passive Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Mythical%20Legacy.png"></td><td>Soporte</td><td>Dragon Scales</td><td>Aumenta +30 Defensa. Al recibir daño, el atacante pierde un 25% del daño inflingido.</td></tr>
+    <tr><td><img src="facciones/Arcane%20Nexus.png"></td><td>Soporte</td><td>Occult Knowledge</td><td>Ataque Mágico Base +20, al inicio de cada turno si el enemigo tiene estado alterado.</td></tr>
+  </table>
+
+  <h2 class="section-title">Ultimate Skill</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr>
+      <td><img src="facciones/Mythical%20Legacy.png"><img src="facciones/Arcane%20Nexus.png"></td>
+      <td>Ultimate</td><td>Yōko Koku’en Sen</td><td>Realiza 2 golpes (Ataque Mágico Base +20 o ×1.5 si el enemigo tiene menos del 50% HP) y aplica 1 estado aleatorio: <span style="color:#c35a05; text-shadow: 0 0 8px #7470e1; font-weight:bold;">Quemadura</span>, <span style="color:#ac9300; font-weight:bold;">Parálisis</span> , <span style="color:#089dc0; font-weight:bold;">Congelación</span> , <span style="color:#074fcc; font-weight:bold;">Miedo</span> o <span style="color:#43408f; font-weight:bold;">Confusión</span>. </td>
+    </tr>
+  </table>
+</section>
+<script>
+const logoImg = document.querySelector('.vtuber-logo');
+
+async function removeGreenBackgroundGIF(img) {
+    const response = await fetch(img.src);
+    const buffer = await response.arrayBuffer();
+
+    const gif = new window.GIFuctJS.GIF(buffer);
+    const frames = gif.decompressFrames(true);
+
+    const newGif = new GIF({
+        workers: 2,
+        quality: 10,
+        transparent: 0x00ff00
+    });
+
+    const tolerance = 100; // Ajusta según necesites
+
+    frames.forEach(frame => {
+        const canvas = document.createElement('canvas');
+        canvas.width = frame.dims.width;
+        canvas.height = frame.dims.height;
+        const ctx = canvas.getContext('2d');
+
+        const imageData = ctx.createImageData(frame.dims.width, frame.dims.height);
+        imageData.data.set(frame.patch);
+        ctx.putImageData(imageData, 0, 0);
+
+        const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < pixels.data.length; i += 4) {
+            const r = pixels.data[i];
+            const g = pixels.data[i + 1];
+            const b = pixels.data[i + 2];
+            if (g > r + tolerance && g > b + tolerance && g > 100) {
+                pixels.data[i + 3] = 0;
+            }
+        }
+        ctx.putImageData(pixels, 0, 0);
+
+        newGif.addFrame(canvas, { delay: frame.delay });
+    });
+
+    newGif.on('finished', blob => {
+        const url = URL.createObjectURL(blob);
+        img.src = url;
+    });
+
+    newGif.render();
+}
+
+// Ejecutar
+removeGreenBackgroundGIF(logoImg);
+
+
+
+// ===========================
+// BLOQUEAR SCROLL HORIZONTAL / SOLO VERTICAL
+// ===========================
+document.documentElement.style.overflowX = "hidden";
+document.body.style.overflowX = "hidden";
+document.documentElement.style.touchAction = "pan-y";
+document.body.style.touchAction = "pan-y";
+document.documentElement.style.overscrollBehaviorX = "none";
+document.body.style.overscrollBehaviorX = "none";
+
+// ===========================
+// AJUSTE DEL BODY (FONDO BASE)
+// ===========================
+document.body.style.backgroundColor = "#13001d"; // morado oscuro de respaldo
+
+const isMobile = window.innerWidth <= 768;
+
+// ===========================
+// CONTENEDOR GENERAL (FONDO FIJO)
+// ===========================
+const fxContainer = document.createElement("div");
+fxContainer.style.position = "fixed";
+fxContainer.style.top = "0";
+fxContainer.style.left = "0";
+fxContainer.style.width = "100vw";
+fxContainer.style.height = "100vh";
+fxContainer.style.pointerEvents = "none";
+fxContainer.style.overflow = "hidden";
+fxContainer.style.zIndex = "-2";
+fxContainer.style.transform = "translateZ(0)";
+document.body.appendChild(fxContainer);
+
+// ===========================
+// CAPA ESTÁTICA (NO SCROLL)
+// ===========================
+const staticLayer = document.createElement("div");
+staticLayer.style.position = "absolute";
+staticLayer.style.top = "0";
+staticLayer.style.left = "0";
+staticLayer.style.width = "100%";
+staticLayer.style.height = "180vh";
+staticLayer.style.pointerEvents = "none";
+staticLayer.style.zIndex = "-1";
+
+// 👉 en móvil va DENTRO del fxContainer, en PC se queda en el body
+if (isMobile) {
+  fxContainer.appendChild(staticLayer);
+} else {
+  document.body.appendChild(staticLayer);
+}
+
+// ===========================
+// FONDO PRINCIPAL (SEGUIR VENTANA)
+// ===========================
+const bg = document.createElement("div");
+bg.style.position = "absolute";
+bg.style.top = "0";
+bg.style.left = "0";
+bg.style.width = "100%";
+bg.style.height = "100%";
+bg.style.backgroundImage = "url('efectos/bosquerosa.png')";
+bg.style.backgroundSize = "cover";
+bg.style.backgroundPosition = "center";
+
+// filtros distintos según dispositivo
+if (isMobile) {
+  bg.style.filter = "brightness(0.2) saturate(1.5)";
+} else {
+  bg.style.filter =
+    "brightness(0.15) saturate(1.6) drop-shadow(0 0 80px rgba(119,34,159,0.7))";
+}
+
+bg.style.zIndex = "-3";
+bg.style.transform = "translateZ(0)";
+fxContainer.appendChild(bg);
+
+// ===========================
+// BRILLO DIFUSO GENERAL
+// ===========================
+const globalGlow = document.createElement("div");
+globalGlow.style.position = "absolute";
+globalGlow.style.left = "50%";
+globalGlow.style.top = "50%";
+globalGlow.style.transform = "translate(-50%, -50%) translateZ(0)";
+globalGlow.style.width = "1200px";
+globalGlow.style.height = "1200px";
+globalGlow.style.borderRadius = "50%";
+globalGlow.style.background =
+  "radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,0,180,0.2) 50%, rgba(255,0,180,0) 100%)";
+globalGlow.style.filter = isMobile ? "blur(120px)" : "blur(180px)";
+globalGlow.style.animation = "pulseGlow 4s ease-in-out infinite";
+globalGlow.style.zIndex = "-2";
+fxContainer.appendChild(globalGlow);
+
+// ===========================
+// MARCO CIRCULAR (NO SCROLL)
+// ===========================
+const marco = document.createElement("img");
+marco.src = "efectos/circulomagico.png";
+marco.style.position = "absolute";
+marco.style.left = "50%";
+marco.style.top = "30%"; // un poco más arriba
+marco.style.transform = "translate(-50%, -50%) scale(1.15)";
+marco.style.width = "300px";
+marco.style.height = "auto";
+marco.style.zIndex = "-1";
+marco.style.filter = `
+  drop-shadow(0 0 12px #77229f)
+  drop-shadow(0 0 28px #77229f)
+`;
+marco.style.animation = "slowRotate 140s linear infinite";
+staticLayer.appendChild(marco);
+
+// ===========================
+// SIGNO INTERIOR (NO SCROLL)
+// ===========================
+const signo = document.createElement("img");
+signo.src = "efectos/signo1.png";
+signo.style.position = "absolute";
+signo.style.left = "50%";
+signo.style.top = "30%";
+signo.style.transform = "translate(-50%, -50%) scale(1.05)";
+signo.style.width = "220px";
+signo.style.height = "auto";
+signo.style.zIndex = "-1";
+signo.style.filter = `
+  drop-shadow(0 0 6px #77229f)
+  drop-shadow(0 0 16px #77229f)
+`;
+signo.style.animation = "reverseRotate 140s linear infinite";
+staticLayer.appendChild(signo);
+
+// ===========================
+// ANIMACIÓN CSS ROTACIONES
+// ===========================
+const signoStyle = document.createElement("style");
+signoStyle.innerHTML = `
+@keyframes reverseRotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.05); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg) scale(1.05); }
+}
+@keyframes slowRotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.15); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.15); }
+}
+`;
+document.head.appendChild(signoStyle);
+
+// ===========================
+// GLOW EXTRA (NO SCROLL)
+// ===========================
+const glow = document.createElement("div");
+glow.style.position = "absolute";
+glow.style.left = "50%";
+glow.style.top = "50%";
+glow.style.transform = "translate(-50%, -50%) translateZ(0)";
+glow.style.width = "450px";
+glow.style.height = "450px";
+glow.style.borderRadius = "50%";
+glow.style.background =
+  "radial-gradient(circle, rgba(119,34,159,0.5) 0%, rgba(119,34,159,0) 80%)";
+glow.style.filter = "blur(70px)";
+glow.style.pointerEvents = "none";
+glow.style.zIndex = "-2";
+staticLayer.appendChild(glow);
+
+// ===========================
+// ANIMACIÓN DE RESPIRACIÓN DEL FONDO
+// ===========================
+const bgBreathingStyle = document.createElement("style");
+bgBreathingStyle.innerHTML = `
+@keyframes bgBreathing {
+  0%, 100% {
+    filter: brightness(0.15) saturate(1.6);
+  }
+  50% {
+    filter: brightness(0.22) saturate(1.8);
+  }
+}
+`;
+document.head.appendChild(bgBreathingStyle);
+bg.style.animation = "bgBreathing 6s ease-in-out infinite";
+
+// ===========================
+// AJUSTE MÓVIL (ESCALA + POSICIÓN BASE)
+// ===========================
+function adjustForMobile() {
+  const isMob = window.innerWidth <= 768;
+
+  if (isMob) {
+    // 📱 En móvil: capa ligada al documento
+    staticLayer.style.position = "absolute";
+    staticLayer.style.height = "180vh";
+
+    // tamaño más grande en móvil
+    marco.style.width = "320px";
+    marco.style.height = "auto";
+    signo.style.width = "260px";
+    signo.style.height = "auto";
+    glow.style.width = "360px";
+    glow.style.height = "360px";
+
+    // posición un poco más arriba para móvil
+    marco.style.top = "22%";
+    signo.style.top = "22%";
+  } else {
+    // 🖥 PC tal como lo tenías
+    staticLayer.style.position = "absolute";
+    staticLayer.style.height = "180vh";
+
+    marco.style.width = "300px";
+    marco.style.height = "auto";
+    signo.style.width = "220px";
+    signo.style.height = "auto";
+    glow.style.width = "450px";
+    glow.style.height = "450px";
+
+    // posición original en PC
+    marco.style.top = "30%";
+    signo.style.top = "30%";
+
+    // aseguramos que en PC no se mueva con el scroll
+    staticLayer.style.transform = "translateY(0)";
+  }
+}
+
+// ejecutar una vez al cargar
+adjustForMobile();
+// actualizar al cambiar tamaño
+window.addEventListener("resize", adjustForMobile);
+
+// ===========================
+// SOLO EN CELULAR: QUE DESAPAREZCAN AL SCROLLEAR
+// ===========================
+window.addEventListener("scroll", () => {
+  const isMob = window.innerWidth <= 768;
+  if (!isMob) return;
+
+  const scrollY = window.scrollY;
+
+  // hasta ~300px de scroll los dejamos visibles,
+  // luego empiezan a salir de pantalla hacia arriba
+  const maxOffset = 260; // puedes ajustar este valor
+  const offset = Math.min(scrollY, maxOffset);
+
+  // movemos toda la capa estática hacia arriba
+  staticLayer.style.transform = `translateY(${-offset}px)`;
+});
+
+
+// ===========================
+// ANIMACIONES CSS BASE
+// ===========================
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes energyRiseSmooth {
+  0% { transform: translateY(0) scale(1); opacity:1; }
+  50% { transform: translateY(-250px) scale(1.2); opacity:0.7; }
+  100% { transform: translateY(-600px) scale(0.8); opacity:0; }
+}
+@keyframes leafFallFull {
+  0% { transform: translateX(0) translateY(0) rotate(0deg); opacity:1; }
+  50% { transform: translateX(30px) translateY(350px) rotate(25deg); }
+  100% { transform: translateX(-30px) translateY(1080px) rotate(55deg); opacity:0.8; }
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.55; transform: translate(-50%, -50%) scale(1.08); }
+}
+@keyframes slowRotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.15); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.15); }
+}
+@keyframes reverseRotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1.05); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg) scale(1.05); }
+}
+`;
+document.head.appendChild(style);
+
+// =====================================================
+// 🔥 AURA PULSANTE – NO SCROLL
+// =====================================================
+const pulseAura = document.createElement("div");
+pulseAura.style.position = "absolute";
+pulseAura.style.left = "50%";
+pulseAura.style.top = "50%";
+pulseAura.style.transform = "translate(-50%, -50%) translateZ(0)";
+pulseAura.style.width = "520px";
+pulseAura.style.height = "520px";
+pulseAura.style.borderRadius = "50%";
+pulseAura.style.background =
+  "radial-gradient(circle, rgba(119,34,159,0.45), rgba(119,34,159,0))";
+pulseAura.style.filter = isMobile ? "blur(60px)" : "blur(90px)";
+pulseAura.style.pointerEvents = "none";
+pulseAura.style.animation = "auraPulse 6s ease-in-out infinite";
+pulseAura.style.zIndex = "-2";
+staticLayer.appendChild(pulseAura);
+
+// =====================================================
+// ✨ LUCIÉRNAGAS
+// =====================================================
+const FIREFLY_INTERVAL = isMobile ? 800 : 400;
+
+function spawnFirefly() {
+  const f = document.createElement("div");
+  const size = 4 + Math.random() * 4;
+
+  f.style.position = "absolute";
+  f.style.width = size + "px";
+  f.style.height = size + "px";
+  f.style.borderRadius = "50%";
+  f.style.pointerEvents = "none";
+  f.style.background =
+    "radial-gradient(circle, rgba(220,50,255,1), rgba(160,30,200,0.8), rgba(140,0,255,0))";
+  f.style.boxShadow = `
+    0 0 12px #c33fff,
+    0 0 24px #9b33ff,
+    0 0 40px rgba(160,0,255,0.9)
+  `;
+  f.style.left = Math.random() * window.innerWidth + "px";
+  f.style.top = Math.random() * window.innerHeight + "px";
+
+  const duration = 6 + Math.random() * 6;
+  f.style.animation = `fireflyMove ${duration}s ease-in-out infinite`;
+
+  fxContainer.appendChild(f);
+  setTimeout(() => f.remove(), duration * 3000);
+}
+setInterval(spawnFirefly, FIREFLY_INTERVAL);
+
+const fireflyStyle = document.createElement("style");
+fireflyStyle.innerHTML = `
+@keyframes fireflyMove {
+  0% { transform: translate(0,0) scale(1); opacity: 0.8; }
+  25% { transform: translate(40px, -60px) scale(1.2) rotate(10deg); opacity: 1; }
+  50% { transform: translate(-30px, 30px) scale(0.9) rotate(-10deg); opacity: 0.9; }
+  75% { transform: translate(50px, 20px) scale(1.15) rotate(6deg); opacity: 1; }
+  100% { transform: translate(0,0) scale(1); opacity: 0.7; }
+}
+`;
+document.head.appendChild(fireflyStyle);
+
+// =====================================================
+// ✨ CHISPAS CERCA DEL SIGNO – NO SCROLL
+// =====================================================
+const SPARK_INTERVAL = isMobile ? 250 : 150;
+
+function spawnSpark() {
+  const spark = document.createElement("div");
+  const size = 2 + Math.random() * 3;
+
+  spark.style.position = "absolute";
+  spark.style.width = size + "px";
+  spark.style.height = size + "px";
+  spark.style.borderRadius = "50%";
+  spark.style.background = "rgba(200,140,220,1)";
+  spark.style.filter = "blur(1px)";
+  spark.style.pointerEvents = "none";
+
+  const offset = 40 + Math.random() * 60;
+  const angle = Math.random() * Math.PI * 2;
+
+  spark.style.left = `calc(50% + ${Math.cos(angle) * offset}px)`;
+  spark.style.top = `calc(50% + ${Math.sin(angle) * offset}px)`;
+
+  const life = 0.7 + Math.random() * 0.6;
+  spark.style.opacity = "0";
+  spark.style.transition = `opacity ${life}s ease-out`;
+
+  staticLayer.appendChild(spark);
+
+  requestAnimationFrame(() => (spark.style.opacity = "1"));
+  setTimeout(() => (spark.style.opacity = "0"), life * 700);
+  setTimeout(() => spark.remove(), life * 1200);
+}
+setInterval(spawnSpark, SPARK_INTERVAL);
+
+const extraStyle = document.createElement("style");
+extraStyle.innerHTML = `
+@keyframes auraPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.35; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.55; }
+}
+@keyframes orbitParticle {
+  0% { transform: rotate(0deg) translate(170px) rotate(0deg); }
+  100% { transform: rotate(360deg) translate(170px) rotate(-360deg); }
+}
+@keyframes signoBreathing {
+  0%, 100% { transform: translate(-50%, -50%) scale(1.05); }
+  50% { transform: translate(-50%, -50%) scale(1.12); }
+}
+`;
+document.head.appendChild(extraStyle);
+
+
+function updateBarManual() {
+  const text = expText.textContent.trim();
+
+  const match = text.match(/(\d+)\s*\/\s*(\d+)/);
+  if (!match) return;
+
+  const currentXP = parseInt(match[1], 10);
+  const maxXP = parseInt(match[2], 10);
+
+  const percent = maxXP > 0 ? Math.min((currentXP / maxXP) * 100, 100) : 0;
+
+  expBar.style.width = percent + "%";
+}
+
+// Ejecutar al cargar
+updateBarManual();
+
+
+
+</script>
+</body>
+</html>

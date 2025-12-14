@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Merie Black</title>
+    <link rel="icon" href="favicon/merieblack.ico" type="image/x-icon">
+<style>
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(90deg, #a16236, #3d190c);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+#vtuber-phrase {
+  text-align: center;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 420px;         /* 🔹 controla el ancho ideal de la frase */
+  margin: 1rem auto;
+  padding: 0 4px;
+  white-space: normal;      /* 🔹 permite que el texto se ajuste automáticamente */
+  word-wrap: break-word;    /* 🔹 evita cortes raros */
+
+  /* 🩸 Tono vino gótico */
+  color: #6a280c;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #f6b300;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+/* Botón RPG */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 22px;
+  background: linear-gradient(145deg, #471b0b, #000000);
+  border: 2px solid #ffffff;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 8px #ce710e;
+  transition: all 0.25s ease;
+}
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #ce710e, inset 0 0 10px #ce710e;
+}
+.back-button span {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+/* Superior */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.imagen-grande img {
+  width: 650px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+  margin-top: 30px;
+  
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  width: 480px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+}
+
+header img {
+  width: 400px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.25s ease, filter 0.4s ease;
+  filter: none;
+  background: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px; /* por si el icono es cuadrado */
+}
+
+/* 🍫✨ Borde tostado (hover) */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #5a3a23)
+    drop-shadow(0 0 2px #6d472b)
+    drop-shadow(0 0 3px #7f5434)
+    drop-shadow(0 0 4px #91623e);
+  animation: neonCookieDark 1.5s ease-in-out infinite alternate;
+}
+
+/* 🔥 Parpadeo neón — café tostado oscuro */
+@keyframes neonCookieDark {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #5a3a23)
+      drop-shadow(0 0 2px #6d472b)
+      drop-shadow(0 0 3px #7f5434)
+      drop-shadow(0 0 4px #91623e);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #6d472b)
+      drop-shadow(0 0 3px #7f5434)
+      drop-shadow(0 0 4px #91623e)
+      drop-shadow(0 0 5px #a56f48);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #5a3a23)
+      drop-shadow(0 0 2px #6d472b)
+      drop-shadow(0 0 3px #7f5434)
+      drop-shadow(0 0 4px #91623e);
+    opacity: 0.9;
+  }
+}
+
+
+
+/* Ficha */
+.ficha {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.dato, .pais {
+  display: flex;
+  margin: 6px 0;
+  background: #020001;
+  border-radius: 6px;
+  overflow: hidden;
+  color: white;
+}
+.titulo {
+  width: 170px;
+  background: #471b0b;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.contenido {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Sección inferior (Stats + Radar) */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+
+/* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -20px !important;   /* sube ligeramente el contenedor */
+  margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 90%;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+}
+.stat-col {
+  background-color: #471b0b;
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+  
+  
+}
+.valor-col {
+  width: 50%;
+  background: #000;
+  color: #fff;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+}
+
+/* Facciones */
+.tabla-facciones th {
+  background-color: #471b0b;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+  
+}
+.tabla-facciones tr:nth-child(2) {
+  background-color: #000;
+      border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+  
+}
+.tabla-facciones img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  
+}
+
+/* Radar - grande, centrado y con brillo estático */
+.radar-container {
+  flex: 1;
+  min-width: 600px;
+  text-align: center;
+  margin-left: 90px;   /* mantiene el desplazamiento lateral */
+  margin-top: 40px;    /* alineado con tablas */
+  margin-right: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-container img {
+  width: 1000px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #111 60%, #000);
+  padding: 1px;
+  border: 3px solid #fff;
+
+  /* ✨ Igual brillo que la tabla de estadísticas */
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e;
+
+  transition: none;
+}
+
+.exp-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.exp-bar-container {
+  width: 150px;
+  height: 20px;
+  background-color: #1a1a1a; /* Fondo oscuro de la barra vacía */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px #000 inset;
+  position: relative;
+}
+
+.exp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff6600, #ff8533, #ffbb66);
+  animation: shine 3s linear infinite;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.exp-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* Sección de skills */
+.skills-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 30px;
+  color: #ce710e;
+  text-shadow: 0 0 8px #301b02, 0 0 12px #301b02;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.skills-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 2px solid white;
+  text-align: center;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+}
+.skills-table th {
+  background: #471b0b;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid white;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #ce710e, inset 0 0 15px #ce710e; /* brillo estático */
+}
+.skills-table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid white;
+  padding: 10px;
+}
+.skills-table img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* ======================================================
+   📱 FIX DEFINITIVO — centrado y proporción en móviles
+   ====================================================== */
+@media (max-width: 1024px) {
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+ body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  font-family: Arial, sans-serif !important;
+  color: #fff !important;
+  /* ⚒️ Mantiene la identidad dorado-negro pero más profundo */
+  background: linear-gradient(90deg, #a16236, #3d190c);
+  background-attachment: fixed !important;
+  margin-bottom: 10px !important; /* menos espacio debajo de la imagen */
+}
+
+
+
+  /* 🧩 Contenedor principal más compacto y centrado */
+  .contenedor-principal {
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 10px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+	margin-top: -50px !important;   /* sube ligeramente el contenedor */
+    margin-bottom: -50px !important; /* espacio extra debajo antes de las facciones */
+  }
+  
+#vtuber-phrase {
+  text-align: center;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 420px;         /* 🔹 controla el ancho ideal de la frase */
+  margin: 1rem auto;
+  padding: 0 4px;
+  white-space: normal;      /* 🔹 permite que el texto se ajuste automáticamente */
+  word-wrap: break-word;    /* 🔹 evita cortes raros */
+
+  /* 🩸 Tono vino gótico */
+  color: #6a280c;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #bce644;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+
+  /* 🖼 Imagen grande centrada */
+  .imagen-grande {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+  }
+
+  .imagen-grande img {
+    width: 80% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+  
+  #vtuber-phrase {
+  font-size: 13px !important;    /* 🔹 más pequeño en móviles */
+  line-height: 1.3 !important;   /* 🔹 menos separación */
+  text-align: center !important; /* 🔹 centrado perfecto */
+  max-width: 95% !important;     /* 🔹 más compacto en pantallas chicas */
+  margin: 8px auto !important;
+}
+
+  /* 🛰 Radar 100% centrado y visible en todos los móviles */
+  .radar-container {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 260px !important;        /* 🔹 ancho compacto */
+    margin: 0 auto 15px auto !important;
+    left: 50% !important;               /* 🔹 centrado absoluto */
+    transform: translateX(-50%) !important;
+    overflow: visible !important;       /* 🔹 evita recortes */
+    box-sizing: border-box !important;
+	
+  }
+
+  .radar-container img,
+  .radar-container canvas {
+    width: 100% !important;              /* 🔹 un poco más grande */
+    max-width: 300px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+ .ficha {
+    width: 95% !important;
+    max-width: 340px !important;
+    padding: 8px 4px !important; /* 🔹 menos espacio lateral */
+    margin: 15px auto !important;
+    border-radius: 10px !important;
+    gap: 5px !important;
+    background: #fff !important;
+  }
+
+  /* 🧱 Fila de dato más ajustada */
+  .ficha .dato,
+  .ficha .pais {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    background: #020001 !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    border: 1px solid #ffffff !important;
+    margin: 2px 0 !important; /* 🔹 separa menos verticalmente */
+  }
+
+  /* 🏷️ Título del campo */
+  .ficha .titulo {
+    width: 38% !important;  /* 🔹 más ancho para aprovechar el espacio */
+    font-weight: bold !important;
+    text-align: center !important;
+    color: #fff !important;
+    padding: 5px 4px !important; /* 🔹 menos padding horizontal */
+    font-size: 11px !important;
+    border-right: 1px solid #000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 📄 Contenido del campo */
+  .ficha .contenido {
+    flex: 1 !important;
+    background: #000 !important;
+    color: #fff !important;
+    text-align: center !important;
+    padding: 5px 3px !important; /* 🔹 menos padding lateral */
+    font-size: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    word-break: break-word !important;
+  }
+  
+  /* 🧪 Barra de experiencia visible y responsiva */
+  .xp-container {
+    width: 90% !important;
+    max-width: 300px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.4) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin: 10px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .xp-bar {
+    height: 100% !important;
+    background: linear-gradient(90deg, #ff1e56, #ff0844, #ff1e56) !important;
+    box-shadow: 0 0 10px #ff1e56 !important;
+    transition: width 0.4s ease-in-out !important;
+    border-radius: 10px 0 0 10px !important;
+    width: 0% !important; /* ← se actualiza dinámicamente desde JS */
+  }
+
+  .xp-text {
+    position: absolute !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    letter-spacing: 1px !important;
+    z-index: 2 !important;
+  }
+
+
+
+  /* ⚔ Skills (si las tienes después) */
+  .skills-section {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto 30px auto !important;
+    padding: 5px !important;
+    text-align: center !important;
+  }
+
+  .skills-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 auto !important;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 12px !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+
+/* Botón volver con menos margen */
+  .back-button {
+    margin: 15px auto !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ✅ Compatibilidad con animaciones en Chromium */
+@-webkit-keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; -webkit-filter: brightness(1); }
+  50% { opacity: 1; -webkit-filter: brightness(1.2); }
+}
+@keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="imagen-grande">
+          <img src="vtubercompleto/Merie.png" alt="" />
+  </div>
+  <div class="contenedor-principal">
+    <header>
+            <img src="logos/Merie.png" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase">La Guardiana del Sol y la Naturaleza</p>
+    </header>
+
+          <!-- Redes -->
+          <div class="socials">
+            <a href="https://x.com/Merieblackvt"><img src="icons/x.png" alt="X" /></a>
+            <a href="https://www.twitch.tv/merieblack"><img src="icons/twitch.png" alt="Twitch" /></a>
+            <a href="https://www.instagram.com/merieblackvt/"><img src="icons/instagram.png" alt="Instagram" /></a>
+			<a href="https://discord.gg/WrGwBwZ24Q"><img src="icons/discord.png" alt="Discord" /></a>
+			<a href="https://throne.com/merieblackvt"><img src="icons/throne.png" alt="Throne" /></a>
+			<a href="https://www.tiktok.com/@merieblackvt"><img src="icons/tiktok.png" alt="Tiktok" /></a>
+          </div>
+
+    <section class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">Chile</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">29 de Octubre </div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1,60 cm</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Sushi</div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Comidas Chiclosas</div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">life strange</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">Good Omens</div></div>
+                <div class="dato"><div class="titulo">Gustos <br> musicales:</div><div class="contenido"><br>Metal</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">Re:Zero</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Escorpio</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Gato</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Turqueza</div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">@Euly_y // @arty_idsa</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#meriebart</div></div>
+    </section>
+
+    <a href="index.html" class="back-button"><span>⬅</span>Volver</a>
+  </div>
+</main>
+
+<section class="bottom-section">
+  <div class="left-side">
+    <table class="tabla-facciones">
+      <tr><th>Gaian Oracle</th><th>Resonantia</th></tr>
+      <tr>
+        <td><img src="facciones/Gaian%20Oracle.png"></td>
+        <td><img src="facciones/Resonantia.png"></td>
+      </tr>
+    </table>
+
+    <table>
+	    <td class="stat-col">Nivel</td>
+    <td class="valor-col" id="nivel">1</td>
+  </tr>
+  <tr>
+    <td class="stat-col">EXP</td>
+    <td class="valor-col">
+      <div class="exp-wrapper">
+        <div class="exp-bar-container">
+          <div class="exp-bar-fill" id="expBar"></div>
+        </div>
+        <small class="exp-text" id="expText">15 / 55 XP</small>
+      </div>
+    </td>
+  </tr>      
+      <tr><td class="stat-col">HP</td><td class="valor-col">855</td></tr>
+      <tr><td class="stat-col">MP</td><td class="valor-col">1000</td></tr>
+      <tr><td class="stat-col">Ataque</td><td class="valor-col">160</td></tr>
+      <tr><td class="stat-col">Defensa</td><td class="valor-col">86</td></tr>
+      <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col">220</td></tr>
+      <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col">180</td></tr>
+      <tr><td class="stat-col">Velocidad</td><td class="valor-col">110</td></tr>
+      <tr><td class="stat-col">Evasión</td><td class="valor-col">58</td></tr>
+      <tr><td class="stat-col">Precisión</td><td class="valor-col">88</td></tr>
+      <tr><td class="stat-col">Crítico</td><td class="valor-col">50</td></tr>
+      <tr><td class="stat-col">Suerte</td><td class="valor-col">10</td></tr>
+    </table>
+  </div>
+
+  <div class="radar-container">
+   <img src="diagrama/merie.png"></div>
+</section>
+
+<!-- Skills centradas -->
+<section class="skills-section">
+  <h2 class="section-title">Active Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Gaian%20Oracle.png"></td><td>Ofensivo</td><td>Helios Bloom Verdict</td><td>Ataque Mágico Base ×1.5, aplica <span style="color:#c35a05; font-weight:bold;">Quemadura</span> por 2 turnos y otorga <span style="color:#038f39; font-weight:bold;">Revitalia</span> al usuario por 3 turnos.</td></tr>
+    <tr><td><img src="facciones/Resonantia.png"></td><td>Ofensivo</td><td>Verdant Symphony</td><td>Ataque Mágico Base ×1.5, aplica <span style="color:#b00101; font-weight:bold;">Sangrado</span>  por 2 turnos; si el enemigo ya tiene un estado alterado, aplica <span style="color:#773705; font-weight:bold;">Silencio</span>.</td></tr>
+  </table>
+
+  <h2 class="section-title">Passive Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Gaian%20Oracle.png"></td><td>Soporte</td><td>Gaian Vitality</td><td>Recupera 5% HP al inicio de cada turno y reduces la defensa del enemigo en 15.</td></tr>
+    <tr><td><img src="facciones/Resonantia.png"></td><td>Soporte</td><td>Solar Harmony</td><td>Cuando aplicas <span style="color:#c35a05; font-weight:bold;">Quemadura</span> a un enemigo, obtienes <span style="color:#d03e00; font-weight:bold;">Fortissimo</span> durante 2 turnos.</td></tr>
+  </table>
+
+  <h2 class="section-title">Ultimate Skill</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr>
+      <td><img src="facciones/Gaian%20Oracle.png"><img src="facciones/Resonantia.png"></td>
+      <td>Ultimate</td><td>Grianfonn na Gréine</td><td>Ataque Mágico Base ×1.5 tres veces consecutivas y cada golpe aplica <span style="color:#c35a05; font-weight:bold;">Quemadura</span>.<br>
+<br>Se activa efecto único: <span style="color:#ff4e00; font-weight:bold;">Insolación</span> por 2 turnos (máximo 3 veces).<br>
+<br> Por cada acumulación de <span style="color:#c35a05; font-weight:bold;">Quemadura</span> activa, obtiene 10% de HP/MP.</td>
+    </tr>
+  </table>
+</section>
+<script>
+// ================================
+//  FOREST BACKGROUND SYSTEM (FIXED)
+//  + Cambios visuales verano/otoño
+//  + Hojas, luciérnagas, filtros nocturnos
+//  + Cambio de tema CSS según estación
+//  + CAMBIO DE COLORES EN MÓVIL PARA .ficha .titulo
+// ================================
+
+(function () {
+
+    // ================================
+    // 1) FUNCIÓN: CAMBIO DE COLORES CSS
+    // ================================
+    function updateTheme(season) {
+
+        const isSummer = season === "verano";
+
+        const base = isSummer ? "#abc55e" : "#ba492e";
+        const shadow = isSummer ? "#37890b" : "#db7248";
+
+        const baseBackgroundTargets = [
+            ".back-button",
+            ".titulo",
+            ".stat-col",
+            ".tabla-facciones th",
+            ".skills-table th"
+        ];
+
+        const boxShadowTargets = [
+            ".back-button",
+            ".contenedor-principal",
+            "table",
+            ".stat-col",
+            ".valor-col",
+            ".tabla-facciones th",
+            ".tabla-facciones tr:nth-child(2)",
+            ".radar-container img",
+            ".skills-table th"
+        ];
+
+        // --- Cambiar backgrounds base
+        baseBackgroundTargets.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.background = base;
+            });
+        });
+
+        // --- Cambiar box-shadow
+        boxShadowTargets.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.boxShadow = `0 0 10px ${shadow}, inset 0 0 15px ${shadow}`;
+            });
+        });
+
+        // Hover animado del botón RPG
+        const backBtn = document.querySelector(".back-button");
+        if (backBtn) {
+            backBtn.addEventListener("mouseenter", () => {
+                backBtn.style.boxShadow = `0 0 20px ${shadow}, inset 0 0 10px ${shadow}`;
+            });
+            backBtn.addEventListener("mouseleave", () => {
+                backBtn.style.boxShadow = `0 0 10px ${shadow}, inset 0 0 15px ${shadow}`;
+            });
+        }
+    }
+
+
+    // ================================
+    // 1.1) NUEVO: CAMBIO DE COLOR SOLO EN MÓVIL PARA .ficha .titulo
+    // ================================
+    function updateMobileFichaTitle(season) {
+
+        const isSummer = season === "verano";
+        const color = isSummer ? "#abc55e" : "#ba492e";
+
+        // Solo aplica para móviles
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (!isMobile) return;
+
+        document.querySelectorAll(".ficha .titulo").forEach(el => {
+            el.style.background = color;
+        });
+    }
+
+
+
+
+    // ================================
+    // 2) SISTEMA DE FONDOS (EXISTENTE)
+    // ================================
+
+    const container = document.createElement("div");
+    container.id = "forest-bg-container";
+    Object.assign(container.style, {
+        position: "fixed",
+        inset: "0",
+        zIndex: "-1",
+        overflow: "hidden",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        transition: "filter 1s ease, opacity 1.2s ease",
+        filter: "blur(0px)"
+    });
+    document.body.appendChild(container);
+
+    const effects = document.createElement("div");
+    Object.assign(effects.style, {
+        position: "fixed",
+        inset: "0",
+        zIndex: "0",
+        pointerEvents: "none",
+        overflow: "hidden"
+    });
+    document.body.appendChild(effects);
+
+    const overlay = document.createElement("div");
+    Object.assign(overlay.style, {
+        position: "fixed",
+        inset: "0",
+        zIndex: "-1",
+        pointerEvents: "none",
+        background: "rgba(0,0,40,0.3)",
+        transition: "background 1s ease"
+    });
+    document.body.appendChild(overlay);
+
+    // Botones esquina superior izquierda
+    const btnBox = document.createElement("div");
+    Object.assign(btnBox.style, {
+        position: "fixed",
+        top: "20px",
+        left: "20px",
+        zIndex: "99999",
+        display: "flex",
+        flexDirection: "column",
+        gap: "14px"
+    });
+    document.body.appendChild(btnBox);
+
+    const btnVerano = document.createElement("button");
+    const btnOtono = document.createElement("button");
+
+    function makeButton(btn, imgName, alt) {
+        Object.assign(btn.style, {
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            padding: "0",
+            width: "70px",
+            height: "70px"
+        });
+
+        const icon = document.createElement("img");
+        icon.src = "forest/" + imgName;
+        icon.alt = alt;
+        icon.style.width = "100%";
+        icon.style.pointerEvents = "none";
+
+        btn.appendChild(icon);
+        btnBox.appendChild(btn);
+    }
+
+    makeButton(btnVerano, "iconoverano.png", "Verano");
+    makeButton(btnOtono, "iconootono.png", "Otoño");
+
+    let leafSpawner = null;
+    let leafRemovalTimers = [];
+
+    function clearEffects() {
+        effects.innerHTML = "";
+
+        if (leafSpawner) {
+            clearInterval(leafSpawner);
+            leafSpawner = null;
+        }
+
+        leafRemovalTimers.forEach(id => clearTimeout(id));
+        leafRemovalTimers = [];
+    }
+
+
+    // ================================
+    // VERANO: luciérnagas + filtro nocturno azul
+    // ================================
+    function summerEffects() {
+        clearEffects();
+
+        overlay.style.background = "rgba(5, 10, 40, 0.70)";
+        container.style.filter = "brightness(0.25) saturate(0.75) contrast(1.15)";
+
+        const count = 40;
+        for (let i = 0; i < count; i++) {
+            const f = document.createElement("div");
+            Object.assign(f.style, {
+                position: "absolute",
+                width: "5px",
+                height: "5px",
+                borderRadius: "50%",
+                background: "#fffbb7",
+                boxShadow: "0 0 10px #fffbb7",
+                left: (Math.random() * window.innerWidth) + "px",
+                top: (Math.random() * window.innerHeight) + "px",
+                opacity: "0.75",
+                pointerEvents: "none",
+                animation: `firefly-move ${3 + Math.random() * 3}s linear infinite`
+            });
+            effects.appendChild(f);
+        }
+    }
+
+
+    // ================================
+    // OTOÑO: hojas cayendo
+    // ================================
+    function autumnEffects() {
+        clearEffects();
+        overlay.style.background = "rgba(60,30,0,0.25)";
+
+        const leafImages = ["forest/leaf1.png", "forest/leaf2.png"];
+
+        function spawnLeaf() {
+            const leaf = document.createElement("img");
+            leaf.src = leafImages[Math.floor(Math.random() * leafImages.length)];
+            leaf.style.position = "absolute";
+            leaf.style.width = "45px";
+            leaf.style.left = (Math.random() * window.innerWidth) + "px";
+            leaf.style.top = "-80px";
+            leaf.style.opacity = "0.95";
+            leaf.style.pointerEvents = "none";
+            leaf.style.animation = `leaf-fall ${6 + Math.random() * 4}s linear`;
+
+            effects.appendChild(leaf);
+
+            const removeTimer = setTimeout(() => leaf.remove(), 12000);
+            leafRemovalTimers.push(removeTimer);
+        }
+
+        for (let i = 0; i < 6; i++) setTimeout(spawnLeaf, i * 160);
+
+        leafSpawner = setInterval(spawnLeaf, 400);
+    }
+
+
+    // ================================
+    // CAMBIO DE FONDO
+    // ================================
+    function changeBackground(imgName) {
+        container.style.opacity = "0";
+        container.style.filter = "blur(20px)";
+
+        setTimeout(() => {
+            container.style.backgroundImage = `url("forest/${imgName}")`;
+            container.style.opacity = "1";
+            container.style.filter = "blur(0px)";
+        }, 350);
+    }
+
+
+    // ================================
+    // EVENTOS DE BOTONES
+    // ================================
+    btnVerano.addEventListener("click", () => {
+        changeBackground("verano1.png");
+        summerEffects();
+        updateTheme("verano");
+        updateMobileFichaTitle("verano"); // ← AGREGADO
+    });
+
+    btnOtono.addEventListener("click", () => {
+        changeBackground("otoño1.png");
+        autumnEffects();
+        updateTheme("otono");
+        updateMobileFichaTitle("otono"); // ← AGREGADO
+    });
+
+
+    // ================================
+    // ANIMACIONES CSS
+    // ================================
+    const style = document.createElement("style");
+    style.innerHTML = `
+@keyframes firefly-move {
+    0% { transform: translate(0,0) scale(0.9); opacity:0.45; }
+    50% { transform: translate(20px,-20px) scale(1.2); opacity:1; }
+    100% { transform: translate(-20px,20px) scale(0.9); opacity:0.45; }
+}
+@keyframes leaf-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity:1; }
+    50% { transform: translateY(50vh) rotate(180deg); }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0; }
+}`;
+    document.head.appendChild(style);
+
+
+    // ================================
+    // INICIO EN VERANO (con colores)
+    // ================================
+    changeBackground("verano1.png");
+    summerEffects();
+    updateTheme("verano");
+    updateMobileFichaTitle("verano"); // ← AGREGADO
+
+})();
+
+// ===========================
+// BARRA DE EXPERIENCIA MANUAL
+// ===========================
+function updateBarManual() {
+  const text = expText.textContent.trim();
+
+  const match = text.match(/(\d+)\s*\/\s*(\d+)/);
+  if (!match) return;
+
+  const currentXP = parseInt(match[1], 10);
+  const maxXP = parseInt(match[2], 10);
+
+  const percent = maxXP > 0 ? Math.min((currentXP / maxXP) * 100, 100) : 0;
+
+  expBar.style.width = percent + "%";
+}
+
+// Ejecutar al cargar
+updateBarManual();
+
+</script>
+</body>
+</html>

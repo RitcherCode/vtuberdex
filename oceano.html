@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ficha VTuber - Ritcher Code</title>
+<style>
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #efcc00, #352d00);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0a0012, #000);
+  z-index: -2;
+  animation: purpleGlow 20s ease-in-out infinite;
+}
+
+/* Animación segura, extremadamente lenta */
+@keyframes purpleGlow {
+  0%   { filter: brightness(0.9) saturate(1); }
+  50%  { filter: brightness(1.05) saturate(1.15); }
+  100% { filter: brightness(0.9) saturate(1); }
+}
+
+canvas#fxCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: transparent;
+  opacity: 0.40;
+  filter: drop-shadow(0 0 4px #8e44ff);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+#vtuber-phrase {
+  text-align: center;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 420px;         /* 🔹 controla el ancho ideal de la frase */
+  margin: 1rem auto;
+  padding: 0 4px;
+  white-space: normal;      /* 🔹 permite que el texto se ajuste automáticamente */
+  word-wrap: break-word;    /* 🔹 evita cortes raros */
+
+  /* 🩸 Tono vino gótico */
+  color: #d2b404;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #ffeb00;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+/* Botón RPG */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 22px;
+  background: linear-gradient(145deg, #ffde08, #301800);
+  border: 2px solid #ffffff;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #fedc0b, inset 0 0 8px #fedc0b;
+  transition: all 0.25s ease;
+}
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #fedc0b, inset 0 0 10px #fedc0b;
+}
+.back-button span {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+/* Superior */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.imagen-grande img {
+  width: 580px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+  margin-top: -90px;
+  
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  width: 480px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #fedc0b, inset 0 0 15px #fedc0b; /* brillo estático */
+}
+
+header img {
+  width: 360px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.25s ease, filter 0.4s ease;
+  filter: none;
+  background: none;
+  border-radius: 6px; /* solo suaviza esquinas si el icono es cuadrado */
+}
+
+/* 💡 Borde de neón amarillo ajustado y visible */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #ffd633)
+    drop-shadow(0 0 2px #ffeb33)
+    drop-shadow(0 0 3px #ffee66)
+    drop-shadow(0 0 4px #fff280);
+  animation: neonEdgeYellow 1.5s ease-in-out infinite alternate;
+}
+
+/* ⚡ Parpadeo tipo neón — tono amarillo dorado */
+@keyframes neonEdgeYellow {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #ffd633)
+      drop-shadow(0 0 2px #ffeb33)
+      drop-shadow(0 0 3px #ffee66)
+      drop-shadow(0 0 4px #fff280);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #ffeb33)
+      drop-shadow(0 0 3px #ffee66)
+      drop-shadow(0 0 4px #fff280)
+      drop-shadow(0 0 5px #fff799);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #ffd633)
+      drop-shadow(0 0 2px #ffeb33)
+      drop-shadow(0 0 3px #ffee66)
+      drop-shadow(0 0 4px #fff280);
+    opacity: 0.9;
+  }
+}
+
+
+
+/* Ficha */
+.ficha {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.dato, .pais {
+  display: flex;
+  margin: 6px 0;
+  background: #020001;
+  border-radius: 6px;
+  overflow: hidden;
+  color: white;
+}
+.titulo {
+  width: 170px;
+  background: #b19807;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.contenido {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Sección inferior (Stats + Radar) */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+
+/* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  	margin-top: -60px !important;   /* sube ligeramente el contenedor */
+    margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 90%;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #fedc0b, inset 0 0 15px #fedc0b; /* brillo estático */
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #fedc0b, inset 0 0 15px #fedc0b; /* brillo estático */
+}
+.stat-col {
+  background-color: #b19807;
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+  
+  
+}
+.valor-col {
+  width: 50%;
+  background: #000;
+  color: #fff;
+}
+
+/* Facciones */
+.tabla-facciones th {
+  background-color: #b19807;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  
+}
+.tabla-facciones tr:nth-child(2) {
+  background-color: #000;
+  
+}
+.tabla-facciones img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Radar - grande, centrado y con brillo estático */
+.radar-container {
+  flex: 1;
+  min-width: 600px;
+  text-align: center;
+  margin-left: 90px;   /* mantiene el desplazamiento lateral */
+  margin-top: 40px;    /* alineado con tablas */
+  margin-right: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-container img {
+  width: 1000px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #111 60%, #000);
+  padding: 1px;
+  border: 3px solid #fff;
+
+  /* ✨ Igual brillo que la tabla de estadísticas */
+  box-shadow: 0 0 10px #fedc0b, inset 0 0 15px #fedc0b;
+
+  transition: none;
+}
+
+.exp-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.exp-bar-container {
+  width: 150px;
+  height: 20px;
+  background-color: #1a1a1a; /* Fondo oscuro de la barra vacía */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px #000 inset;
+  position: relative;
+}
+
+.exp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #fff700, #f0ff33, #e6ff66);
+  animation: shine 3s linear infinite;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.exp-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* Sección de skills */
+.skills-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 30px;
+  color: #ffd700;
+  text-shadow: 0 0 8px #301b02, 0 0 12px #301b02;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.skills-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 2px solid white;
+  text-align: center;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #fedc0b, inset 0 0 15px #fedc0b; /* brillo estático */
+}
+.skills-table th {
+  background: #b19807;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid white;
+}
+.skills-table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid white;
+  padding: 10px;
+}
+.skills-table img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* ======================================================
+   📱 FIX DEFINITIVO — centrado y proporción en móviles
+   ====================================================== */
+@media (max-width: 1024px) {
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+ body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  font-family: Arial, sans-serif !important;
+  color: #fff !important;
+  /* ⚒️ Mantiene la identidad dorado-negro pero más profundo */
+  background: linear-gradient(135deg, #efcc00, #352d00);
+  background-attachment: fixed !important;
+  margin-bottom: 10px !important; /* menos espacio debajo de la imagen */
+}
+
+
+
+  /* 🧩 Contenedor principal más compacto y centrado */
+  .contenedor-principal {
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 10px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+	margin-top: -130px !important;   /* sube ligeramente el contenedor */
+    margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+  }
+  
+#vtuber-phrase {
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  width: calc(100% - 8px);
+  margin: 2rem auto;
+  padding: 0 4px;
+
+  /* 🩸 Tono vino gótico */
+  color: #d2b404;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #ffdc10;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+
+  /* 🖼 Imagen grande centrada */
+  .imagen-grande {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+  }
+
+  .imagen-grande img {
+    width: 80% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+  
+  #vtuber-phrase {
+  font-size: 13px !important;    /* 🔹 más pequeño en móviles */
+  line-height: 1.3 !important;   /* 🔹 menos separación */
+  text-align: center !important; /* 🔹 centrado perfecto */
+  max-width: 95% !important;     /* 🔹 más compacto en pantallas chicas */
+  margin: 8px auto !important;
+}
+
+  /* 🛰 Radar 100% centrado y visible en todos los móviles */
+  .radar-container {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 260px !important;        /* 🔹 ancho compacto */
+    margin: 0 auto 15px auto !important;
+    left: 50% !important;               /* 🔹 centrado absoluto */
+    transform: translateX(-50%) !important;
+    overflow: visible !important;       /* 🔹 evita recortes */
+    box-sizing: border-box !important;
+	
+  }
+
+  .radar-container img,
+  .radar-container canvas {
+    width: 100% !important;              /* 🔹 un poco más grande */
+    max-width: 300px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+ .ficha {
+    width: 95% !important;
+    max-width: 340px !important;
+    padding: 8px 4px !important; /* 🔹 menos espacio lateral */
+    margin: 15px auto !important;
+    border-radius: 10px !important;
+    gap: 5px !important;
+    background: #fff !important;
+  }
+
+  /* 🧱 Fila de dato más ajustada */
+  .ficha .dato,
+  .ficha .pais {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    background: #020001 !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    border: 1px solid #ffffff !important;
+    margin: 2px 0 !important; /* 🔹 separa menos verticalmente */
+  }
+
+  /* 🏷️ Título del campo */
+  .ficha .titulo {
+    width: 38% !important;  /* 🔹 más ancho para aprovechar el espacio */
+    background: #b19807 !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: #fff !important;
+    padding: 5px 4px !important; /* 🔹 menos padding horizontal */
+    font-size: 11px !important;
+    border-right: 1px solid #000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 📄 Contenido del campo */
+  .ficha .contenido {
+    flex: 1 !important;
+    background: #000 !important;
+    color: #fff !important;
+    text-align: center !important;
+    padding: 5px 3px !important; /* 🔹 menos padding lateral */
+    font-size: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    word-break: break-word !important;
+  }
+  
+  /* 🧪 Barra de experiencia visible y responsiva */
+  .xp-container {
+    width: 90% !important;
+    max-width: 300px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.4) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin: 10px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .xp-bar {
+    height: 100% !important;
+    background: linear-gradient(90deg, #ff1e56, #ff0844, #ff1e56) !important;
+    box-shadow: 0 0 10px #ff1e56 !important;
+    transition: width 0.4s ease-in-out !important;
+    border-radius: 10px 0 0 10px !important;
+    width: 0% !important; /* ← se actualiza dinámicamente desde JS */
+  }
+
+  .xp-text {
+    position: absolute !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    letter-spacing: 1px !important;
+    z-index: 2 !important;
+  }
+
+
+
+  /* ⚔ Skills (si las tienes después) */
+  .skills-section {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto 30px auto !important;
+    padding: 5px !important;
+    text-align: center !important;
+  }
+
+  .skills-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 auto !important;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 12px !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+
+/* Botón volver con menos margen */
+  .back-button {
+    margin: 15px auto !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ✅ Compatibilidad con animaciones en Chromium */
+@-webkit-keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; -webkit-filter: brightness(1); }
+  50% { opacity: 1; -webkit-filter: brightness(1.2); }
+}
+@keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="imagen-grande">
+          <img src="vtubercompleto/.png" alt="" />
+  </div>
+  <div class="contenedor-principal">
+    <header>
+            <img src="logos/.png" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase">Soy una goblin de 100 metros y me gusta destruir ciudades</p>
+    </header>
+
+          <!-- Redes -->
+          <div class="socials">
+            <a href=""><img src="icons/x.png" alt="X" /></a>
+            <a href=""><img src="icons/twitch.png" alt="Twitch" /></a>
+            <a href=""><img src="icons/tiktok.png" alt="TikTok" /></a>
+            <a href=""><img src="icons/instagram.png" alt="Instagram" /></a>
+			<a href=""><img src="icons/youtube.png" alt="YouTube" /></a>
+          </div>
+
+    <section class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">Chile</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">10 de Septiembre</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1,55 m</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Salmon y Lasaña </div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Champiñones </div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">hollow knight</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">Hora de Aventura</div></div>
+                <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">power metal, rock, videojuegos</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">Ishuzoku Reviewers</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Virgo</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Polillas</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Morado </div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">PROYECTO AR-AI.I (artista y rigger)</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#ArteGLITCHeado</div></div>
+    </section>
+
+    <a href="index.html" class="back-button"><span>⬅</span>Volver</a>
+  </div>
+</main>
+
+<section class="bottom-section">
+  <div class="left-side">
+    <table class="tabla-facciones">
+      <tr><th>Glitchborn</th><th>Chaos Ascendant</th></tr>
+      <tr>
+        <td><img src="facciones/Glitchborn.png"></td>
+        <td><img src="facciones/Chaos%20Ascendant.png"></td>
+      </tr>
+    </table>
+
+    <table>
+	    <td class="stat-col">Nivel</td>
+    <td class="valor-col" id="nivel">1</td>
+  </tr>
+  <tr>
+    <td class="stat-col">EXP</td>
+    <td class="valor-col">
+      <div class="exp-wrapper">
+        <div class="exp-bar-container">
+          <div class="exp-bar-fill" id="expBar"></div>
+        </div>
+        <small class="exp-text" id="expText">0 / 55 XP</small>
+      </div>
+    </td>
+  </tr>      
+      <tr><td class="stat-col">HP</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">MP</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Ataque</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Defensa</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Velocidad</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Evasión</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Precisión</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Crítico</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Suerte</td><td class="valor-col"></td></tr>
+    </table>
+  </div>
+
+  <div class="radar-container">
+   <img src=""></div>
+</section>
+
+<!-- Skills centradas -->
+<section class="skills-section">
+  <h2 class="section-title">Active Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/.png"></td><td></td><td></td><td></td></tr>
+    <tr><td><img src="facciones/.png"></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h2 class="section-title">Passive Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/.png"></td><td>Soporte</td><td></td><td></td></tr>
+    <tr><td><img src="facciones/.png"></td><td>Soporte</td><td></td><td></td></tr>
+  </table>
+
+  <h2 class="section-title">Ultimate Skill</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr>
+      <td><img src="facciones/.png"><img src="facciones/.png"></td>
+      <td></td><td></td><td></td>
+    </tr>
+  </table>
+</section>
+<script>
+// ===========================
+// CONTENEDOR GENERAL (FIJO)
+// ===========================
+const fxContainer = document.createElement("div");
+fxContainer.style.position = "fixed";
+fxContainer.style.top = "0";
+fxContainer.style.left = "0";
+fxContainer.style.width = "100vw";
+fxContainer.style.height = "100vh";
+fxContainer.style.pointerEvents = "none";
+fxContainer.style.overflow = "hidden";
+fxContainer.style.zIndex = "-1";
+document.body.appendChild(fxContainer);
+
+// ===========================
+// FONDO PRINCIPAL
+// ===========================
+const bg = document.createElement("div");
+bg.style.position = "absolute";
+bg.style.top = "0";
+bg.style.left = "0";
+bg.style.width = "100%";
+bg.style.height = "100%";
+bg.style.backgroundImage = "url('Efectos/oceano.png')";
+bg.style.backgroundSize = "cover";
+bg.style.backgroundPosition = "center";
+bg.style.filter = "brightness(0.4) saturate(1.3)";
+fxContainer.appendChild(bg);
+
+// ===========================
+// FUNCIÓN DE CREACIÓN FIJA A VIEWPORT
+// ===========================
+function createImg(src, widthVw, xVw, yVh, extraFilter = "") {
+    const el = document.createElement("img");
+    el.src = src;
+    el.style.position = "absolute";
+    el.style.width = widthVw + "vw";
+    el.style.left = xVw + "vw";
+    el.style.top = yVh + "vh";
+    if (extraFilter) el.style.filter = extraFilter;
+    fxContainer.appendChild(el);
+    return el;
+}
+
+// ===========================
+// ALGAS CENTRADAS
+// ===========================
+const algas = [];
+const startX = 4;
+const step = 3;
+
+for (let i = 0; i < 50; i++) {
+    const a = createImg("Efectos/alga1.png", 9, startX + i * step, 93);
+    a.style.zIndex = "0";
+    algas.push(a);
+}
+
+// Animación algas
+setInterval(() => {
+    algas.forEach((a, i) => {
+        const sway = Math.sin(Date.now() * 0.001 + i) * 4;
+        a.style.transform = `rotate(${sway}deg)`;
+    });
+}, 30);
+
+// ===========================
+// ROCAS Y CORALES
+// ===========================
+const roca1 = createImg("Efectos/roca.png", 18, -5, 75, "opacity:0.85");
+const roca2 = createImg("Efectos/roca.png", 18, 82, 75, "opacity:0.85");
+const coral1 = createImg("Efectos/coral.png", 10, 10, 85);
+const coral2 = createImg("Efectos/coral.png", 10, 78, 85);
+
+// Parallax sutil + sombras dinámicas
+setInterval(() => {
+    const t = Date.now() * 0.0005;
+    const parallaxX1 = Math.sin(t) * 5;
+    const parallaxX2 = Math.cos(t) * 5;
+    const parallaxX3 = Math.sin(t + 1) * 3;
+    const parallaxX4 = Math.cos(t + 1) * 3;
+    
+    roca1.style.transform = `translateX(${parallaxX1}px)`;
+    roca2.style.transform = `translateX(${parallaxX2}px)`;
+    coral1.style.transform = `translateX(${parallaxX3}px)`;
+    coral2.style.transform = `translateX(${parallaxX4}px)`;
+    
+    // Sombras parallax
+    const shadowOffset = 10;
+    roca1.style.filter = `drop-shadow(${parallaxX1/2}px ${shadowOffset}px rgba(0,0,0,0.4))`;
+    roca2.style.filter = `drop-shadow(${parallaxX2/2}px ${shadowOffset}px rgba(0,0,0,0.4))`;
+    coral1.style.filter = `drop-shadow(${parallaxX3/2}px ${shadowOffset}px rgba(0,0,0,0.3))`;
+    coral2.style.filter = `drop-shadow(${parallaxX4/2}px ${shadowOffset}px rgba(0,0,0,0.3))`;
+    
+    // Algassombra parallax ligera
+    algas.forEach((a, i) => {
+        a.style.filter = `drop-shadow(${Math.sin(t + i)*2}px 2px rgba(0,0,0,0.2))`;
+    });
+}, 30);
+
+// ===========================
+// BURBUJAS CON BRILLO DINÁMICO
+// ===========================
+const bubbles = [];
+for (let i = 0; i < 60; i++) {
+    const b = document.createElement("img");
+    b.src = "Efectos/burbuja.png";
+    const size = 0.4 + Math.random() * 0.8;
+    b.style.width = size + "vw";
+    b.style.position = "absolute";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.top = (100 + Math.random() * 100) + "vh";
+    b.dataset.speed = 0.05 + Math.random() * 0.5;
+    b.style.filter = "blur(1px) drop-shadow(0 0 5px rgba(180,220,255,0.5))";
+    fxContainer.appendChild(b);
+    bubbles.push(b);
+}
+
+// Glow dinámico
+setInterval(() => {
+    bubbles.forEach((b, i) => {
+        const glow = 0.5 + Math.sin(Date.now()*0.002 + i)*0.5;
+        b.style.opacity = glow;
+    });
+}, 30);
+
+function animBubbles() {
+    bubbles.forEach(b => {
+        const y = parseFloat(b.style.top);
+        const x = parseFloat(b.style.left);
+        let newY = y - b.dataset.speed;
+        let newX = x + Math.sin(Date.now() * 0.003 + y * 0.1) * 0.1;
+        if (newY < -10) {
+            newY = 120;
+            newX = Math.random() * 100;
+        }
+        b.style.top = newY + "vh";
+        b.style.left = newX + "vw";
+    });
+    requestAnimationFrame(animBubbles);
+}
+animBubbles();
+
+// ===========================
+// RAYOS DE LUZ DINÁMICOS
+// ===========================
+for(let i=0;i<3;i++){
+    const ray = document.createElement("div");
+    ray.style.position = "absolute";
+    ray.style.top = "0";
+    ray.style.left = `${30 + i*25}%`;
+    ray.style.width = "150px";
+    ray.style.height = "100vh";
+    ray.style.background = "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%)";
+    ray.style.filter = "blur(60px)";
+    ray.style.transform = `rotate(${Math.random()*10-5}deg)`;
+    ray.style.animation = `moveRay${i} 8s infinite alternate ease-in-out`;
+    fxContainer.appendChild(ray);
+    
+    const styleRay = document.createElement("style");
+    styleRay.innerHTML = `
+        @keyframes moveRay${i} {
+            0% { top: -50vh; opacity:0.3; }
+            50% { top: 0vh; opacity:0.6; }
+            100% { top: -50vh; opacity:0.3; }
+        }
+    `;
+    document.head.appendChild(styleRay);
+}
+
+// ===========================
+// PARTÍCULAS FLOTÁNTES PEQUEÑAS
+// ===========================
+function spawnParticles() {
+    const p = document.createElement("div");
+    const size = 2 + Math.random() * 3;
+    p.style.position = "absolute";
+    p.style.width = size + "px";
+    p.style.height = size + "px";
+    p.style.borderRadius = "50%";
+    p.style.background = "rgba(180,220,255,0.7)";
+    p.style.filter = "blur(1px)";
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.top = Math.random() * 100 + "vh";
+    fxContainer.appendChild(p);
+    let life = 3 + Math.random() * 3;
+    const start = Date.now();
+    function move() {
+        const elapsed = (Date.now() - start)/1000;
+        if (elapsed < life) {
+            p.style.top = parseFloat(p.style.top) - 0.02 + "vh";
+            requestAnimationFrame(move);
+        } else {
+            p.remove();
+        }
+    }
+    move();
+}
+setInterval(spawnParticles, 150);
+
+
+
+
+</script>
+
+
+</body>
+</html>

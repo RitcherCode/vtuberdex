@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador de Fichas VTuber</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#111;color:#fff;display:flex;justify-content:center;align-items:flex-start;padding:30px}
+    .formulario{width:760px;background:#222;padding:20px;border-radius:12px;box-shadow:0 0 15px rgba(0,0,0,.7)}
+    .fila{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .campo{margin-bottom:14px}
+    .campo label{display:block;margin-bottom:6px;font-weight:700}
+    .campo input,.campo textarea{width:100%;padding:8px;border-radius:8px;border:none;outline:none;background:#111;color:#fff}
+    .nota{font-size:12px;opacity:.8}
+    .boton{width:100%;padding:12px;background:#4CAF50;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:16px;color:#fff;margin-top:6px}
+    .boton.limpiar{background:#c0392b}
+  </style>
+</head>
+<body>
+  <div class="formulario">
+    <h2>Generador de Ficha VTuber</h2>
+
+    <!-- 1) Nombre (usado para el archivo HTML y CSS) -->
+    <div class="campo">
+      <label>Nombre (nombre del archivo .html/.css)</label>
+      <input type="text" id="nombre" placeholder="ej: emikukis">
+    </div>
+
+    <!-- 2) Degradado -->
+    <div class="fila">
+      <div class="campo">
+        <label>Color Degradado 1</label>
+        <input type="color" id="color1" value="#ff0000">
+      </div>
+      <div class="campo">
+        <label>Color Degradado 2</label>
+        <input type="color" id="color2" value="#0000ff">
+      </div>
+    </div>
+
+    <!-- 3) Imagen completa -->
+    <div class="campo">
+      <label>Imagen Completa (archivo)</label>
+      <input type="file" id="imgCompleta" accept="image/*">
+    </div>
+
+    <!-- 4) Logo -->
+    <div class="campo">
+      <label>Logo (archivo)</label>
+      <input type="file" id="logo" accept="image/*">
+    </div>
+
+    <!-- Redes -->
+    <div class="fila">
+      <div class="campo"><label>Link X/Twitter</label><input type="url" id="linkX" placeholder="https://..."></div>
+      <div class="campo"><label>Link Twitch</label><input type="url" id="linkTwitch" placeholder="https://..."></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Link TikTok</label><input type="url" id="linkTikTok" placeholder="https://..."></div>
+      <div class="campo"><label>Link Instagram</label><input type="url" id="linkIG" placeholder="https://..."></div>
+    </div>
+    <div class="campo">
+      <label>Link YouTube</label>
+      <input type="url" id="linkYT" placeholder="https://...">
+    </div>
+
+    <!-- Frase -->
+    <div class="campo">
+      <label>Frase</label>
+      <input type="text" id="frase" placeholder="Frase del VTuber">
+    </div>
+
+    <!-- 5) Datos de la ficha (14) -->
+    <div class="fila">
+      <div class="campo"><label>País</label><input type="text" id="pais"></div>
+      <div class="campo"><label>Cumpleaños</label><input type="text" id="cumple"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Altura</label><input type="text" id="altura"></div>
+      <div class="campo"><label>Comida Favorita</label><input type="text" id="comidaFav"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Comida que detestas</label><input type="text" id="comidaHate"></div>
+      <div class="campo"><label>Videojuego Favorito</label><input type="text" id="vjFav"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Serie Favorita</label><input type="text" id="serieFav"></div>
+      <div class="campo"><label>Gustos musicales</label><input type="text" id="musica"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Anime favorito</label><input type="text" id="animeFav"></div>
+      <div class="campo"><label>Signo Zodiacal</label><input type="text" id="signo"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Animal Favorito</label><input type="text" id="animalFav"></div>
+      <div class="campo"><label>Color Favorito</label><input type="text" id="colorFav"></div>
+    </div>
+    <div class="fila">
+      <div class="campo"><label>Modelo</label><input type="text" id="modelo"></div>
+      <div class="campo"><label>Hashtag</label><input type="text" id="hashtag"></div>
+    </div>
+
+   <!-- ======== RPG ======== -->
+    <h2>⚙️ Sistema RPG</h2>
+
+      <!-- ===== FACCIONES ===== -->
+    <div class="fila">
+      <div>
+        <label>Facción 1</label>
+        <select id="faccion1" onchange="actualizarFaccion(1)">
+          <option value="">-- Seleccionar --</option>
+          <option value="Abyssal">Abyssal</option>
+          <option value="Aetherion Valor">Aetherion Valor</option>
+          <option value="Apex Dualist">Apex Dualist</option>
+          <option value="Arcane Nexus">Arcane Nexus</option>
+          <option value="Chaos Ascendant">Chaos Ascendant</option>
+          <option value="Dreamlike">Dreamlike</option>
+          <option value="Gaian Oracle">Gaian Oracle</option>
+          <option value="Glitchborn">Glitchborn</option>
+          <option value="Grovecaller">Grovecaller</option>
+          <option value="Heaven's Arbiter">Heaven's Arbiter</option>
+          <option value="Inspirae">Inspirae</option>
+          <option value="Machina Revenant">Machina Revenant</option>
+          <option value="Mutant">Mutant</option>
+          <option value="Mythical Legacy">Mythical Legacy</option>
+          <option value="Necrotic">Necrotic</option>
+          <option value="Netherbane">Netherbane</option>
+          <option value="Primal Monarch">Primal Monarch</option>
+          <option value="Resonantia">Resonantia</option>
+          <option value="Star Wanderers">Star Wanderers</option>
+          <option value="Terran">Terran</option>
+          <option value="Veilbreaker">Veilbreaker</option>
+        </select>
+        <div class="faccion-preview">
+          <img id="iconoFaccion1" src="" alt="">
+        </div>
+      </div>
+
+      <div>
+        <label>Facción 2</label>
+        <select id="faccion2" onchange="actualizarFaccion(2)">
+          <option value="">-- Seleccionar --</option>
+          <option value="Abyssal">Abyssal</option>
+          <option value="Aetherion Valor">Aetherion Valor</option>
+          <option value="Apex Dualist">Apex Dualist</option>
+          <option value="Arcane Nexus">Arcane Nexus</option>
+          <option value="Chaos Ascendant">Chaos Ascendant</option>
+          <option value="Dreamlike">Dreamlike</option>
+          <option value="Gaian Oracle">Gaian Oracle</option>
+          <option value="Glitchborn">Glitchborn</option>
+          <option value="Grovecaller">Grovecaller</option>
+          <option value="Heaven's Arbiter">Heaven's Arbiter</option>
+          <option value="Inspirae">Inspirae</option>
+          <option value="Machina Revenant">Machina Revenant</option>
+          <option value="Mutant">Mutant</option>
+          <option value="Mythical Legacy">Mythical Legacy</option>
+          <option value="Necrotic">Necrotic</option>
+          <option value="Netherbane">Netherbane</option>
+          <option value="Primal Monarch">Primal Monarch</option>
+          <option value="Resonantia">Resonantia</option>
+          <option value="Star Wanderers">Star Wanderers</option>
+          <option value="Terran">Terran</option>
+          <option value="Veilbreaker">Veilbreaker</option>
+        </select>
+        <div class="faccion-preview">
+          <img id="iconoFaccion2" src="" alt="">
+        </div>
+      </div>
+    </div>
+
+    <h3>📊 Distribución de Atributos</h3>
+    <p>Cada stat parte con <b>40</b> puntos base. Dispones de <b>200</b> para distribuir (máx. 100 por stat).</p>
+
+    <div class="stats-grid">
+      <div class="stat"><label>Fuerza</label><input type="number" id="str" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Destreza</label><input type="number" id="dex" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Constitución</label><input type="number" id="con" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Inteligencia</label><input type="number" id="int" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Sabiduría</label><input type="number" id="wis" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+      <div class="stat"><label>Carisma</label><input type="number" id="cha" min="40" max="100" value="40" oninput="actualizarStats()"></div>
+    </div>
+
+    <div id="puntosRestantes" class="puntos-restantes">Puntos restantes: 200</div>
+
+    <div class="totales">
+      <h3>📋 Estadísticas Totales</h3>
+	  
+	   <!-- 🎨 Selectores de color -->
+  <div style="text-align:center; margin-bottom:10px;">
+    <label for="colorRadar" style="font-weight:bold;">Color del Radar:</label>
+    <label for="colorTexto" style="font-weight:bold;">Color del Texto:</label>
+    <input type="color" id="colorTexto" value="#00ffff" oninput="actualizarColoresTabla()">
+    <label for="colorFondo" style="font-weight:bold; margin-left:10px;">Fondo de la Columna:</label>
+    <input type="color" id="colorFondo" value="#1a1a1a" oninput="actualizarColoresTabla()">
+  </div>
+
+      <table class="tabla-totales">
+        <tbody>
+          <tr><td class="stat-col">HP</td><td class="valor-col" id="hp"></td></tr>
+          <tr><td class="stat-col">MP</td><td class="valor-col" id="mp"></td></tr>
+          <tr><td class="stat-col">Ataque</td><td class="valor-col" id="atk"></td></tr>
+          <tr><td class="stat-col">Defensa</td><td class="valor-col" id="def"></td></tr>
+          <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col" id="matk"></td></tr>
+          <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col" id="mdef"></td></tr>
+          <tr><td class="stat-col">Velocidad</td><td class="valor-col" id="spd"></td></tr>
+          <tr><td class="stat-col">Evasión</td><td class="valor-col" id="eva"></td></tr>
+          <tr><td class="stat-col">Precisión</td><td class="valor-col" id="acc"></td></tr>
+          <tr><td class="stat-col">Crítico</td><td class="valor-col" id="crit"></td></tr>
+          <tr><td class="stat-col">Suerte</td><td class="valor-col" id="luk"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <canvas id="chartStats" width="400" height="400"></canvas>
+	
+	      <!-- 🎨 Selector de color del radar -->
+      <div style="text-align:center; margin-bottom:10px;">
+        <label for="colorRadar" style="font-weight:bold;">Color del Radar:</label>
+        <input type="color" id="colorRadar" value="#ff0000" oninput="actualizarGraficoColor()">
+      </div>
+
+    <button class="boton" onclick="generar()">Guardar (HTML + CSS)</button>
+    <button class="boton limpiar" onclick="limpiar()">Limpiar</button>
+  </div>
+
+  <script>
+  
+  const puntosBase=40,puntosTotales=200,stats=['str','dex','con','int','wis','cha'];
+const faccionBonos={Netherbane:{str:20,con:10},Veilbreaker:{wis:20,int:10},Abyssal:{int:20,cha:10}};
+let chart;
+function actualizarFaccion(n){const s=document.getElementById("faccion"+n),i=document.getElementById("iconoFaccion"+n),v=s.value;i.src=v?`facciones/${v}.png`:"";i.alt=v;i.style.display=v?"block":"none";actualizarStats();}
+function obtenerBonos(){const f1=document.getElementById('faccion1').value,f2=document.getElementById('faccion2').value,b={str:0,dex:0,con:0,int:0,wis:0,cha:0};[f1,f2].forEach(f=>{if(f&&faccionBonos[f])for(const k in faccionBonos[f])b[k]+=faccionBonos[f][k];});return b;}
+function actualizarStats() {
+  let usados = 0;
+  const v = {};
+
+  // 1️⃣ Obtener valores base con límites 40–100
+  stats.forEach(s => {
+    let val = parseInt(document.getElementById(s).value) || puntosBase;
+    if (val < 40) val = 40;
+    if (val > 100) val = 100;
+    v[s] = val;
+  });
+
+  // 2️⃣ Calcular puntos usados
+  usados = stats.reduce((a, s) => a + (v[s] - puntosBase), 0);
+  let r = puntosTotales - usados;
+
+  // 3️⃣ Evitar que se asignen más puntos de los disponibles
+  if (r < 0) {
+    const act = document.activeElement;
+    if (act && stats.includes(act.id)) {
+      const e = usados - puntosTotales;
+      v[act.id] -= e;
+      if (v[act.id] < 40) v[act.id] = 40;
+      document.getElementById(act.id).value = v[act.id];
+      usados = puntosTotales;
+      r = 0;
+    }
+  }
+
+  // 4️⃣ Aplicar bonos de facción
+  const b = obtenerBonos();
+  const t = {};
+
+
+
+
+  // 5️⃣ Limitar total (base + bono) a 100
+  stats.forEach(s => {
+    t[s] = v[s] + b[s];
+    if (t[s] > 100) {
+      // Si el bono empuja sobre 100, reducimos el valor base máximo permitido
+      v[s] = 100 - b[s];
+      if (v[s] < 40) v[s] = 40;
+      document.getElementById(s).value = v[s];
+      t[s] = 100;
+    }
+  });
+
+  // 6️⃣ Actualizar puntos restantes visualmente
+  document.getElementById('puntosRestantes').textContent = `Puntos restantes: ${r}`;
+  document.getElementById('puntosRestantes').style.color = r <= 0 ? "#ff4444" : "#ffcc00";
+
+  // 7️⃣ Calcular estadísticas derivadas
+  const d = {
+    hp: t.con * 15,
+    mp: t.int * 10,
+    atk: t.str * 2,
+    def: t.con * 1.5,
+    matk: t.int * 2.2,
+    mdef: t.wis * 1.8,
+    spd: t.dex * 1.5,
+    eva: t.dex * 0.8,
+    acc: t.dex * 1.2,
+    crit: t.cha * 0.5,
+    luk: Math.round((t.wis + t.cha) / 2 / 10)
+  };
+
+  for (let k in d) document.getElementById(k).textContent = Math.round(d[k]);
+
+  // 8️⃣ Actualizar radar
+  actualizarGrafico(t);
+}
+
+function actualizarColoresTabla() {
+  const colorTexto = document.getElementById("colorTexto").value;
+  const colorFondo = document.getElementById("colorFondo").value;
+
+  document.querySelectorAll(".stat-col").forEach(td => {
+    td.style.color = colorTexto;
+    td.style.backgroundColor = colorFondo;
+  });
+}
+
+function actualizarGraficoColor() {
+  const color = document.getElementById("colorRadar").value;
+  if (!chart) return;
+  chart.data.datasets[0].borderColor = color;
+  chart.data.datasets[0].backgroundColor = color + "80"; // misma tonalidad semitransparente
+  chart.update();
+}
+
+function actualizarGrafico(d) {
+  const v = stats.map(s => d[s]);
+  const ctx = document.getElementById('chartStats');
+
+  // tomar el color actual del selector
+  const color = document.getElementById("colorRadar")?.value || "#ff0000";
+
+  if (chart) chart.destroy();
+  chart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['Fuerza', 'Destreza', 'Constitución', 'Inteligencia', 'Sabiduría', 'Carisma'],
+      datasets: [{
+        label: 'Atributos Totales',
+        data: v,
+        borderColor: color,
+        backgroundColor: color + "80", // mismo tono semitransparente
+        pointBackgroundColor: '#fff',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        r: {
+          angleLines: { color: '#888' },
+          grid: { color: '#666' },
+          beginAtZero: true,
+          min: 40,
+          max: 100,
+          ticks: { stepSize: 10, color: '#fff' },
+          pointLabels: { color: '#fff', font: { size: 13 } }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+
+  
+  
+  
+    const toDataURL = (file) => new Promise(res=>{
+      if(!file){res("");return;}
+      const r=new FileReader();
+      r.onload=e=>res(e.target.result);
+      r.readAsDataURL(file);
+    });
+
+    async function generar(){
+      const nombre = (document.getElementById('nombre').value||'ficha').trim();
+      if(!nombre){alert('Ingresa nombre');return;}
+
+      const c1 = document.getElementById('color1').value;
+      const c2 = document.getElementById('color2').value;
+
+      const imgCompleta = await toDataURL(document.getElementById('imgCompleta').files[0]);
+      const logo        = await toDataURL(document.getElementById('logo').files[0]);
+
+
+      const linkX   = document.getElementById('linkX').value||'';
+      const linkTtv = document.getElementById('linkTwitch').value||'';
+      const linkTk  = document.getElementById('linkTikTok').value||'';
+      const linkIG  = document.getElementById('linkIG').value||'';
+      const linkYT  = document.getElementById('linkYT').value||'';
+
+      const frase   = document.getElementById('frase').value||'';
+
+      const pais       = document.getElementById('pais').value||'';
+      const cumple     = document.getElementById('cumple').value||'';
+      const altura     = document.getElementById('altura').value||'';
+      const comidaFav  = document.getElementById('comidaFav').value||'';
+      const comidaHate = document.getElementById('comidaHate').value||'';
+      const vjFav      = document.getElementById('vjFav').value||'';
+      const serieFav   = document.getElementById('serieFav').value||'';
+      const musica     = document.getElementById('musica').value||'';
+      const animeFav   = document.getElementById('animeFav').value||'';
+      const signo      = document.getElementById('signo').value||'';
+      const animalFav  = document.getElementById('animalFav').value||'';
+      const colorFav   = document.getElementById('colorFav').value||'';
+      const modelo     = document.getElementById('modelo').value||'';
+      const hashtag    = document.getElementById('hashtag').value||'';
+
+      // === HTML: respeta base.html (rellenado con datos del formulario) ===
+      const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha VTuber</title>
+  <link rel="stylesheet" href="${nombre}.css" />
+  <style>
+    body {
+      padding: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Botón Atrás */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #508e3b;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 22px;
+    }
+
+    .back-button span {
+      font-size: 100px;
+      margin-top: -30px; 
+      margin-right: 10px;
+      color: #ffffff; /* color del relleno */
+      -webkit-text-stroke: 2px #000; /* borde negro */
+      text-stroke: 4px #000; /* compatibilidad */
+    }
+
+    /* Contenedor principal alineado a la izquierda */
+    main {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 40px;
+      width: 100%;
+    }
+
+    .contenedor {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .imagen-grande img {
+      width: 600px;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      margin-top: 110px;
+    }
+
+    .ficha {
+      background: white;
+      border: 2px solid #000; /* trazo negro de 2px */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      width: 400px;
+    }
+
+    .ficha h2 {
+      text-align: center;
+      margin-bottom: 60px;
+      color: #333;
+    }
+
+    .dato,
+    .pais {
+      display: flex;
+      margin: 8px 0;
+      background: #0d012f;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .titulo {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      padding: 8px;
+      width: 120px;
+      background: #508e3b;
+    }
+
+    .contenido {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Responsivo en móviles */
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .imagen-grande img,
+      .ficha {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout-wrapper">
+    <main>
+      <div class="contenedor">
+        <!-- Imagen -->
+        <div class="imagen-grande">
+          <img src="${imgCompleta || 'vtubercompleto/.png'}" alt="Imagen Grande" />
+        </div>
+
+        <!-- Ficha y redes -->
+        <div class="contenedor-principal">
+          <!-- Agrupamos en un nuevo contenedor para centrar -->
+          <div class="bloque-ficha">
+            <!-- Logo -->
+            <header>
+              <img src="${logo || 'logos/.png'}" alt="Logo" class="vtuber-logo" />
+              <h3><p id="vtuber-phrase">${frase ? "&quot;"+frase+"&quot;" : ""}</p></h3>
+            </header>
+
+            <!-- Redes -->
+            <div class="socials">
+              <a href="${linkX}"><img src="icons/x.png" alt="X" /></a>
+              <a href="${linkTtv}"><img src="icons/twitch.png" alt="Twitch" /></a>
+              <a href="${linkTk}"><img src="icons/tiktok.png" alt="TikTok" /></a>
+              <a href="${linkIG}"><img src="icons/instagram.png" alt="Instagram" /></a>
+              <a href="${linkYT}"><img src="icons/youtube.png" alt="YouTube" /></a>
+            </div>
+
+            <!-- Ficha -->
+            <section class="datos">
+              <div class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">${pais}</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">${cumple}</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">${altura}</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">${comidaFav}</div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">${comidaHate}</div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">${vjFav}</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">${serieFav}</div></div>
+                <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">${musica}</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">${animeFav}</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">${signo}</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">${animalFav}</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">${colorFav}</div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">${modelo}</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">${hashtag}</div></div>
+              </div>
+            </section>
+
+            <!-- Botón atrás -->
+            <a href="../VtuberDex.html" class="back-button"><span>⬅</span></a>
+          </div>
+        </div>
+
+       
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>`;
+
+      // === CSS: replica exacto tu base.css (solo cambia los 2 colores del degradado) ===
+      const css = `body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, ${c1}, ${c2});
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* 👈 Cambiado para alinear todo a la izquierda */
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor general */
+.contenedor {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 40px 20px 40px 200px;
+  box-sizing: border-box;
+}
+
+/* Columna derecha */
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  text-align: left;
+}
+
+/* Logo */
+.vtuber-logo {
+  max-width: 350px;
+  margin-left: 80px; /* Mueve el logo 30px hacia la derecha */
+  height: auto;
+  margin-bottom: -80px; /* 👈 Reduce separación con la frase */
+}
+
+#vtuber-phrase {
+  font-size: 10px;
+  font-style: italic;
+  margin-left: 40px; /* Mueve el logo 30px hacia la derecha */
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+/* Redes sociales */
+.socials {
+  margin-top: 1px ; /* 👈 Puedes ajustar este número si sigue muy separado */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+
+.socials img:hover {
+  transform: scale(1.2);
+}
+
+/* Para que en pantallas chicas se apilen */
+@media (max-width: 992px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .extra-cuadro {
+    width: 100%;
+  }
+}
+
+/* Agrupador que centra logo, redes, ficha y botón */
+.bloque-ficha {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 👈 Esto centra todo horizontalmente */
+  text-align: center;
+}
+
+/* Para que el botón atrás quede centrado igual que la ficha */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #52403c;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+
+ 
+  /* Movimiento */
+  position: relative;
+  top: 190px;   /* Lo bajas 300px */
+  left: 100px;   /* Lo corres un poco a la derecha */
+}
+/* Ajustar el layout principal */
+main {
+  display: flex;
+  justify-content: flex-start; /* 👈 Mantiene izquierda y derecha */
+  align-items: flex-start;     /* 👈 Alineados arriba */
+  gap: 60px;                   /* 👈 Separa las dos columnas */
+  width: 100%;
+  padding: 40px;               /* 👈 Espacio interior */
+  box-sizing: border-box;
+}
+
+`;
+
+      // ✅ descarga con el mismo nombre
+      descargar(`${nombre}.html`, html, 'text/html');
+      descargar(`${nombre}.css`, css, 'text/css');
+      alert('¡Listo! Se descargaron el HTML y el CSS con el mismo nombre!');
+    }
+
+    function descargar(nombre, contenido, tipo){
+      const blob = new Blob([contenido], {type: tipo});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = nombre;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function limpiar(){
+      document.querySelectorAll("input").forEach(input=>{
+        if(input.type === "file"){
+          input.value = null;
+        }else if(input.type === "color"){
+          input.value = input.defaultValue; // vuelve al valor inicial
+        }else{
+          input.value = "";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

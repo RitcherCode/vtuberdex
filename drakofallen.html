@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Drako Fallen</title>
+    <link rel="icon" href="favicon/drakofallen.ico" type="image/x-icon">
+<style>
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(45deg, #000000, #5d0727);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+#vtuber-phrase {
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  width: calc(100% - 8px);
+  margin: 2rem auto;
+  padding: 0 4px;
+
+  /* 🩸 Tono vino gótico */
+  color: #b22234;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.8),
+    0px 0px 10px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #d14c64;
+  text-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.9),
+    0px 0px 14px rgba(209, 76, 100, 0.6);
+}
+
+
+/* Botón RPG */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 22px;
+  background: linear-gradient(145deg, #5d0727, #000000);
+  border: 2px solid #ffffff;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #5d0727, inset 0 0 8px #5d0727;
+  transition: all 0.25s ease;
+}
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #5d0727, inset 0 0 10px #ffffff;
+}
+.back-button span {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+/* Superior */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.imagen-grande img {
+  width: 480px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  width: 480px;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #9a053c, inset 0 0 15px #9a053c; /* brillo estático */
+}
+
+header img {
+  width: 260px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.25s ease, filter 0.4s ease;
+  filter: none;
+  background: none;
+  border-radius: 6px; /* solo suaviza esquinas si el icono es cuadrado */
+}
+
+/* 💡 Borde de neón ajustado y visible */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #ff1a1a)
+    drop-shadow(0 0 2px #ff1a1a)
+    drop-shadow(0 0 3px #ff3333)
+    drop-shadow(0 0 4px #ff4d4d);
+  animation: neonEdge 1.5s ease-in-out infinite alternate;
+}
+
+/* ⚡ Parpadeo tipo neón — ajustado al borde */
+@keyframes neonEdge {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #ff1a1a)
+      drop-shadow(0 0 2px #ff1a1a)
+      drop-shadow(0 0 3px #ff3333)
+      drop-shadow(0 0 4px #ff4d4d);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #ff3333)
+      drop-shadow(0 0 3px #ff3333)
+      drop-shadow(0 0 4px #ff4d4d)
+      drop-shadow(0 0 5px #ff6666);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #ff1a1a)
+      drop-shadow(0 0 2px #ff1a1a)
+      drop-shadow(0 0 3px #ff3333)
+      drop-shadow(0 0 4px #ff4d4d);
+    opacity: 0.9;
+  }
+}
+
+
+/* Ficha */
+.ficha {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.dato, .pais {
+  display: flex;
+  margin: 6px 0;
+  background: #020001;
+  border-radius: 6px;
+  overflow: hidden;
+  color: white;
+}
+.titulo {
+  width: 170px;
+  background: #5d0727;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.contenido {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Sección inferior (Stats + Radar) */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 90%;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #9a053c, inset 0 0 15px #9a053c; /* brillo estático */
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #9a053c, inset 0 0 15px #9a053c; /* brillo estático */
+}
+.stat-col {
+  background-color: #5d0727;
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+}
+.valor-col {
+  width: 50%;
+  background: #000;
+  color: #fff;
+}
+
+/* Facciones */
+.tabla-facciones th {
+  background-color: #5d0727;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+}
+.tabla-facciones tr:nth-child(2) {
+  background-color: #000;
+}
+.tabla-facciones img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Radar - grande, centrado y con brillo estático */
+.radar-container {
+  flex: 1;
+  min-width: 600px;
+  text-align: center;
+  margin-left: 80px;   /* mantiene el desplazamiento lateral */
+  margin-top: 40px;    /* alineado con tablas */
+  margin-right: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-container img {
+  width: 1000px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #111 60%, #000);
+  padding: 1px;
+  transition: none;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #9a053c, inset 0 0 15px #9a053c; /* brillo estático */
+}
+
+.exp-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.exp-bar-container {
+  width: 150px;
+  height: 20px;
+  background-color: #1a1a1a; /* Fondo oscuro de la barra vacía */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px #000 inset;
+  position: relative;
+}
+
+.exp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #5a0010, #800020, #a63a3a);
+  animation: shine 3s linear infinite;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.exp-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+
+/* Sección de skills */
+.skills-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 30px;
+  color: #ffd700;
+  text-shadow: 0 0 8px #ff0000, 0 0 12px #5d0727;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.skills-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 2px solid white;
+  text-align: center;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #9a053c, inset 0 0 15px #9a053c; /* brillo estático */
+}
+.skills-table th {
+  background: #5d0727;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid white;
+}
+.skills-table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid white;
+  padding: 10px;
+}
+.skills-table img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+
+/* ======================================================
+   📱 FIX DEFINITIVO — centrado y proporción en móviles
+   ====================================================== */
+@media (max-width: 1024px) {
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+ body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  font-family: Arial, sans-serif !important;
+  color: #fff !important;
+  /* ⚒️ Mantiene la identidad dorado-negro pero más profundo */
+  background: linear-gradient(45deg, #000000, #5d0727);
+  background-attachment: fixed !important;
+}
+
+
+  /* 🧩 Contenedor principal más compacto y centrado */
+  .contenedor-principal {
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 10px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  
+  #vtuber-phrase {
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  width: calc(100% - 8px);
+  margin: 2rem auto;
+  padding: 0 4px;
+
+  /* 💻 Color metálico digital */
+  background: linear-gradient(90deg,
+    #ff1e56 0%,
+    #ff0844 30%,
+    #ff1e56 60%,
+    #b30000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* ⚡ Efecto sutil de glitch por duplicación */
+  position: relative;
+  text-shadow:
+    1px 0px 2px rgba(255, 0, 0, 0.3),
+   -1px 0px 2px rgba(0, 255, 255, 0.3);
+
+  /* 🔁 Animación ligera tipo interferencia */
+  animation: cyberGlitch 2.2s infinite;
+}
+
+  /* 🖼 Imagen grande centrada */
+  .imagen-grande {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+  }
+
+  .imagen-grande img {
+    width: 80% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+  
+  #vtuber-phrase {
+  font-size: 13px !important;    /* 🔹 más pequeño en móviles */
+  line-height: 1.3 !important;   /* 🔹 menos separación */
+  text-align: center !important; /* 🔹 centrado perfecto */
+  max-width: 95% !important;     /* 🔹 más compacto en pantallas chicas */
+  margin: 8px auto !important;
+}
+
+  /* 🛰 Radar 100% centrado y visible en todos los móviles */
+  .radar-container {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 260px !important;        /* 🔹 ancho compacto */
+    margin: 0 auto 15px auto !important;
+    left: 50% !important;               /* 🔹 centrado absoluto */
+    transform: translateX(-50%) !important;
+    overflow: visible !important;       /* 🔹 evita recortes */
+    box-sizing: border-box !important;
+  }
+
+  .radar-container img,
+  .radar-container canvas {
+    width: 100% !important;              /* 🔹 un poco más grande */
+    max-width: 300px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+.ficha {
+  max-width: 300px !important;
+  margin: 10px auto !important; /* centrado horizontal automático */
+  gap: 4px !important;
+  box-sizing: border-box !important; /* asegura que padding no haga que sobresalga */
+}
+
+.ficha .dato,
+.ficha .pais {
+  font-size: 12px !important;
+}
+
+  /* 🧪 Barra de experiencia visible y responsiva */
+  .xp-container {
+    width: 90% !important;
+    max-width: 300px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.4) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin: 10px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .xp-bar {
+    height: 100% !important;
+    background: linear-gradient(90deg, #ff1e56, #ff0844, #ff1e56) !important;
+    box-shadow: 0 0 10px #ff1e56 !important;
+    transition: width 0.4s ease-in-out !important;
+    border-radius: 10px 0 0 10px !important;
+    width: 0% !important; /* ← se actualiza dinámicamente desde JS */
+  }
+
+  .xp-text {
+    position: absolute !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    letter-spacing: 1px !important;
+    z-index: 2 !important;
+  }
+
+
+  /* ⚔ Skills (si las tienes después) */
+  .skills-section {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto 30px auto !important;
+    padding: 5px !important;
+    text-align: center !important;
+  }
+
+  .skills-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 auto !important;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 12px !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+
+/* Botón volver con menos margen */
+  .back-button {
+    margin: 15px auto !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ✅ Compatibilidad con animaciones en Chromium */
+@-webkit-keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; -webkit-filter: brightness(1); }
+  50% { opacity: 1; -webkit-filter: brightness(1.2); }
+}
+@keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="imagen-grande">
+          <img src="vtubercompleto/Drako.png" alt="" />
+  </div>
+  <div class="contenedor-principal">
+    <header>
+            <img src="logos/Drako.png" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase">Eodum sogeseodo, talakhan ja-ui sinjoga nae begireul ikkeunda</p>
+    </header>
+
+          <!-- Redes -->
+          <div class="socials">
+            <a href="https://x.com/DrakoFallenvt"><img src="icons/x.png" alt="X" /></a>
+            <a href="https://www.twitch.tv/drakofallenvt"><img src="icons/twitch.png" alt="Twitch" /></a>
+            <a href="https://www.tiktok.com/@drakovt"><img src="icons/tiktok.png" alt="TikTok" /></a>
+            <a href="https://kick.com/drakofallen"><img src="icons/kick.png" alt="kick" /></a>
+          </div>
+
+    <section class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">Colombia</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">26 de Marzo</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1,75 m</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Frijoles con chicharron y hamburguesas</div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Remolacha y Yuca</div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">Assassins creed</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">From</div></div>
+                <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">Rock</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">One Piece</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Aries</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Perros</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Rojo y Negro</div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">Drako Fallen</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#FallenArt</div></div>
+    </section>
+
+    <a href="index.html" class="back-button"><span>⬅</span>Volver</a>
+  </div>
+</main>
+
+<section class="bottom-section">
+  <div class="left-side">
+    <table class="tabla-facciones">
+      <tr><th>Heaven's Arbiter</th><th>Apex Duelist</th></tr>
+      <tr>
+        <td><img src="facciones/Heaven's%20Arbiter.png"></td>
+        <td><img src="facciones/Apex%20Dualist.png"></td>
+      </tr>
+    </table>
+
+    <table>
+	  <tr>
+    <td class="stat-col">Nivel</td>
+    <td class="valor-col" id="nivel">1</td>
+  </tr>
+  <tr>
+    <td class="stat-col">EXP</td>
+    <td class="valor-col">
+      <div class="exp-wrapper">
+        <div class="exp-bar-container">
+          <div class="exp-bar-fill" id="expBar"></div>
+        </div>
+        <small class="exp-text" id="expText">30 / 55 XP</small>
+      </div>
+    </td>
+  </tr>    
+      <tr><td class="stat-col">HP</td><td class="valor-col">1500</td></tr>
+      <tr><td class="stat-col">MP</td><td class="valor-col">750</td></tr>
+      <tr><td class="stat-col">Ataque</td><td class="valor-col">200</td></tr>
+      <tr><td class="stat-col">Defensa</td><td class="valor-col">150</td></tr>
+      <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col">165</td></tr>
+      <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col">90</td></tr>
+      <tr><td class="stat-col">Velocidad</td><td class="valor-col">135</td></tr>
+      <tr><td class="stat-col">Evasión</td><td class="valor-col">72</td></tr>
+      <tr><td class="stat-col">Precisión</td><td class="valor-col">108</td></tr>
+      <tr><td class="stat-col">Crítico</td><td class="valor-col">30</td></tr>
+      <tr><td class="stat-col">Suerte</td><td class="valor-col">6</td></tr>
+    </table>
+  </div>
+
+  <div class="radar-container">
+   <img src="diagrama/Drako.png">
+   </div>
+</section>
+
+<!-- Skills centradas -->
+<section class="skills-section">
+  <h2 class="section-title">Active Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Heaven's%20Arbiter.png"></td><td>Ofensivo</td><td>Judgment Wing</td><td>Ataque Base X2.0, Aplica <span style="color:#b49a00; font-weight:bold;">Parálisis</span> por 2 turnos.</td></tr>
+    <tr><td><img src="facciones/Apex%20Dualist.png"></td><td>Soporte</td><td>Blood Oath</td><td>Recupera 5% de HP y aplica <span style="color:#005822; font-weight:bold;">Revitalia</span> durante 3 turnos.</td></tr>
+  </table>
+
+  <h2 class="section-title">Passive Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Heaven's%20Arbiter.png"></td><td>Soporte</td><td>Ethereal Blade</td><td>Cada ataque crítico aumenta +10 en Ataque Base durante 2 turnos (máx. +30).</td></tr>
+    <tr><td><img src="facciones/Apex%20Dualist.png"></td><td>Soporte</td><td>Instant Death</td><td>Si el HP del enemigo cae por debajo del 5%. Tu próximo ataque finaliza el combate al derrotarlo automáticamente</td></tr>
+  </table>
+
+  <h2 class="section-title">Ultimate Skill</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr>
+      <td><img src="facciones/Heaven's%20Arbiter.png"><img src="facciones/Apex%20Dualist.png"></td>
+      <td>Ultimate</td><td>타락한 자의 형벌 Talaghan Jaui Hyeongbeol</td><td>Lanza un 1d3, inflige X golpes de Sangrado Acumulable donde X es el resultado del dado, además otorga <span style="color:#ffffff; font-weight:bold;">Juramento</span> y <span style="color:#005822; font-weight:bold;">Revitalia</span> por 3 turnos.</td>
+    </tr>
+  </table>
+</section>
+
+<script>
+// ===========================
+// CSS INCRUSTADO
+// ===========================
+const style = document.createElement("style");
+style.textContent = `
+.city-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -5;
+}
+
+/* Contenedor de la luna */
+.red-moon-wrapper {
+    position: fixed;
+    top: -10px;
+    left: 50%;
+    width: 180px;
+    height: 150px;
+    transform: translateX(-50%);
+    z-index: -3;
+    pointer-events: none;
+}
+
+/* Imagen de la luna */
+.red-moon {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    image-rendering: crisp-edges;
+    pointer-events: none;
+
+    /* 🌑 BRILLO REDUCIDO */
+    filter: drop-shadow(0 0 10px #ff0000)
+            drop-shadow(0 0 20px #ff1a1a)
+            drop-shadow(0 0 30px #ff0000);
+
+    animation: moonPulse 3s ease-in-out infinite;
+}
+
+/* 💓 LATIDO MÁS SUAVE */
+@keyframes moonPulse {
+    0% { filter: drop-shadow(0 0 10px #ff0000); }
+    50% { filter: drop-shadow(0 0 35px #ff1a1a); }
+    100% { filter: drop-shadow(0 0 10px #ff0000); }
+}
+
+/* Sombra negra oscura */
+.city-shadow-black {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    background: rgba(0,0,0,0.50);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+/* Sombra roja más sutil */
+.city-shadow-red {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: radial-gradient(
+        circle at 50% 10%, 
+        rgba(255,0,0,0.15) 0%, 
+        rgba(0,0,0,0.35) 60%, 
+        rgba(0,0,0,0.55) 100%
+    );
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+
+/* 💓 OVERLAY DEL LATIDO MÁS SUAVE */
+.city-heartbeat {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 50% 15%,
+        rgba(255, 0, 0, 0.20) 0%,
+        rgba(255, 0, 0, 0.05) 30%,
+        rgba(255, 0, 0, 0.00) 80%
+    );
+    mix-blend-mode: screen;
+    animation: cityPulse 3s ease-in-out infinite;
+}
+
+@keyframes cityPulse {
+    0% { opacity: 0.18; filter: blur(4px); }
+    50% { opacity: 0.40; filter: blur(10px); }
+    100% { opacity: 0.18; filter: blur(4px); }
+}
+
+/* 🩸 Manchas de sangre respirando (más suave) */
+.city-blood-stains {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,0,0,0.12) 0%, rgba(255,0,0,0) 60%),
+        radial-gradient(circle at 80% 40%, rgba(180,0,0,0.10) 0%, rgba(0,0,0,0) 65%),
+        radial-gradient(circle at 40% 70%, rgba(255,20,20,0.10) 0%, rgba(0,0,0,0) 70%),
+        radial-gradient(circle at 70% 85%, rgba(160,0,0,0.12) 0%, rgba(0,0,0,0) 70%);
+
+    mix-blend-mode: screen;
+    filter: blur(10px);
+    animation: bloodBreath 3s ease-in-out infinite;
+}
+
+@keyframes bloodBreath {
+    0% { opacity: 0.15; filter: blur(6px); }
+    50% { opacity: 0.35; filter: blur(14px); }
+    100% { opacity: 0.15; filter: blur(6px); }
+}
+
+/* 🩸🔥 HUMO ROJO */
+.city-red-smoke {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at 30% 10%, rgba(180,0,0,0.12) 0%, rgba(0,0,0,0) 70%),
+        radial-gradient(circle at 70% 25%, rgba(140,0,0,0.10) 0%, rgba(0,0,0,0) 75%),
+        radial-gradient(circle at 50% 60%, rgba(200,0,0,0.08) 0%, rgba(0,0,0,0) 75%);
+
+    mix-blend-mode: lighten;
+    filter: blur(30px);
+    opacity: 0.35;
+    animation: smokeFlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes smokeFlow {
+    0% { transform: translateY(0px) scale(1); opacity: 0.30; }
+    100% { transform: translateY(-25px) scale(1.05); opacity: 0.40; }
+}
+
+/* =============================
+   📱 Luna ajustada (más arriba y más a la izquierda)
+   ============================= */
+@media (max-width: 768px) {
+
+    .red-moon-wrapper {
+        top: -40px;      /* MÁS ARRIBA */
+        left: 45%;       /* MÁS A LA IZQUIERDA */
+        width: 250px;
+        height: 250px;
+    }
+
+    .red-moon {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+`;
+document.head.appendChild(style);
+
+// ===========================
+// ELEMENTOS
+// ===========================
+const bg = document.createElement("img");
+bg.src = "efectos/ciudad.png";
+bg.className = "city-bg";
+
+const moonWrapper = document.createElement("div");
+moonWrapper.className = "red-moon-wrapper";
+
+const moonImg = document.createElement("img");
+moonImg.src = "efectos/lunaroja.png";
+moonImg.className = "red-moon";
+
+moonWrapper.appendChild(moonImg);
+
+const shadowBlack = document.createElement("div");
+shadowBlack.className = "city-shadow-black";
+
+const shadowRed = document.createElement("div");
+shadowRed.className = "city-shadow-red";
+
+const heartbeat = document.createElement("div");
+heartbeat.className = "city-heartbeat";
+
+const bloodStains = document.createElement("div");
+bloodStains.className = "city-blood-stains";
+
+/* 🌫️ HUMO ROJO */
+const redSmoke = document.createElement("div");
+redSmoke.className = "city-red-smoke";
+
+document.body.appendChild(bg);
+document.body.appendChild(shadowBlack);
+document.body.appendChild(moonWrapper);
+document.body.appendChild(shadowRed);
+document.body.appendChild(heartbeat);
+document.body.appendChild(bloodStains);
+document.body.appendChild(redSmoke);
+
+
+function updateBarManual() {
+  const text = expText.textContent.trim();
+
+  const match = text.match(/(\d+)\s*\/\s*(\d+)/);
+  if (!match) return;
+
+  const currentXP = parseInt(match[1], 10);
+  const maxXP = parseInt(match[2], 10);
+
+  const percent = maxXP > 0 ? Math.min((currentXP / maxXP) * 100, 100) : 0;
+
+  expBar.style.width = percent + "%";
+}
+
+// Ejecutar al cargar
+updateBarManual();
+
+</script>
+</body>
+</html>

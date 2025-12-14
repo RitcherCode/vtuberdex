@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sake Hozuki</title>
+    <link rel="icon" href="favicon/sake.ico" type="image/x-icon">
+<style>
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #717272, #000000);
+  z-index: -2;
+  animation: purpleGlow 20s ease-in-out infinite;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+#vtuber-phrase {
+  text-align: center;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 420px;         /* 🔹 controla el ancho ideal de la frase */
+  margin: 1rem auto;
+  padding: 0 4px;
+  white-space: normal;      /* 🔹 permite que el texto se ajuste automáticamente */
+  word-wrap: break-word;    /* 🔹 evita cortes raros */
+
+  /* 🩸 Tono vino gótico */
+  color: #333436;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.8),
+    0px 0px 1px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #a3a3a3;
+  text-shadow:
+    1px 1px 3px rgba(0, 0, 0, 0.9),
+    0px 0px 4px rgba(209, 76, 100, 0.6);
+}
+
+/* Botón RPG */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 22px;
+  background: linear-gradient(145deg, #5b1521, #000000);
+  border: 2px solid #ffffff;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 8px #7da66d;
+  transition: all 0.25s ease;
+}
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #7da66d, inset 0 0 10px #7da66d;
+}
+.back-button span {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+/* Superior */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.imagen-grande img {
+  width: 600px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+  margin-top: -30px;
+  
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  width: 480px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+}
+
+header img {
+  width: 600px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.socials .row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.socials .row img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* 🩸✨ Hover neón carmesí oscuro */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #2a070c)
+    drop-shadow(0 0 2px #5b1521)
+    drop-shadow(0 0 3px #7a1f30)
+    drop-shadow(0 0 4px #9a2a40);
+  animation: neonCrimson 1.5s ease-in-out infinite alternate;
+}
+
+/* 🌑🔥 Parpadeo neón — carmesí profundo */
+@keyframes neonCrimson {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #2a070c)
+      drop-shadow(0 0 2px #5b1521)
+      drop-shadow(0 0 3px #7a1f30)
+      drop-shadow(0 0 4px #9a2a40);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #5b1521)
+      drop-shadow(0 0 3px #7a1f30)
+      drop-shadow(0 0 4px #9a2a40)
+      drop-shadow(0 0 5px #b33a55);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #2a070c)
+      drop-shadow(0 0 2px #5b1521)
+      drop-shadow(0 0 3px #7a1f30)
+      drop-shadow(0 0 4px #9a2a40);
+    opacity: 0.9;
+  }
+}
+
+
+
+/* Ficha */
+.ficha {
+  background: rgba(30, 30, 30, 0.95);
+  color: #000;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.dato, .pais {
+  display: flex;
+  border: 1px solid #fff;
+  border-radius: 12px;
+  margin: 6px 0;
+  background: #020001;
+  border-radius: 6px;
+  overflow: hidden;
+  color: white;
+}
+.titulo {
+  width: 170px;
+  background: #5b1521;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.contenido {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Sección inferior (Stats + Radar) */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+
+/* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -20px !important;   /* sube ligeramente el contenedor */
+  margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 90%;
+  border: 2px solid white;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+}
+.stat-col {
+  background-color: #5b1521;
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+  
+  
+}
+.valor-col {
+  width: 50%;
+  background: #000;
+  color: #fff;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+}
+
+/* Facciones */
+.tabla-facciones th {
+  background-color: #5b1521;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+  
+}
+.tabla-facciones tr:nth-child(2) {
+  background-color: #000;
+      border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+  
+}
+.tabla-facciones img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  
+}
+
+/* Radar - grande, centrado y con brillo estático */
+.radar-container {
+  flex: 1;
+  min-width: 600px;
+  text-align: center;
+  margin-left: 90px;   /* mantiene el desplazamiento lateral */
+  margin-top: 40px;    /* alineado con tablas */
+  margin-right: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-container img {
+  width: 1000px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #111 60%, #000);
+  padding: 1px;
+  border: 3px solid #fff;
+
+  /* ✨ Igual brillo que la tabla de estadísticas */
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d;
+
+  transition: none;
+}
+
+.exp-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.exp-bar-container {
+  width: 150px;
+  height: 20px;
+  background-color: #1a1a1a; /* Fondo oscuro de la barra vacía */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px #000 inset;
+  position: relative;
+}
+
+.exp-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    #2a070c,
+    #5b1521,
+    #8a2435
+  );
+  animation: shine 3s linear infinite;
+  transition: width 0.5s ease-in-out;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.exp-text {
+  font-size: 12px;
+  color: #fff;
+}
+
+/* Sección de skills */
+.skills-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 30px;
+  color: #d7d7d7;
+  text-shadow: 0 0 8px #301b02, 0 0 12px #301b02;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.skills-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 2px solid white;
+  text-align: center;
+  border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+}
+.skills-table th {
+  background: #5b1521;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid white;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+}
+.skills-table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid white;
+  padding: 10px;
+    border: 3px solid #fff;
+  box-shadow: 0 0 10px #7da66d, inset 0 0 15px #7da66d; /* brillo estático */
+}
+.skills-table img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* ======================================================
+   📱 FIX DEFINITIVO — centrado y proporción en móviles
+   ====================================================== */
+@media (max-width: 1024px) {
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+ body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  font-family: Arial, sans-serif !important;
+  color: #fff !important;
+  /* ⚒️ Mantiene la identidad dorado-negro pero más profundo */
+  background: linear-gradient(90deg, #a16236, #3d190c);
+  background-attachment: fixed !important;
+  margin-bottom: 10px !important; /* menos espacio debajo de la imagen */
+}
+
+
+
+  /* 🧩 Contenedor principal más compacto y centrado */
+  .contenedor-principal {
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 10px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+	margin-top: -50px !important;   /* sube ligeramente el contenedor */
+    margin-bottom: -50px !important; /* espacio extra debajo antes de las facciones */
+  }
+  
+#vtuber-phrase {
+  text-align: center;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  max-width: 420px;         /* 🔹 controla el ancho ideal de la frase */
+  margin: 1rem auto;
+  padding: 0 4px;
+  white-space: normal;      /* 🔹 permite que el texto se ajuste automáticamente */
+  word-wrap: break-word;    /* 🔹 evita cortes raros */
+
+  /* 🩸 Tono vino gótico */
+  color: #333436;
+
+  /* ⚫ Sombras profundas estilo grabado */
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.8),
+    0px 0px 1px rgba(178, 34, 52, 0.4);
+
+  transition: all 0.3s ease-in-out;
+}
+
+#vtuber-phrase:hover {
+  color: #a3a3a3;
+  text-shadow:
+    1px 1px 3px rgba(0, 0, 0, 0.9),
+    0px 0px 4px rgba(209, 76, 100, 0.6);
+}
+
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.socials .row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.socials .row img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* 🩸✨ Hover neón carmesí oscuro */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #2a070c)
+    drop-shadow(0 0 2px #5b1521)
+    drop-shadow(0 0 3px #7a1f30)
+    drop-shadow(0 0 4px #9a2a40);
+  animation: neonCrimson 1.5s ease-in-out infinite alternate;
+}
+
+/* 🌑🔥 Parpadeo neón — carmesí profundo */
+@keyframes neonCrimson {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #2a070c)
+      drop-shadow(0 0 2px #5b1521)
+      drop-shadow(0 0 3px #7a1f30)
+      drop-shadow(0 0 4px #9a2a40);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #5b1521)
+      drop-shadow(0 0 3px #7a1f30)
+      drop-shadow(0 0 4px #9a2a40)
+      drop-shadow(0 0 5px #b33a55);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #2a070c)
+      drop-shadow(0 0 2px #5b1521)
+      drop-shadow(0 0 3px #7a1f30)
+      drop-shadow(0 0 4px #9a2a40);
+    opacity: 0.9;
+  }
+}
+
+  /* 🖼 Imagen grande centrada */
+  .imagen-grande {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+  }
+
+  .imagen-grande img {
+    width: 80% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+  
+  #vtuber-phrase {
+  font-size: 13px !important;    /* 🔹 más pequeño en móviles */
+  line-height: 1.3 !important;   /* 🔹 menos separación */
+  text-align: center !important; /* 🔹 centrado perfecto */
+  max-width: 95% !important;     /* 🔹 más compacto en pantallas chicas */
+  margin: 8px auto !important;
+}
+
+  /* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px !important;   /* sube ligeramente el contenedor */
+  margin-bottom: 30px !important; /* espacio extra debajo antes de las facciones */
+  transform: translateX(-10px);
+}
+
+  /* 🛰 Radar 100% centrado y visible en todos los móviles */
+  .radar-container {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 260px !important;        /* 🔹 ancho compacto */
+    margin: 0 auto 15px auto !important;
+    left: 50% !important;               /* 🔹 centrado absoluto */
+    transform: translateX(-50%) !important;
+    overflow: visible !important;       /* 🔹 evita recortes */
+    box-sizing: border-box !important;
+	
+  }
+
+  .radar-container img,
+  .radar-container canvas {
+    width: 100% !important;              /* 🔹 un poco más grande */
+    max-width: 300px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+ .ficha {
+    width: 95% !important;
+    max-width: 340px !important;
+    padding: 8px 4px !important; /* 🔹 menos espacio lateral */
+    margin: 15px auto !important;
+    border-radius: 10px !important;
+    gap: 5px !important;
+    background: #fff !important;
+  }
+
+  /* 🧱 Fila de dato más ajustada */
+  .ficha .dato,
+  .ficha .pais {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: stretch !important;
+    background: #020001 !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+    border: 1px solid #ffffff !important;
+    margin: 2px 0 !important; /* 🔹 separa menos verticalmente */
+  }
+
+  /* 🏷️ Título del campo */
+  .ficha .titulo {
+    width: 38% !important;  /* 🔹 más ancho para aprovechar el espacio */
+    background: #313131 !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    color: #fff !important;
+    padding: 5px 4px !important; /* 🔹 menos padding horizontal */
+    font-size: 11px !important;
+    border-right: 1px solid #000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 📄 Contenido del campo */
+  .ficha .contenido {
+    flex: 1 !important;
+    background: #000 !important;
+    color: #fff !important;
+    text-align: center !important;
+    padding: 5px 3px !important; /* 🔹 menos padding lateral */
+    font-size: 11px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    word-break: break-word !important;
+  }
+  
+  /* 🧪 Barra de experiencia visible y responsiva */
+  .xp-container {
+    width: 90% !important;
+    max-width: 300px !important;
+    height: 16px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.4) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    margin: 10px auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+
+  .xp-bar {
+    height: 100% !important;
+    background: linear-gradient(90deg, #ff1e56, #ff0844, #ff1e56) !important;
+    box-shadow: 0 0 10px #ff1e56 !important;
+    transition: width 0.4s ease-in-out !important;
+    border-radius: 10px 0 0 10px !important;
+    width: 0% !important; /* ← se actualiza dinámicamente desde JS */
+  }
+
+  .xp-text {
+    position: absolute !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #fff !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    letter-spacing: 1px !important;
+    z-index: 2 !important;
+  }
+
+
+
+  /* ⚔ Skills (si las tienes después) */
+  .skills-section {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto 30px auto !important;
+    padding: 5px !important;
+    text-align: center !important;
+  }
+
+  .skills-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 auto !important;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 12px !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+
+/* Botón volver con menos margen */
+  .back-button {
+    margin: 15px auto !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ✅ Compatibilidad con animaciones en Chromium */
+@-webkit-keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; -webkit-filter: brightness(1); }
+  50% { opacity: 1; -webkit-filter: brightness(1.2); }
+}
+@keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="imagen-grande">
+          <img src="vtubercompleto/sake.png" alt="" />
+  </div>
+  <div class="contenedor-principal">
+    <header>
+            <img src="logos/sake.png" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase">Illustrations . Webcomics . Streaming . Animation 2D</p>
+    </header>
+
+<div class="socials">
+  <!-- FILA 1: 7 íconos -->
+  <div class="row">
+    <a href="https://x.com/coffesake"><img src="icons/x.png" alt="X" /></a>
+    <a href="https://www.twitch.tv/sakehozuki"><img src="icons/twitch.png" alt="Twitch" /></a>
+    <a href="https://www.tiktok.com/@sake13719"><img src="icons/tiktok.png" alt="TikTok" /></a>
+    <a href="https://www.instagram.com/sake_hozuki/"><img src="icons/instagram.png" alt="Instagram" /></a>
+    <a href="https://www.youtube.com/@Serrivel"><img src="icons/youtube.png" alt="YouTube" /></a>
+    <a href="https://discord.com/invite/tnJSUEAMzY"><img src="icons/discord.png" alt="Discord" /></a>
+
+  </div>
+
+  <!-- FILA 2: 6 íconos -->
+  <div class="row">
+    <a href="https://vgen.co/sakehozuki"><img src="icons/vgen.png" alt="Vgen" /></a>
+    <a href="https://sakeh.carrd.co/"><img src="icons/comisiones.png" alt="Comisiones" /></a>
+    <a href="hhttps://tapas.io/series/Eterna/info"><img src="icons/tapas.png" alt="Tapas" /></a>
+    <a href="https://sakecatalogo.carrd.co/"><img src="icons/portafolio.png" alt="Portafolio" /></a>
+    <a href="https://streamelements.com/sakehozuki/tip"><img src="icons/streamelements.png" alt="Streamelements" /></a>
+  </div>
+</div>
+
+    <section class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">España</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">11 de Septiembre</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1,55 m</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Pollo rebozado con patatas al horno </div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Pescado </div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">Alice Madness Returms</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">América Horror Story</div></div>
+                <div class="dato"><div class="titulo">Gustos <br> musicales:</div><div class="contenido">Rap y dupster</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">Hunter x Hunter</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Virgo</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Tiburón y gato</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Verde grisáceo </div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">Rigger y Artista: Sake</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#sakehozuki</div></div>
+    </section>
+
+    <a href="index.html" class="back-button"><span>⬅</span>Volver</a>
+  </div>
+</main>
+
+<section class="bottom-section">
+  <div class="left-side">
+    <table class="tabla-facciones">
+      <tr><th>Chaos Ascendant</th><th>Abyssal</th></tr>
+      <tr>
+        <td><img src="facciones/Chaos%20Ascendant.png"></td>
+        <td><img src="facciones/Abyssal.png"></td>
+      </tr>
+    </table>
+
+    <table>
+	    <td class="stat-col">Nivel</td>
+    <td class="valor-col" id="nivel">1</td>
+  </tr>
+  <tr>
+    <td class="stat-col">EXP</td>
+    <td class="valor-col">
+      <div class="exp-wrapper">
+        <div class="exp-bar-container">
+          <div class="exp-bar-fill" id="expBar"></div>
+        </div>
+        <small class="exp-text" id="expText">15 / 55 XP</small>
+      </div>
+    </td>
+  </tr>      
+      <tr><td class="stat-col">HP</td><td class="valor-col">1350</td></tr>
+      <tr><td class="stat-col">MP</td><td class="valor-col">900</td></tr>
+      <tr><td class="stat-col">Ataque</td><td class="valor-col">140</td></tr>
+      <tr><td class="stat-col">Defensa</td><td class="valor-col">135</td></tr>
+      <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col">198</td></tr>
+      <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col">171</td></tr>
+      <tr><td class="stat-col">Velocidad</td><td class="valor-col">98</td></tr>
+      <tr><td class="stat-col">Evasión</td><td class="valor-col">52</td></tr>
+      <tr><td class="stat-col">Precisión</td><td class="valor-col">78</td></tr>
+      <tr><td class="stat-col">Crítico</td><td class="valor-col">50</td></tr>
+      <tr><td class="stat-col">Suerte</td><td class="valor-col">10</td></tr>
+    </table>
+  </div>
+
+  <div class="radar-container">
+   <img src="diagrama/sake.png"></div>
+</section>
+
+<!-- Skills centradas -->
+<section class="skills-section">
+  <h2 class="section-title">Active Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Chaos%20Ascendant.png"></td><td>Ofensivo</td><td>Affective Consumption</td><td>Ataque Mágico Base ×2.0; puedes eliminar hasta 3 estados negativos del enemigo y recupera 5% HP por cada estado eliminado</td></tr>
+    <tr><td><img src="facciones/Abyssal.png"></td><td>Ofensivo</td><td>Emotional Engulfment</td><td>Ataque Mágico Base ×2.0; por cada estado negativo activo en el enemigo, recuperas 5% HP y extiendes uno de esos estados por 1 turno (a elección del usuario).</td></tr>
+  </table>
+
+  <h2 class="section-title">Passive Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/Chaos%20Ascendant.png"></td><td>Soporte</td><td>Emotional Void</td><td>Mientras el enemigo tenga <span style="color:#43408f; font-weight:bold;">Confusión</span>, <span style="color:#074fcc; font-weight:bold;">Miedo</span> o <span style="color:#773705; font-weight:bold;">Silencio</span>, su daño total se reduce en 10%.</td></tr>
+    <tr><td><img src="facciones/Abyssal.png"></td><td>Soporte</td><td>Affective Oblivion</td><td>Cada vez que el enemigo pierde <span style="color:#074fcc; font-weight:bold;">Miedo</span>, <span style="color:#43408f; font-weight:bold;">Confusión</span> o <span style="color:#04abab; font-weight:bold;">Somnolencia</span>, debe lanzar 1d2.
+<br>Si obtiene 1, el estado eliminado se reaplica por 1 turno; si obtiene 2, el efecto se disipa normalmente.</td></tr>
+  </table>
+
+  <h2 class="section-title">Ultimate Skill</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr>
+      <td><img src="facciones/Chaos%20Ascendant.png"><img src="facciones/Abyssal.png"></td>
+      <td>Ultimate</td><td><br>Abyssi Terror Aeternum</td><td>Ataque Mágico Base ×2.0 y aplica <span style="color:#074fcc; font-weight:bold;">Miedo</span>. <br>
+Activa efecto único <span style="color:#7902ff; font-weight:bold;">Horror Cósmico</span> por 3 turnos.<br>
+<br><span style="color:#7902ff; font-weight:bold;">Horror Cosmico</span>: Solo puede ser activada por estado <span style="color:#074fcc; font-weight:bold;">Miedo</span>. El enemigo no puede usar habilidades ofensivas y pierde 3% de HP por turno.<br>
+<br>Al finalizar <span style="color:#7902ff; font-weight:bold;">Horror Cósmico</span>, recuperas HP y MP equivalentes al daño total acumulado ×3.<br>
+
+</td>
+    </tr>
+  </table>
+</section>
+<script>
+// ===========================
+// BARRA DE EXPERIENCIA MANUAL
+// ===========================
+function updateBarManual() {
+  const text = expText.textContent.trim();
+
+  const match = text.match(/(\d+)\s*\/\s*(\d+)/);
+  if (!match) return;
+
+  const currentXP = parseInt(match[1], 10);
+  const maxXP = parseInt(match[2], 10);
+
+  const percent = maxXP > 0 ? Math.min((currentXP / maxXP) * 100, 100) : 0;
+
+  expBar.style.width = percent + "%";
+}
+
+// Ejecutar al cargar
+updateBarManual();
+</script>
+</body>
+</html>

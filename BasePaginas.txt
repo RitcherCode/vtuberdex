@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ficha VTuber - Ritcher Code</title>
+<style>
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #020001, #b80000);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 🌌 Fondo base con flujo y pulso rojo */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 40% 30%, rgba(255, 0, 0, 0.2), transparent 70%),
+    linear-gradient(135deg, #050505 0%, #0a0a0a 40%, #200000 60%, #000000 100%);
+  background-blend-mode: overlay;
+  background-size: 300% 300%;
+  animation: digitalFlow 14s ease-in-out infinite, redPulse 3s ease-in-out infinite;
+  filter: brightness(1.2) contrast(1.4);
+  z-index: -2;
+}
+
+/* 💾 Lluvia binaria roja */
+body::after {
+  content: "0101011101001001010101100101011001000101 1010100101010011 0110100100100101 01010110 01001000 01100101 01001100 01001100 01001111";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 2px;
+  color: rgba(255, 60, 60, 0.25);
+  text-shadow:
+    0 0 4px rgba(255, 0, 0, 0.6),
+    0 0 8px rgba(255, 0, 0, 0.4),
+    0 0 12px rgba(255, 0, 0, 0.2);
+  white-space: pre;
+  overflow: hidden;
+  animation: matrixRain 20s linear infinite;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 🔥 Animaciones base */
+@keyframes digitalFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes redPulse {
+  0% { filter: brightness(1.1) saturate(1.2); }
+  50% { filter: brightness(1.4) saturate(1.6); }
+  100% { filter: brightness(1.1) saturate(1.2); }
+}
+
+/* 💧 Lluvia descendente */
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0.3;
+  }
+}
+
+canvas#binaryRain {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  opacity: 0.4 !important; /* 👁️ más tenue para vista cansada */
+  background: transparent !important;
+}
+
+.modo-descanso {
+  background: #000;
+}
+canvas {
+  opacity: 0.4;
+}
+
+#vtuber-phrase {
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  width: calc(100% - 8px);
+  margin: 2rem auto;
+  padding: 0 4px;
+
+  /* 💻 Color metálico digital */
+  background: linear-gradient(90deg,
+    #ff1e56 0%,
+    #ff0844 30%,
+    #ff1e56 60%,
+    #b30000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* ⚡ Efecto sutil de glitch por duplicación */
+  position: relative;
+  text-shadow:
+    1px 0px 2px rgba(255, 0, 0, 0.3),
+   -1px 0px 2px rgba(0, 255, 255, 0.3);
+
+  /* 🔁 Animación ligera tipo interferencia */
+  animation: cyberGlitch 2.2s infinite;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+@keyframes cyberGlitch {
+  0% { text-shadow: 1px 0px 2px rgba(255, 0, 0, 0.3), -1px 0px 2px rgba(0, 255, 255, 0.3); }
+  20% { text-shadow: 2px -1px 3px rgba(255, 0, 0, 0.5), -2px 1px 3px rgba(0, 255, 255, 0.5); }
+  40% { text-shadow: -1px 1px 2px rgba(255, 0, 0, 0.2), 1px -1px 2px rgba(0, 255, 255, 0.2); }
+  60% { text-shadow: 3px 0px 4px rgba(255, 0, 0, 0.4), -3px 0px 4px rgba(0, 255, 255, 0.4); }
+  80% { text-shadow: 0px 0px 1px rgba(255, 0, 0, 0.2), 0px 0px 1px rgba(0, 255, 255, 0.2); }
+  100% { text-shadow: 1px 0px 2px rgba(255, 0, 0, 0.3), -1px 0px 2px rgba(0, 255, 255, 0.3); }
+}
+
+/* Botón RPG */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 22px;
+  background: linear-gradient(145deg, #3a0000, #7a0000);
+  border: 2px solid #ffffff;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ff0000, inset 0 0 8px #550000;
+  transition: all 0.25s ease;
+}
+.back-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px #ff3333, inset 0 0 10px #ffffff;
+}
+.back-button span {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+/* Superior */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.imagen-grande img {
+  width: 480px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(30, 30, 30, 0.95);
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  width: 480px;
+}
+
+header img {
+  width: 260px;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.25s ease, filter 0.4s ease;
+  filter: none;
+  background: none;
+  border-radius: 6px; /* solo suaviza esquinas si el icono es cuadrado */
+}
+
+/* 💡 Borde de neón ajustado y visible */
+.socials img:hover {
+  transform: scale(1.25);
+  filter:
+    drop-shadow(0 0 1px #ff1a1a)
+    drop-shadow(0 0 2px #ff1a1a)
+    drop-shadow(0 0 3px #ff3333)
+    drop-shadow(0 0 4px #ff4d4d);
+  animation: neonEdge 1.5s ease-in-out infinite alternate;
+}
+
+/* ⚡ Parpadeo tipo neón — ajustado al borde */
+@keyframes neonEdge {
+  0% {
+    filter:
+      drop-shadow(0 0 1px #ff1a1a)
+      drop-shadow(0 0 2px #ff1a1a)
+      drop-shadow(0 0 3px #ff3333)
+      drop-shadow(0 0 4px #ff4d4d);
+    opacity: 0.85;
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 2px #ff3333)
+      drop-shadow(0 0 3px #ff3333)
+      drop-shadow(0 0 4px #ff4d4d)
+      drop-shadow(0 0 5px #ff6666);
+    opacity: 1;
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 1px #ff1a1a)
+      drop-shadow(0 0 2px #ff1a1a)
+      drop-shadow(0 0 3px #ff3333)
+      drop-shadow(0 0 4px #ff4d4d);
+    opacity: 0.9;
+  }
+}
+
+
+/* Ficha */
+.ficha {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.dato, .pais {
+  display: flex;
+  margin: 6px 0;
+  background: #020001;
+  border-radius: 6px;
+  overflow: hidden;
+  color: white;
+}
+.titulo {
+  width: 140px;
+  background: #b80000;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.contenido {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Sección inferior (Stats + Radar) */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Izquierda: Facciones + Stats */
+.left-side {
+  flex: 1;
+  min-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: 90%;
+  border: 2px solid white;
+}
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid white;
+}
+.stat-col {
+  background-color: #b80000;
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+}
+.valor-col {
+  width: 50%;
+  background: #000;
+  color: #fff;
+}
+
+/* Facciones */
+.tabla-facciones th {
+  background-color: #b80000;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+}
+.tabla-facciones tr:nth-child(2) {
+  background-color: #000;
+}
+.tabla-facciones img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Radar - grande, centrado y con brillo estático */
+.radar-container {
+  flex: 1;
+  min-width: 600px;
+  text-align: center;
+  margin-left: 80px;   /* mantiene el desplazamiento lateral */
+  margin-top: 40px;    /* alineado con tablas */
+  margin-right: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radar-container img {
+  width: 1000px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, #111 60%, #000);
+  padding: 1px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 30px #b80000, inset 0 0 15px #550000; /* brillo estático */
+  transition: none;
+}
+
+
+/* Sección de skills */
+.skills-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 30px;
+  color: #ffd700;
+  text-shadow: 0 0 8px #ff0000, 0 0 12px #b80000;
+  margin-bottom: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.skills-table {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  border: 2px solid white;
+  text-align: center;
+}
+.skills-table th {
+  background: #b80000;
+  color: #fff;
+  font-size: 18px;
+  border: 1px solid white;
+}
+.skills-table td {
+  background: #000;
+  color: #fff;
+  border: 1px solid white;
+  padding: 10px;
+}
+.skills-table img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+/* 📱 FIX DEFINITIVO — centrado y proporción correcta de imagen, info y radar */
+@media (max-width: 1024px) {
+
+html, body {
+  overflow-x: hidden !important;
+}
+
+ /* 🩸 FONDO Y LLUVIA BINARIA FUNCIONAL EN MÓVILES */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    font-family: Arial, sans-serif !important;
+    color: #fff !important;
+}
+
+/* Fondo rojo más oscuro y legible */
+body::before {
+  content: "" !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: linear-gradient(135deg,
+    #1a0000 0%,   /* rojo muy oscuro */
+    #330000 25%,  /* tono medio profundo */
+    #660000 60%,  /* rojo oscuro saturado */
+    #0d0000 100%  /* casi negro */
+  ) !important;
+  background-size: cover !important;
+  z-index: -2 !important;
+  filter: brightness(0.85) contrast(1.15) !important;
+}
+
+body::before,
+canvas#binaryRain {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;   /* ancho del body */
+  height: 100% !important;  /* altura del contenido */
+  pointer-events: none !important;
+}
+
+/* Lluvia binaria visible, sobre el fondo, debajo del contenido */
+canvas#binaryRain {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -1 !important; /* justo encima del fondo */
+  pointer-events: none !important;
+  opacity: 0.25 !important;
+  background: transparent !important;
+}
+  
+  /* 📱 RESPONSIVO — iconos más pequeños y neón más suave */
+@media (max-width: 768px) {
+  .socials {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .socials img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .socials img:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 1px #ff1a1a)
+            drop-shadow(0 0 2px #ff3333)
+            drop-shadow(0 0 3px #ff4d4d);
+    animation: neonPulseTightMobile 2s infinite ease-in-out;
+  }
+
+  @keyframes neonPulseTightMobile {
+    0% {
+      filter: drop-shadow(0 0 1px #ff1a1a)
+              drop-shadow(0 0 2px #ff3333)
+              drop-shadow(0 0 3px #ff4d4d);
+    }
+    50% {
+      filter: drop-shadow(0 0 1.5px #ff3333)
+              drop-shadow(0 0 2.5px #ff4d4d)
+              drop-shadow(0 0 3.5px #ff6666);
+      opacity: 0.95;
+    }
+    100% {
+      filter: drop-shadow(0 0 1px #ff1a1a)
+              drop-shadow(0 0 2px #ff3333)
+              drop-shadow(0 0 3px #ff4d4d);
+      opacity: 1;
+    }
+  }
+}
+
+
+
+  /* 🧩 Contenedor principal más compacto y centrado */
+  .contenedor-principal {
+    width: 90% !important;
+    max-width: 340px !important;
+    margin: 0 auto 20px auto !important;
+    padding: 10px 6px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  
+  #vtuber-phrase {
+  text-align: center;
+  white-space: pre-line;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  width: calc(100% - 8px);
+  margin: 2rem auto;
+  padding: 0 4px;
+
+  /* 💻 Color metálico digital */
+  background: linear-gradient(90deg,
+    #ff1e56 0%,
+    #ff0844 30%,
+    #ff1e56 60%,
+    #b30000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* ⚡ Efecto sutil de glitch por duplicación */
+  position: relative;
+  text-shadow:
+    1px 0px 2px rgba(255, 0, 0, 0.3),
+   -1px 0px 2px rgba(0, 255, 255, 0.3);
+
+  /* 🔁 Animación ligera tipo interferencia */
+  animation: cyberGlitch 2.2s infinite;
+}
+
+  /* 🖼 Imagen grande centrada */
+  .imagen-grande {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 20px auto !important;
+  }
+
+  .imagen-grande img {
+    width: 80% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+  
+  #vtuber-phrase {
+  font-size: 13px !important;    /* 🔹 más pequeño en móviles */
+  line-height: 1.3 !important;   /* 🔹 menos separación */
+  text-align: center !important; /* 🔹 centrado perfecto */
+  max-width: 95% !important;     /* 🔹 más compacto en pantallas chicas */
+  margin: 8px auto !important;
+}
+
+  /* 🛰 Radar 100% centrado y visible en todos los móviles */
+  .radar-container {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 260px !important;        /* 🔹 ancho compacto */
+    margin: 0 auto 15px auto !important;
+    left: 50% !important;               /* 🔹 centrado absoluto */
+    transform: translateX(-50%) !important;
+    overflow: visible !important;       /* 🔹 evita recortes */
+    box-sizing: border-box !important;
+  }
+
+  .radar-container img,
+  .radar-container canvas {
+    width: 100% !important;              /* 🔹 un poco más grande */
+    max-width: 300px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+  }
+
+/* Ficha más compacta y dentro del contenedor */
+.ficha {
+  max-width: 300px !important;
+  margin: 10px auto !important; /* centrado horizontal automático */
+  gap: 4px !important;
+  box-sizing: border-box !important; /* asegura que padding no haga que sobresalga */
+}
+
+.ficha .dato,
+.ficha .pais {
+  font-size: 12px !important;
+}
+
+
+  /* ⚔ Skills (si las tienes después) */
+  .skills-section {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 0 auto 30px auto !important;
+    padding: 5px !important;
+    text-align: center !important;
+  }
+
+  .skills-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 0 auto !important;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 12px !important;
+    padding: 4px !important;
+    text-align: center !important;
+  }
+
+/* Botón volver con menos margen */
+  .back-button {
+    margin: 15px auto !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* ✅ Compatibilidad con animaciones en Chromium */
+@-webkit-keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; -webkit-filter: brightness(1); }
+  50% { opacity: 1; -webkit-filter: brightness(1.2); }
+}
+@keyframes emperorPulse {
+  0%, 100% { opacity: 0.9; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <div class="imagen-grande">
+          <img src="vtubercompleto/.png" alt="" />
+  </div>
+  <div class="contenedor-principal">
+    <header>
+            <img src="logos/.png" alt="Logo" class="vtuber-logo" />
+            <h3><p id="vtuber-phrase">Soy una goblin de 100 metros y me gusta destruir ciudades</p>
+    </header>
+
+          <!-- Redes -->
+          <div class="socials">
+            <a href=""><img src="icons/x.png" alt="X" /></a>
+            <a href=""><img src="icons/twitch.png" alt="Twitch" /></a>
+            <a href=""><img src="icons/tiktok.png" alt="TikTok" /></a>
+            <a href=""><img src="icons/instagram.png" alt="Instagram" /></a>
+			<a href=""><img src="icons/youtube.png" alt="YouTube" /></a>
+          </div>
+
+    <section class="ficha">
+                <div class="pais"><div class="titulo">País:</div><div class="contenido">Chile</div></div>
+                <div class="dato"><div class="titulo">Cumpleaños:</div><div class="contenido">10 de Septiembre</div></div>
+                <div class="dato"><div class="titulo">Altura:</div><div class="contenido">1,55 m</div></div>
+                <div class="dato"><div class="titulo">Comida favorita:</div><div class="contenido">Salmon y Lasaña </div></div>
+                <div class="dato"><div class="titulo">Comida que detestas:</div><div class="contenido">Champiñones </div></div>
+                <div class="dato"><div class="titulo">Videojuego favorito:</div><div class="contenido">hollow knight</div></div>
+                <div class="dato"><div class="titulo">Serie favorita:</div><div class="contenido">Hora de Aventura</div></div>
+                <div class="dato"><div class="titulo">Gustos musicales:</div><div class="contenido">power metal, rock, videojuegos</div></div>
+                <div class="dato"><div class="titulo">Anime favorito:</div><div class="contenido">Ishuzoku Reviewers</div></div>
+                <div class="dato"><div class="titulo">Signo Zodiacal:</div><div class="contenido">Virgo</div></div>
+                <div class="dato"><div class="titulo">Animal favorito:</div><div class="contenido">Polillas</div></div>
+                <div class="dato"><div class="titulo">Color favorito:</div><div class="contenido">Morado </div></div>
+                <div class="dato"><div class="titulo">Modelo:</div><div class="contenido">PROYECTO AR-AI.I (artista y rigger)</div></div>
+                <div class="dato"><div class="titulo">Hashtag:</div><div class="contenido">#ArteGLITCHeado</div></div>
+    </section>
+
+    <a href="index.html" class="back-button"><span>⬅</span>Volver</a>
+  </div>
+</main>
+
+<section class="bottom-section">
+  <div class="left-side">
+    <table class="tabla-facciones">
+      <tr><th>Glitchborn</th><th>Chaos Ascendant</th></tr>
+      <tr>
+        <td><img src="facciones/Glitchborn.png"></td>
+        <td><img src="facciones/Chaos%20Ascendant.png"></td>
+      </tr>
+    </table>
+
+    <table>
+      <tr><td class="stat-col">HP</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">MP</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Ataque</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Defensa</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Ataque Mágico</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Defensa Mágica</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Velocidad</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Evasión</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Precisión</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Crítico</td><td class="valor-col"></td></tr>
+      <tr><td class="stat-col">Suerte</td><td class="valor-col"></td></tr>
+    </table>
+  </div>
+
+  <div class="radar-container">
+   <img src=""></div>
+</section>
+
+<!-- Skills centradas -->
+<section class="skills-section">
+  <h2 class="section-title">Active Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/.png"></td><td></td><td></td><td></td></tr>
+    <tr><td><img src="facciones/.png"></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h2 class="section-title">Passive Skills</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr><td><img src="facciones/.png"></td><td>Soporte</td><td></td><td></td></tr>
+    <tr><td><img src="facciones/.png"></td><td>Soporte</td><td></td><td></td></tr>
+  </table>
+
+  <h2 class="section-title">Ultimate Skill</h2>
+  <table class="skills-table">
+    <tr><th>Facción</th><th>Tipo</th><th>Nombre</th><th>Habilidad</th></tr>
+    <tr>
+      <td><img src="facciones/.png"><img src="facciones/.png"></td>
+      <td></td><td></td><td></td>
+    </tr>
+  </table>
+</section>
+<canvas id="binaryRain"></canvas>
+
+<script>
+const canvas = document.getElementById("binaryRain");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const characters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "rgba(255, 30, 60, 0.8)"; // rojo binario futurista
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = characters.charAt(Math.floor(Math.random() * characters.length));
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 50);
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+function modoDescanso() {
+  document.body.classList.toggle("modo-descanso");
+}
+
+</script>
+
+</body>
+</html>
